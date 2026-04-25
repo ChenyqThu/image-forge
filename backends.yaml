@@ -86,6 +86,13 @@ dispatch:
         - watercolor
         - ink-chinese-style
 
+  # 强制走 gpt-image-2 的任务类型（无论 rendering 属性如何）
+  # 根据 2026-04-24 卡牌实测：Gemini 在小细人物+排版组合场景质量较弱
+  force_gpt_image2_when:
+    - task_type_in: [card-art, trading-card, character-card, product-showcase]
+    - has_text_layout: true          # 有文字排版需求（技能标签、stats、屡历卡）
+    - realistic_portrait_with_frame: true  # 写实人物肖像 + 卡牌边框
+
   # 用户显式触发词（覆盖一切自动判断）
   user_override:
     gpt-image-2:
