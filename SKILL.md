@@ -166,6 +166,32 @@ description: |
 
 ### GPT Image 2（CRS 路由）
 
+**推荐使用 wrapper 脚本**（支持 generate + edit，多图 edit，自动处理 base64）：
+```bash
+# 文生图
+uv run {baseDir}/scripts/gpt_image2.py generate \
+  --prompt "<prompt>" \
+  --output /path/out.png \
+  --size 1536x1024 \
+  --quality high
+
+# 改图（单张参考图）
+uv run {baseDir}/scripts/gpt_image2.py edit \
+  --prompt "<edit instruction>" \
+  -i /path/ref.png \
+  --output /path/out.png \
+  --size 1024x1536
+
+# 改图（多张参考图，最多 4 张）
+uv run {baseDir}/scripts/gpt_image2.py edit \
+  --prompt "<instruction>" \
+  -i ref1.png -i ref2.png \
+  --output /path/out.png
+```
+
+> **注意**：edit 接口不支持 `input_fidelity` 参数（已验证 2026-04-25）。
+
+**Python API（内联使用）**：
 ```python
 import os, requests, base64, time
 
@@ -219,13 +245,18 @@ uv run {baseDir}/scripts/generate_image.py \
   --filename "~/.openclaw/workspace/tmp/image-forge/$(date +%Y-%m-%d-%H-%M-%S)-<slug>.png" \
   --aspect-ratio "<1:1|3:4|4:3|9:16|16:9>"
 
-# 参考图编辑 / 多参考图合成
+# 改图 / 多参考图合成（已实测 2026-04-25）
+# Gemini 会在参考图基础上按 prompt 修改，多图合成/风格迁移尤其适合
 uv run {baseDir}/scripts/generate_image.py \
-  --prompt "<instructions>" \
-  --filename "..." \
-  -i "/ref1.jpg" -i "/ref2.jpg" \
+  --prompt "<e.g.: keep character, change background to warm sunset>" \
+  --filename "~/.openclaw/workspace/tmp/image-forge/$(date +%Y-%m-%d-%H-%M-%S)-<slug>.png" \
+  -i "/path/to/ref1.jpg" -i "/path/to/ref2.jpg" \
   --aspect-ratio "3:4"
 ```
+
+> **Gemini edit vs GPT Image 2 edit**
+> - Gemini：多图合成、风格迁移更自由，但对原图布局保留能力较弱
+> - GPT Image 2：保留原图布局/文字/边框精确修改时更强，推荐用于卡牌、产品展示图的约束性编辑
 
 ---
 
