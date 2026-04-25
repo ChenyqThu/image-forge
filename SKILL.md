@@ -197,7 +197,7 @@ def gpt_image2_edit(prompt, image_path, size='1536x1024', quality='high',
         headers={'Authorization': f'Bearer {CRS_KEY}'},
         json={'model': 'gpt-image-2', 'prompt': prompt,
               'images': [{'image_url': f'data:image/png;base64,{b64_img}'}],
-              'size': size, 'quality': quality, 'input_fidelity': 'high',
+              'size': size, 'quality': quality,
               'output_format': output_format, 'response_format': 'b64_json'},
         timeout=180,
     )
@@ -250,8 +250,20 @@ Final Prompt =
 
 - 保存目录：`~/.openclaw/workspace/tmp/image-forge/`
 - 文件名：`YYYY-MM-DD-HH-MM-SS-<slug>.png`
-- 输出 `MEDIA: /path` → OpenClaw 自动附件
-- 回复：说明所选路径 + 后端 + 关键 prompt 要点，附图，不读取二进制
+- 回复：说明所选路径 + 后端 + 关键 prompt 要点，不读取二进制
+
+### 渠道交付规则
+
+| 渠道 | 交付方式 |
+|------|--------|
+| **飞书** | `message` tool + `filePath`（发送原生飞书图片消息） |
+| Discord / 其他渠道 | `MEDIA: /absolute/path` （自动 inline） |
+
+飞书交付示例：
+```
+message action=send filePath=/abs/path/to/image.png
+```
+【注意】一次生成多张图时，分次发送每张图片。
 
 ---
 
