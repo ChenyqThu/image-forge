@@ -5,7 +5,7 @@ description: |
   - Signature 风格：11 种有独立 YAML 的视觉方案（构成主义/克莱因/Risograph/故障艺术/平面几何字体等）
   - Rendering 风格：15 种通用渲染技法 modifier（写真/动漫/3D/水彩/赛博朋克等），prompt 源自实战案例
   - Logo 展示背景：12 种专业展示场景（来源 logo-generator，已内化）
-  - 用途库：15 类场景 + 全实战 prompt 案例，含推荐风格 + 后端默认 + pitfalls 防坑
+  - 用途库：16 类场景 + 全实战 prompt 案例，含推荐风格 + 后端默认 + pitfalls 防坑
   - 后端调度：GPT Image 2（写实/产品/文字/4K）/ Gemini（动漫/艺术/多参考图）
   - 支持：文生图、风格库生图、参考图风格反推、参考图编辑、多参考图合成、logo 展示图
   Use when: 用户想画图/生图/做海报/插画/风格迁移/图片编辑/logo展示图 — 这是唯一的图像生成入口。
@@ -113,6 +113,13 @@ description: |
 | 古风、历史、汉服 | historical-oriental | **GPT Image 2** | photography, ink-chinese-style |
 | 版式、杂志、出版 | document-publication | **GPT Image 2** | photography, minimalism |
 | 科普、动物、Apple风海报 | natural-science-poster | **GPT Image 2** | photography, minimalism |
+| 个人色彩诊断、形象报告 | **personal-color-diagnosis** | **GPT Image 2** (edit) | photography, minimalism |
+
+**注：** personal-color-diagnosis 为特殊两阶段工作流。命中后：
+1. 必须确认用户已提供素颜参考图（正面/自然光/无滤镜）
+2. 先运行 Stage 1 色彩诊断卡 → 再运行 Stage 2 综合形象报告
+3. 两次均使用 gpt-image-2 edit endpoint + 参考图
+4. 简版可选四卡方案 (4-Card Variant)
 
 ---
 

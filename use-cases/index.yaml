@@ -347,6 +347,32 @@ use_cases:
       - "用传统信息图卡片/圆角框 → 破坏 Apple 极简风格"
       - "底部信息区过度拥挤 → '少而准'原则，4 列极简布局，不超过 3 行"
 
+  - id: personal-color-diagnosis
+    label: "个人色彩诊断 / 个人形象报告"
+    aliases: [个人色彩, 色彩诊断, 韩式色彩, 季节色彩, 个人形象, personal color, color analysis, 色彩测试, 高座诊断看板, drape test, 形象诊断, 穿搭分析, 色彩季节, 色彩风格卡片, 形象报告]
+    references_file: "references/personal-color-diagnosis.json"
+    recommended_signature: []
+    recommended_rendering:
+      - photography       # 素颜写实风格
+      - minimalism        # 干净卡片背景
+    default_backend: gpt-image-2
+    default_size: "1024x1536"
+    default_aspect: "3:4"
+    requires_reference_image: true
+    workflow:
+      type: two-stage
+      stage_1: "色彩诊断卡 (Color Diagnosis Card) — 先运行"
+      stage_2: "综合形象报告 (Image Report Dashboard) — 后运行"
+      alt: "简版四卡方案 (4-Card Variant) — 快速版"
+    layout_hints:
+      - "两阶段生成：先 Stage 1 (drape 诊断卡) 再 Stage 2 (大版面报告)"
+      - "每张图都需要起始参考图 (edit endpoint)"
+      - "12型色彩季节体系：春夏秋冬各 3 个子型"
+    pitfalls:
+      - "人脸一致性是最大挑战：Stage 2 小图 15+ 次出现同一张脸，承认不完美但不要拆得过细"
+      - "色彩逻辑必须自洽：季节判定后全版面衣服/妆容/色板必须色彩一致"
+      - "不提供素颜自拍（自然光无滤镜）→ 模型无法准确分析肤色基调"
+
   - id: others
     label: "其他 / 自由创作"
     aliases: [其他, 自由, 随便, others, free, creative, 创意]

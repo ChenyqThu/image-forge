@@ -44,6 +44,7 @@ backends:
       - historical-oriental   # 中文文字排版 + 写实古风
       - document-publication  # 版式文字精准渲染
       - natural-science-poster  # Apple 极简风 + 中文科普文字
+      - personal-color-diagnosis  # 人脸保留 + 季节色彩逻辑 + 文字渲染全靠 GPT
 
   - id: nano-banana-2
     priority: 5
