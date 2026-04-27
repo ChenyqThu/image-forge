@@ -2,7 +2,7 @@
 name: image-forge
 description: |
   画图技能路由中枢（统一入口）。三维路由体系（用途 × 风格 × 主体），双后端调度。
-  - Signature 风格：10 种有独立 YAML 的视觉方案（构成主义/克莱因/Risograph/故障艺术等）
+  - Signature 风格：11 种有独立 YAML 的视觉方案（构成主义/克莱因/Risograph/故障艺术/平面几何字体等）
   - Rendering 风格：15 种通用渲染技法 modifier（写真/动漫/3D/水彩/赛博朋克等），prompt 源自实战案例
   - Logo 展示背景：12 种专业展示场景（来源 logo-generator，已内化）
   - 用途库：15 类场景 + 全实战 prompt 案例，含推荐风格 + 后端默认 + pitfalls 防坑
@@ -65,6 +65,9 @@ description: |
 | 波普水墨、pop art、ink splash | pop-ink-splash | 头像、社媒 |
 | 克莱因蓝、克莱因秩序、极简仰拍 | klein-blue-order | 头像、社媒 |
 | 高对比度工业、电光蓝故障 | high-contrast-industrial | 海报、产品、封面 |
+| 字体海报、平面几何、概念海报 | **geo-typography** | 海报、社媒 |
+
+**注：** geo-typography 有必填变量。命中后若用户未提供核心词语，必须主动问其前再生成。
 
 ### Tier 2: Rendering Styles（inline modifier，15 种）
 
@@ -322,6 +325,17 @@ message action=send filePath=/abs/path/to/image.png
 ## 典型示例
 
 ```
+# [Path S] geo-typography — 平面几何字体海报
+"帮我做一张字体海报‘失控的秩序’"
+→ geo-typography.yaml → GPT Image 2
+   Prompt = 核心词: 失控的秩序 / 语言: 中文 / 情绪: auto-detect
+
+"设计一张 Less is more 的 typographic poster"
+→ geo-typography 命中 → 诞辨 → 输入: Less is more / 英文 / auto
+
+"字体语义海报：孤独"
+→ geo-typography / 情绪型 → 色块留白+图形距离 → GPT Image 2, 3:4
+
 # [Path D] 默认 GPT Image 2
 "画一只在宇宙中游泳的猫"
 → gpt-image-2，size=1536x1024

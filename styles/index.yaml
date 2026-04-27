@@ -107,6 +107,20 @@ signature_styles:
     tags: [industrial, high-contrast, glitch, film-noir]
     use_case_affinity: [poster-flyer, youtube-thumbnail, product-marketing]
 
+  - id: geo-typography
+    file: geo-typography.yaml
+    category: typographic
+    aliases: [平面几何字体, 字体海报, 几何字体, 概念海报, 字体设计, 字体语义海报, geo-typography, typographic poster, geometric type, concept poster, 平面排版, 文字海报, 字体实验, 语义可视化]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [typography, geometric, concept, poster, minimal, vector]
+    use_case_affinity: [poster-flyer, social-media-post]
+    avoid_for: [ecommerce-main-image, product-marketing, profile-avatar]
+    input_variables:
+      required: ["核心文字/词组/短句", "文字语言"]
+      optional: ["可选补充语境", "可选情绪倾向", "可选禁用元素"]
+    special_note: "触发时需用户提供核心文字输入。若用户只说'字体海报'未给文字内容，主动问: '核心词语是什么（中/英均可）'"
+
 
 
 # ──────────────────────────────────────────
