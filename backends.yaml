@@ -40,6 +40,10 @@ backends:
       - youtube-thumbnail
       - app-web-design
       - infographic-edu-visual
+      - architectural-space   # 写实渲染 + 透视精度
+      - historical-oriental   # 中文文字排版 + 写实古风
+      - document-publication  # 版式文字精准渲染
+      - natural-science-poster  # Apple 极简风 + 中文科普文字
 
   - id: nano-banana-2
     priority: 5

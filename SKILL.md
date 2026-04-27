@@ -113,10 +113,15 @@ description: |
 
 ---
 
-## 路由决策树（6 条路径）
+## 路由决策树（7 条路径）
 
 ```
 用户输入
+│
+├── 用户直接输入 JSON/YAML 结构体（包含 type/subject/style/constraints 字段）
+│   → [Path J] Prompt-as-Code 直接执行
+│       解析结构体山u5404字段 → 合并为自然语言 prompt → 按 type 字段匹配用途后端
+│       如无 type 字段 → 解析 subject 内容 → 按 Path D 处理
 │
 ├── 有参考图 + "用这个风格"/"反推"
 │   → [Path R] 风格反推：reverse_style.py → 提取风格 → 生成
@@ -134,6 +139,7 @@ description: |
 │
 ├── 命中用途关键词（海报/头像/电商…）
 │   → [Path U] 加载 use-cases/index.yaml → 检索 references JSON
+│       → 注入 layout_hints + pitfalls 为防坑层
 │       → 若无指定风格，展示推荐风格（可跳过直接生成）
 │       → 按 use-case.default_backend
 │

@@ -1,50 +1,51 @@
 [
   {
-    "title": "Illustrated City Food Map",
-    "source": "YouMind/awesome-gpt-image-2 @mm_zzm44854 — Featured",
-    "prompt": "Hand-drawn illustrated tourist map infographic of {subject} food and landmark guide, watercolor and ink illustration on vintage parchment paper, cartoon mascot in title section, vine/botanical border decoration, textured beige parchment background with colored roads and water features, numbered food locations with small illustrations of each dish, landmark illustrations with labels, legend in bottom corner with compass rose, warm hand-crafted aesthetic",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["map", "food", "illustrated", "infographic", "watercolor"]
+    "title": "JSON Schema 模板：工业级信息图（Agent 调用推荐）",
+    "description": "Prompt-as-Code 高级信息图模板，适合技术详解图、拆解图、工程图。强制结构化输出，防止内容溢出。",
+    "needReferenceImages": false,
+    "content": {
+      "type": "Premium Infographic",
+      "subtype": "{{类型，如 exploded-view/tech-explainer/urban-metabolism/workflow-diagram}}",
+      "topic": "{{主题，如 AI Glasses Components / RAG Architecture / Urban Water Cycle}}",
+      "audience": "{{目标读者，如 tech professionals / general public / students}}",
+      "structure": {
+        "title_area": "{{大标题（硬编码）}}",
+        "layout": "{{布局，如 Isometric cutaway / vertical flow / 3-column grid / exploded radial}}",
+        "module_count": "{{模块数量 3-8，必须明确锁定}}",
+        "modules": [
+          {"title": "{{模块1标题}}", "icon": "{{图标描述}}", "text": "{{1-2句说明}}"}
+        ]
+      },
+      "style": {
+        "aesthetic": "{{视觉风格，如 Technical white paper / Scientific atlas / Apple editorial / Engineering blueprint}}",
+        "colors": "{{配色，如 Low saturation with accent / Monochrome blue / Dark tech with neon accents}}",
+        "background": "{{背景，如 Pure white / Light paper texture / Dark blueprint grid}}"
+      },
+      "constraints": "No cyberpunk, no gibberish text, strictly structural layout, Chinese text must be legible"
+    }
   },
   {
-    "title": "Exploded View Technical Infographic",
-    "source": "YouMind/awesome-gpt-image-2 @wory37303852 — Featured",
-    "prompt": "Technical exploded view infographic poster of {subject}, clean high-tech 3D render style, product disassembled vertically showing all internal components as distinct labeled layers, callout lines with technical component descriptions on both sides, professional product specification layout, gradient background, title with product name and tagline at top, technical specifications footer",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["exploded view", "technical", "product", "infographic", "3D"]
+    "title": "RAG 技术详解图 — 工程白皮书风格",
+    "description": "技术类信息图模板，RAG 架构流程，适合 AI/LLM 教育内容。来自苍何实测。",
+    "needReferenceImages": false,
+    "content": "Generate a detailed technical explainer infographic for RAG (Retrieval-Augmented Generation) technology. Layout: horizontal flow diagram (left to right) on white background. Structure: 5 connected modules with arrows showing data flow. Module 1 (User Input): person icon + query box showing '用户提问: 最新 AI 进展?' Module 2 (Vector Search): database cylinder + search arrows + '向量检索' label with similarity score visualization. Module 3 (Context Retrieved): document icons with highlighted relevant paragraphs, '召回相关文档' label. Module 4 (LLM Processing): neural network node visualization + context injection illustration, 'LLM 生成回答' label. Module 5 (Output): clean answer display box with quality indicators. Visual style: clean scientific atlas, low-saturation blue-gray palette, white background, technical diagram precision. Chinese labels must be perfectly legible. 16:9 landscape. GPT Image 2, ultra-detailed."
   },
   {
-    "title": "Science Encyclopedia Vertical Infographic",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @pfanis",
-    "prompt": "Educational science encyclopedia infographic about {subject}, clean editorial layout with bold section headers, detailed scientific illustrations with labels and callout annotations, information hierarchy from overview to detail, consistent color coding by topic, clean white background with structured grid layout, museum or textbook publication quality",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["science", "encyclopedia", "educational", "infographic", "editorial"]
+    "title": "产品爆炸视图 — 机械结构工程图",
+    "description": "爆炸视图（exploded view）信息图，适合硬件产品/工业品/复杂机械展示。",
+    "needReferenceImages": false,
+    "content": "Generate a cinematic engineering-style exploded view (爆炸视图/分解图) infographic of a high-end mechanical watch movement. Show the watch disassembled into clearly separated floating components with dramatic isometric perspective. Components shown: crystal sapphire glass (蓝宝石玻璃), main spring barrel (发条盒), escapement wheel (擒纵轮), balance wheel (摆轮), gear train (轮系), rotor (摆陀), case back (表底盖). Each component connected by thin engineering annotation lines to Chinese+English labels. Technical data panel in corner: 机芯厚度 3.2mm / 振频 28800次/小时 / 储能 72小时. Background: very dark navy with subtle blueprint grid. Color accent: precision brushed steel and rose gold components with dramatic directional lighting. Style: fusion of cinematic product visualization and precise engineering documentation. 9:16 or 16:9, GPT Image 2 4K."
   },
   {
-    "title": "City Travel Guide Infographic",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @MrLarus",
-    "prompt": "City travel guide infographic for {subject}, isometric-style map illustration showing key districts and attractions, color-coded neighborhoods, illustrated landmarks with pop-up info cards, transportation routes, rating stars and category icons, clean editorial typography, modern travel magazine aesthetic",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["travel", "guide", "infographic", "illustrated", "map"]
+    "title": "城市生命系统图谱 — 等距信息图",
+    "description": "城市代谢系统信息图，12 个编号模块，工程白皮书质感。awesome-gpt-image-2 首页案例。",
+    "needReferenceImages": false,
+    "content": "Generate a scientific atlas-style isometric infographic titled '城市生命系统图谱 / Urban Metabolism Atlas'. Layout: isometric cutaway view of a city cross-section, showing underground and above-ground systems simultaneously. 12 numbered annotation panels arranged around the city cutaway, each with a colored icon and brief label. The 12 systems to depict: 1-能源网络 2-供水系统 3-污水处理 4-交通动脉 5-数字神经 6-建筑结构 7-公共空间 8-碳循环 9-热岛效应 10-应急系统 11-经济代谢 12-社会关系. Visual style: low-saturation color-coded flows (energy=orange, water=blue, data=purple, transportation=gray), light paper texture background, scientific atlas quality, bilingual Chinese/English labels. The annotation numbers should be clear circles in their respective accent colors. No cyberpunk, no garbled text. 16:9 GPT Image 2."
   },
   {
-    "title": "Cooking Process Flowchart",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @Kurt_Rousey466",
-    "prompt": "Step-by-step cooking process flowchart for {subject} recipe, illustrated food icons at each step, clear numbered sequence with arrows, ingredients list section, timing and temperature annotations, warm food photography palette, clean instructional design, suitable for cooking blog or social media recipe card",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["cooking", "flowchart", "recipe", "food", "infographic"]
-  },
-  {
-    "title": "Museum-Style Cultural Breakdown Infographic",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @MrLarus",
-    "prompt": "Museum exhibition-style infographic breaking down the elements of {subject}, authoritative academic layout on off-white background, detailed line drawings with annotation callouts, Latin serif typography, structured information hierarchy, natural history museum or cultural institution aesthetic, dignified scholarly presentation",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["museum", "cultural", "academic", "breakdown", "infographic"]
+    "title": "食品营养信息图 — Bento Grid 液态玻璃风",
+    "description": "液态玻璃 Bento grid 产品信息图，8 模块，适合食品/药品/科技产品营养展示。",
+    "needReferenceImages": false,
+    "content": "Create a premium liquid glass Bento grid product infographic with 8 modules for: 抹茶拿铁粉 (Matcha Latte Powder). Hero color: vibrant matcha green. 8 modules layout (asymmetric Bento grid, 16:9 landscape): M1-Hero (product as real photo, glass 3D version); M2-Core Benefits (4 benefits: 提神醒脑/零蔗糖/富含抹茶多酚/快速冲泡 + green icons); M3-How to Use (4 steps with icons: 取粉末/加热水/搅拌/加奶); M4-Nutrition Data (Calories: 35kcal/serving, Carbs: 6g, Protein: 1g, Catechins: 120mg, Caffeine: 35mg); M5-Who It's For (4 green checkmarks: 减脂期/早晨提神/运动后; 2 amber warnings: 孕期慎用/咖啡因敏感); M6-Important Notes (4 precautions); M7-Quick Reference (dietary: Vegan/无人工香料/非转基因); M8-Did You Know (3 facts about matcha). Style: Apple liquid glass cards (85-90% transparent), ethereal abstract green background with light caustics, subtle motion effect. Text in Chinese. 16:9."
   }
 ]

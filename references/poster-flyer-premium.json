@@ -1,66 +1,48 @@
 [
   {
-    "title": "VR Headset Exploded View Poster",
-    "source": "YouMind/awesome-gpt-image-2 @wory37303852 — Featured",
-    "prompt": "Exploded view product diagram poster of {subject}, clean high-tech 3D render style, studio lighting with glowing accents, soft purple and blue gradient background, vertically stacked exploded view showing distinct internal component layers, callout labels on left and right sides with technical descriptions, product name header with subtitle, footer with descriptive text block and logo, professional tech product launch poster layout",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["product", "exploded view", "tech", "3D", "poster"]
+    "title": "JSON Schema 模板：海报（Agent 调用推荐）",
+    "description": "Prompt-as-Code 海报结构化模板，适合电影海报、活动海报、运动 Campaign。先锁构图再写主体。",
+    "needReferenceImages": false,
+    "content": {
+      "type": "Poster Design",
+      "subtype": "{{类型，如 movie-poster/sports-campaign/event-flyer/concept-art}}",
+      "theme": "{{主题词}}",
+      "typography": {
+        "headline": "{{大标题（必须硬编码，不让模型自编）}}",
+        "subheading": "{{副标题（硬编码）}}",
+        "layout": "{{文字位置，如 Centered bottom-heavy / Top-left aligned / Diagonal split}}"
+      },
+      "visuals": {
+        "subject": "{{主视觉主体（必须具体描述 — 不能写'某个帅气的人'这种模糊描述）}}",
+        "composition": "{{构图，如 Single hero / Triptych / Data graffiti poster}}",
+        "props": "{{道具及其在画面中的位置和比例（运动类必填）}}"
+      },
+      "vibe": "{{整体氛围关键词，如 Epic and mysterious / Energetic and commercial / Dark and cinematic}}",
+      "color_palette": "{{主色+辅色，如 Deep space blue + glowing orange / Electric teal + black}}"
+    }
   },
   {
-    "title": "Vintage Travel Poster",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @WolfRiccardo",
-    "prompt": "Vintage travel poster for {subject}, retro 1950s-60s graphic design aesthetic, bold simplified illustration with flat color areas, Art Deco typography, warm Mediterranean palette of terracotta, cream, and cobalt blue, destination name in large serif font at top, atmospheric landscape illustration, subtle paper aging texture",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["travel", "vintage", "retro", "art deco", "poster"]
+    "title": "运动品牌 Campaign 海报 — 足球",
+    "description": "高端运动品牌广告级海报，足球主题，数据涂鸦风格。来自 awesome-gpt-image-2 案例。",
+    "needReferenceImages": false,
+    "content": "Design a premium sports brand Campaign poster for a soccer player. Main subject: a male soccer player in explosive kicking motion, caught at peak impact moment — leg fully extended, ball leaving foot creating motion blur trail. The football is positioned at lower-right as the dominant visual anchor, oversized compared to player, as if the ball is exploding out toward viewer. Composition: diagonal dynamic composition, player positioned upper-left looking toward lower-right kick direction. Layout: Data graffiti poster style — hand-drawn statistics overlaid on image: '78 GOALS' in large graffiti letters, performance stats in smaller annotations (速度 94 / 射门 91 / 传球 88). Large bold headline: 'STRIKE' in impact font upper area. Supporting text: 'Born to Score' sub-headline. Background: high-energy stadium atmosphere with blurred crowd bokeh, dramatic floodlight rays. Visual style: high-end sports brand advertising (Nike/Adidas level), strong directional lighting with rim light on player, reflective turf surface. Color palette: deep navy + electric gold accents + white. 4:5 vertical."
   },
   {
-    "title": "Futuristic Mandala Illustration Poster",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @4WEB1",
-    "prompt": "Futuristic mandala poster centered on {subject}, sacred geometry meets digital technology, intricate circular patterns with circuit board elements and cosmic motifs, deep space background with nebula colors — indigo, gold, electric blue, symmetrical ornate composition, spiritual-technological fusion aesthetic, dramatic scale contrast",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["mandala", "futuristic", "spiritual", "geometric", "poster"]
+    "title": "运动健身 Campaign — 力量品牌三联画",
+    "description": "健身品牌三联画 triptych 海报，展现力量与形体。",
+    "needReferenceImages": false,
+    "content": "Design a premium fitness brand Campaign triptych poster (三联画, three panels side by side in one image). Each panel shows the same male athlete in different power poses against a clean dark background. Panel 1 (left): Intense focused face close-up, veins visible on forehead, determined expression, dramatic side lighting. Panel 2 (center / largest): Full body power pose — Atlas position with weight overhead, muscles fully contracted, explosive lighting that sculpts every muscle group. Panel 3 (right): Post-workout moment, breathing hard, hands on knees, triumphant expression, sweat drops catching light. Across all three panels: consistent warm amber rim light creating halo effect, pure black studio background, consistent height alignment. Brand element: bold geometric fitness brand logo watermark center-bottom. Headline text spanning all three panels: 'NO LIMIT' in wide-tracking condensed athletic font. Color palette: pure black + amber gold + white. 16:9 landscape triptych."
   },
   {
-    "title": "Super Famicom Retro Game Poster",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @lilimliliychan",
-    "prompt": "Retro Super Famicom / SNES era game box art poster for {subject}, bold primary colors, pixel art character illustrations, dramatic perspective composition, Japanese Kanji title in stylized font, action-packed scene with multiple characters, authentic 16-bit era aesthetic with slight scan lines, nostalgic gaming poster format",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["retro", "game", "famicom", "pixel", "poster"]
+    "title": "Apple 风自然科普海报 — 通用模板",
+    "description": "Apple keynote 风格自然科普海报，主体动物/植物，极简白底，底部四列信息栏。",
+    "needReferenceImages": false,
+    "content": "Generate a 9:16 Apple-style premium natural science educational poster. SUBJECT: {{物种名称，如 雪豹/Snow Leopard/金刚鹦鹉/朱鹮}}. LAYOUT: Extreme minimalism — pure white background (zero texture, zero border). TOP-LEFT title area: Large Chinese species name + one-line evocative tagline + thin separator line + English name + distribution info in small gray text. CENTER HERO: Subject occupies 55-65% of visual area, photographically rendered, every texture detail visible (fur/feathers/scales as applicable), realistic cast shadow below. BOTTOM STRIP: 4 vertical information columns separated by hairline dividers: [icon + accent-colored title + 1-3 line description] × 4. BOTTOM CAPTION: One elegant gray summary sentence in smallest text. FORBIDDEN: No colored backgrounds, no rounded cards, no decorative borders, no traditional infographic grids, no cartoon feel, no yellow aged paper, subject must NOT be small. GPT Image 2, 4K quality."
   },
   {
-    "title": "Dark Fantasy Epic Silhouette Poster",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @A9Quant",
-    "prompt": "Dark fantasy epic poster of {subject}, dramatic silhouette figure against vast luminous sky, extreme scale contrast between character and environment, cinematic color grading with deep navy and amber-gold, moody atmospheric fog layers, heroic composition with figure at 1/3 position, film poster quality, emotional gravity",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["dark fantasy", "epic", "silhouette", "cinematic", "poster"]
-  },
-  {
-    "title": "New Chinese Ink Landscape Poster",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @liyue_ai",
-    "prompt": "Contemporary Chinese ink landscape poster of {subject}, fusion of classical 水墨 ink wash technique with modern graphic design, bold simplified mountain forms in graduated ink tones, traditional red seal stamp accent, modern sans-serif Chinese typography, generous white negative space, cultural heritage meets contemporary aesthetics",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["chinese", "ink", "landscape", "traditional", "modern", "poster"]
-  },
-  {
-    "title": "Science Fiction Movie Poster",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @underwoodxie96",
-    "prompt": "Cinematic science fiction movie poster for {subject}, wide-angle establishing shot of futuristic environment, dramatic one-point perspective, mist and volumetric light rays, cool blue-green color palette with warm accent lighting, heroic figure silhouette at center, bold title treatment at bottom, blockbuster movie production quality",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["sci-fi", "movie", "cinematic", "futuristic", "poster"]
-  },
-  {
-    "title": "Chinese Minimalist S-Shaped Composition Poster",
-    "source": "EvoLinkAI/awesome-gpt-image-2-prompts @liyue_ai",
-    "prompt": "Elegant minimalist poster with S-shaped compositional flow for {subject}, inspired by classical Chinese aesthetic of 留白 negative space, elements arranged in graceful S-curve guiding eye through composition, limited palette of 2-3 tones, subtle texture suggesting silk or rice paper, refined typographic balance, meditative calm",
-    "backend": "gpt-image-2",
-    "size": "1024x1536",
-    "tags": ["minimalist", "chinese", "composition", "elegant", "poster"]
+    "title": "电影海报 — 星际史诗风格",
+    "description": "好莱坞大片级电影海报，宏大叙事，强明暗对比。",
+    "needReferenceImages": false,
+    "content": "Design a Hollywood blockbuster movie poster. Theme: Interstellar epic saga. TYPOGRAPHY (hardcoded): Main title 'BEYOND THE VOID' in large cinematic display font — weathered metal texture, bottom-heavy centered layout. Below: 'ONE JOURNEY. INFINITE CONSEQUENCES.' in slim tracking. Bottom: standard movie poster credit block (mock text). VISUALS: Central subject: lone astronaut figure in advanced space suit, silhouette against a massive glowing nebula — the astronaut occupies lower 1/3, nebula fills upper 2/3 creating overwhelming scale contrast. The nebula: deep purple + electric teal + scattered star field + galactic dust lanes. Astronaut: reflected nebula colors on visor, tethered cable drifting. LIGHTING: Blinding central nebula light casting dramatic shadows, astronaut in partial silhouette, single bright star creating lens flare. COMPOSITION: Symmetrical with astronaut centered, nebula asymmetric. Color palette: deep space blue-black + glowing teal + violet + scattered warm star points. Mood: Epic, mysterious, existential awe. 2:3 vertical (movie poster ratio)."
   }
 ]
