@@ -5,7 +5,7 @@ description: |
   - Signature 风格：10 种有独立 YAML 的视觉方案（构成主义/克莱因/Risograph/故障艺术等）
   - Rendering 风格：15 种通用渲染技法 modifier（写真/动漫/3D/水彩/赛博朋克等），prompt 源自实战案例
   - Logo 展示背景：12 种专业展示场景（来源 logo-generator，已内化）
-  - 用途库：12 类场景 + 全实战 prompt 案例，含推荐风格 + 后端默认
+  - 用途库：15 类场景 + 全实战 prompt 案例，含推荐风格 + 后端默认 + pitfalls 防坑
   - 后端调度：GPT Image 2（写实/产品/文字/4K）/ Gemini（动漫/艺术/多参考图）
   - 支持：文生图、风格库生图、参考图风格反推、参考图编辑、多参考图合成、logo 展示图
   Use when: 用户想画图/生图/做海报/插画/风格迁移/图片编辑/logo展示图 — 这是唯一的图像生成入口。
@@ -92,7 +92,7 @@ description: |
 
 ## 用途库（读取 `use-cases/index.yaml`）
 
-11 类场景，每类携带推荐风格和默认后端：
+15 类场景，每类携带推荐风格、默认后端与防坑指南（pitfalls）：
 
 | 触发词 | use-case id | 默认后端 | 推荐 Rendering 风格 |
 |--------|------------|---------|------------------|
@@ -106,6 +106,10 @@ description: |
 | 漫画、分镜 | comic-storyboard | Gemini | anime-manga, illustration, sketch |
 | 游戏素材、角色 | game-asset | Gemini | 3d-render, pixel-art, illustration |
 | 信息图、教育图 | infographic-edu-visual | **GPT Image 2** | illustration, isometric, minimalism |
+| 建筑、室内、效果图 | architectural-space | **GPT Image 2** | photography, 3d-render, minimalism |
+| 古风、历史、汉服 | historical-oriental | **GPT Image 2** | photography, ink-chinese-style |
+| 版式、杂志、出版 | document-publication | **GPT Image 2** | photography, minimalism |
+| 科普、动物、Apple风海报 | natural-science-poster | **GPT Image 2** | photography, minimalism |
 
 ---
 
@@ -260,16 +264,27 @@ uv run {baseDir}/scripts/generate_image.py \
 
 ---
 
-## Prompt 组合逻辑
+## Prompt 组合逻辑（Prompt-as-Code 原子化模型）
 
 ```
 Final Prompt =
   [Rendering Style modifier（如有）]
 + [Signature Style prompt（如有，替换主体后）]
 + [Use-case 结构指令（如有，从 references JSON 取）]
++ [Layout Hints（版式/空间坐标约束，来自 use-cases.layout_hints）]
 + [用户主体描述（中→英翻译优化）]
 + [技术参数（lighting / composition / quality）]
++ [Pitfall constraints（来自 use-cases.pitfalls，自动追加防坑语句）]
 ```
+
+**Prompt-as-Code 原子层**（复杂任务时结构化拆分）：
+- `Subject`：主体描述（人/物/场景）
+- `Layout`：版式/比例/空间位置约束
+- `Lighting`：光源方向/冷暖/时段
+- `Material`：材质/质感关键词
+- `Typography`：文字内容（硬编码）/位置/语言
+- `Color`：色彩方案
+- `Constraints`：禁止项（No modern elements / No watermarks 等）
 
 - 中文输入全部翻译为英文后发给两个后端
 - Signature Style prompt 已含完整视觉语言，Rendering modifier 作补充层

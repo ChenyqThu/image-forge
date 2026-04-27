@@ -6,6 +6,8 @@
 #   - default_backend: 该用途的默认后端
 #   - default_size: 推荐输出尺寸（GPT Image 2 尺寸规格）
 #   - default_aspect: Gemini 宽高比
+#   - layout_hints: 关键版式/空间约束词（源自 awesome-gpt-image-2 Prompt-as-Code 方法论）
+#   - pitfalls: 常见踩坑（1-3 条，防坑指南）
 #
 # 调度决策优先级：
 #   1. 用户显式指定后端/风格 → 覆盖一切
@@ -19,97 +21,140 @@ use_cases:
     aliases: [海报, 传单, 宣传单, poster, flyer, promotional poster]
     references_file: "references/poster-flyer.json"
     recommended_signature:
-      - constructivism      # 几何构成，强视觉冲击
-      - risograph-magazine  # 印刷质感
-      - high-contrast-industrial  # 高对比度，适合科技/活动
-      - tri-color           # 极简三色，适合文化类
+      - constructivism
+      - risograph-magazine
+      - high-contrast-industrial
+      - tri-color
     recommended_rendering:
-      - cinematic-film-still  # 电影感大片
-      - retro-vintage         # 复古风宣传
-      - cyberpunk-sci-fi      # 科技/电竞活动
-    default_backend: gpt-image-2    # 文字渲染是 GPT Image 2 核心优势
-    default_size: "1024x1536"       # 竖版海报
+      - cinematic-film-still
+      - retro-vintage
+      - cyberpunk-sci-fi
+    default_backend: gpt-image-2
+    default_size: "1024x1536"
     default_aspect: "3:4"
+    layout_hints:
+      - "居中构图 / 左对齐 / 对角线构图（locked before subject）"
+      - "主标题锁死英文或中文，不让模型自编"
+      - "运动类先定：单主视觉 / 三联画 / 数据涂鸦海报"
+    pitfalls:
+      - "只丢'做张海报'没有主视觉内容描述 → 模型乱编主体"
+      - "标题文案未硬编码 → 模型会自动替换成无意义文字"
+      - "运动 Campaign 没有锁定道具角度和比例 → 球拍/哑铃变成背景装饰"
 
   - id: profile-avatar
     label: "头像 / 肖像"
     aliases: [头像, 肖像, 个人照, avatar, profile picture, portrait, pfp]
     references_file: "references/profile-avatar.json"
     recommended_signature:
-      - klein-blue-order    # 极简干净，适合职业头像
-      - mixed-media         # 线稿摄影融合，艺术感
-      - pop-ink-splash      # 波普活力，适合社交头像
-      - glitch-window-v1    # 数字感，适合科技圈
+      - klein-blue-order
+      - mixed-media
+      - pop-ink-splash
+      - glitch-window-v1
     recommended_rendering:
-      - anime-manga         # 动漫头像
-      - illustration        # 插画风肖像
-      - photography         # 写真风
-      - chibi-q-style       # Q 版可爱
-      - oil-painting        # 油画人像
-    default_backend: nano-banana-2  # 人物风格迁移 Gemini 更灵活
+      - anime-manga
+      - illustration
+      - photography
+      - chibi-q-style
+      - oil-painting
+    default_backend: nano-banana-2
     default_size: "1024x1024"
     default_aspect: "1:1"
+    layout_hints:
+      - "五官拆解：桃花眼、高鼻梁，不要只写'漂亮的脸'"
+      - "服装写材质：丝绸/机能防风面料，比'时尚穿搭'稳"
+    pitfalls:
+      - "只写'漂亮的女孩' → 模型按默认审美输出，无个性"
+      - "多参考图未指定主保留哪张脸 → 五官特征随机混合"
+      - "写大师名字 → 容易照搬其代表作构图，建议提取特征词"
 
   - id: product-marketing
     label: "产品营销图"
     aliases: [产品图, 营销图, 产品海报, product marketing, product photo, 产品宣传]
     references_file: "references/product-marketing.json"
     recommended_signature:
-      - high-contrast-industrial  # 科技产品强视觉
+      - high-contrast-industrial
     recommended_rendering:
-      - photography         # 产品写真，最常用
-      - 3d-render           # 3D 产品渲染
-      - minimalism          # 极简留白，高级感
-      - cinematic-film-still  # 电影感产品大片
-    default_backend: gpt-image-2   # 写实感、构图精度、光影
+      - photography
+      - 3d-render
+      - minimalism
+      - cinematic-film-still
+    default_backend: gpt-image-2
     default_size: "1536x1024"
     default_aspect: "4:3"
+    layout_hints:
+      - "产品角度要写：3/4 profile / floating / 正面"
+      - "灯光三要素：softbox overhead + rim light + background gradient"
+    pitfalls:
+      - "材质/灯光描述缺失 → 产品无光影，像地摊货陈列"
+      - "文案贴满全屏 → 主视觉被淹没，只保留1-2句核心文案"
+      - "没指定拍摄角度 → 透视翻车或正面呆板"
 
   - id: ecommerce-main-image
     label: "电商主图"
     aliases: [电商, 主图, 详情页, 淘宝, ecommerce, product main image, 白底图]
     references_file: "references/ecommerce-main-image.json"
-    recommended_signature: []       # 电商主图通常不需要强风格
+    recommended_signature: []
     recommended_rendering:
-      - photography         # 白底产品摄影，标准电商风格
-      - 3d-render           # 3D 产品展示
-      - minimalism          # 干净背景
-    default_backend: gpt-image-2   # 细节还原、白底准确
-    default_size: "1024x1024"       # 电商标准正方形
+      - photography
+      - 3d-render
+      - minimalism
+    default_backend: gpt-image-2
+    default_size: "1024x1024"
     default_aspect: "1:1"
+    layout_hints:
+      - "明确：纯白背景 + 商品标准角度（正面/3/4）"
+      - "核心卖点 badge：只写1-2个，不要满版促销贴纸"
+    pitfalls:
+      - "未明确'pure white background + standard product angle' → 背景复杂影响上架"
+      - "材质词不够具体 → 产品细节模糊，玻璃/金属/磨砂要明写"
+      - "促销文案过多 → 画面混乱，平台审核不通过"
 
   - id: youtube-thumbnail
     label: "YouTube / 视频封面"
     aliases: [视频封面, YouTube封面, thumbnail, 封面图, video cover]
     references_file: "references/youtube-thumbnail.json"
     recommended_signature:
-      - high-contrast-industrial  # 高对比强吸引力
-      - tri-color                 # 极简高辨识度
+      - high-contrast-industrial
+      - tri-color
     recommended_rendering:
-      - cinematic-film-still  # 电影感，点击率高
-      - photography           # 真实感场景
-      - cyberpunk-sci-fi      # 科技/游戏频道
-    default_backend: gpt-image-2   # 文字叠加 + 视觉冲击力
-    default_size: "1536x1024"       # 16:9 横版
+      - cinematic-film-still
+      - photography
+      - cyberpunk-sci-fi
+    default_backend: gpt-image-2
+    default_size: "1536x1024"
     default_aspect: "16:9"
+    layout_hints:
+      - "主视觉主体必须够大够突出，缩略图场景下要看得清"
+      - "文字位置指定：左侧标题区 or 右侧标题区，不压主体脸部"
+    pitfalls:
+      - "主体不够突出 → 小缩略图看不清，点击率低"
+      - "文字位置未指定 → 文字覆盖人脸或关键视觉"
+      - "对比度不够高 → 在推荐流中吸引力弱"
 
   - id: social-media-post
     label: "社交媒体配图"
     aliases: [社交媒体, 小红书, ins, instagram, 朋友圈, social media, 配图]
     references_file: "references/social-media-post.json"
     recommended_signature:
-      - risograph-magazine  # 印刷质感，ins 风
-      - pop-ink-splash      # 波普活力
-      - tri-color           # 极简时尚
-      - klein-blue-order    # 清新夏日感
+      - risograph-magazine
+      - pop-ink-splash
+      - tri-color
+      - klein-blue-order
     recommended_rendering:
-      - illustration        # 插画配图
-      - photography         # 生活写真
-      - watercolor          # 清新水彩
-      - anime-manga         # 二次元社区
+      - illustration
+      - photography
+      - watercolor
+      - anime-manga
     default_backend: gpt-image-2
     default_size: "1024x1024"
     default_aspect: "1:1"
+    layout_hints:
+      - "明确比例：1:1 / 4:5 / 9:16"
+      - "如有文字：指定语言（中文/英文）避免语言意外"
+    pitfalls:
+      - "比例未指定 → 输出比例不适合发布平台"
+      - "文案语言未指定 → 可能出现非预期语言"
+      - "场景描述太模糊 → 每次风格不一致"
 
   - id: app-web-design
     label: "App / 网页设计素材"
@@ -117,70 +162,190 @@ use_cases:
     references_file: "references/app-web-design.json"
     recommended_signature: []
     recommended_rendering:
-      - 3d-render           # 3D UI 元素
-      - minimalism          # 极简界面
-      - isometric           # 等距风格图
-    default_backend: gpt-image-2   # UI 构图精度 + 文字渲染
+      - 3d-render
+      - minimalism
+      - isometric
+    default_backend: gpt-image-2
     default_size: "1536x1024"
     default_aspect: "16:9"
+    layout_hints:
+      - "必须三要素：平台（iOS/Android/Web）+ 比例 + 布局结构（Card/Tab/双栏）"
+      - "文字锁定：'文字绝对可读，必须显示指定中文' 防止乱码按钮"
+    pitfalls:
+      - "平台/比例/布局三要素缺一 → 模型像实习生乱排版"
+      - "文字内容未锁定 → 按钮标签出现乱码或火星文"
+      - "信息层级不描述 → UI 元素密度失控，细节溢出"
 
   - id: comic-storyboard
     label: "漫画 / 分镜"
     aliases: [漫画, 分镜, 故事板, comic, storyboard, manga panels, 格漫]
     references_file: "references/comic-storyboard.json"
     recommended_signature:
-      - glitch-window-v1    # 赛博朋克漫画
+      - glitch-window-v1
     recommended_rendering:
-      - anime-manga         # 日漫风格
-      - illustration        # 欧美漫画
-      - sketch-line-art     # 线稿分镜
-      - chibi-q-style       # Q 版漫画
-    default_backend: nano-banana-2  # Gemini 漫画风格更丰富
+      - anime-manga
+      - illustration
+      - sketch-line-art
+      - chibi-q-style
+    default_backend: nano-banana-2
     default_size: "1024x1536"
     default_aspect: "3:4"
+    layout_hints:
+      - "明确格数和排布：2x2 / 4x4 / 水平三格"
+      - "每格结构：位置 + 人物 + 表情/动作 + 对话/音效"
+    pitfalls:
+      - "未指定格数 → 分镜数量随机，布局混乱"
+      - "多格未强调角色一致性 → 每格换脸换衣服"
+      - "对话框文字未指定语言 → 出现乱码或意外语言"
 
   - id: game-asset
     label: "游戏素材"
     aliases: [游戏, 素材, 游戏资产, game asset, game art, 角色设计, character design]
     references_file: "references/game-asset.json"
     recommended_signature:
-      - high-contrast-industrial  # 科幻/赛博风游戏
+      - high-contrast-industrial
     recommended_rendering:
-      - 3d-render           # 3D 游戏资产
-      - pixel-art           # 像素游戏
-      - illustration        # 插画风角色
-      - isometric           # 等距游戏地图
-      - anime-manga         # 日系角色
-    default_backend: nano-banana-2  # 角色设计 / 多风格 Gemini 更灵活
+      - 3d-render
+      - pixel-art
+      - illustration
+      - isometric
+      - anime-manga
+    default_backend: nano-banana-2
     default_size: "1024x1024"
     default_aspect: "1:1"
+    layout_hints:
+      - "角色设定图：指定正面+侧面+背面三视图"
+      - "像素风：指定分辨率（16x16 / 32x32 / 64x64）"
+    pitfalls:
+      - "角色设定只给正面视图 → 无法用于建模或多角度参考"
+      - "没有世界观/阵营设定 → 风格随机混搭"
+      - "像素风未指定分辨率 → 细节模糊失真"
 
   - id: infographic-edu-visual
     label: "信息图 / 教育可视化"
-    aliases: [信息图, 数据可视化, 教育图, infographic, data visualization, 图表, edu visual]
+    aliases: [信息图, 数据可视化, 教育图, infographic, data visualization, 图表, edu visual, 拆解图, 技术详解图]
     references_file: "references/infographic-edu-visual.json"
     recommended_signature: []
     recommended_rendering:
-      - illustration        # 插画风说明图
-      - isometric           # 等距信息图
-      - minimalism          # 极简清晰
-    default_backend: gpt-image-2   # 文字排版精准
+      - illustration
+      - isometric
+      - minimalism
+    default_backend: gpt-image-2
     default_size: "1024x1536"
     default_aspect: "3:4"
+    layout_hints:
+      - "强制定制模块数量（3-5 个）+ 图表类型（流程图/对比图/关系图）"
+      - "JSON schema: title_area + modules[{title, icon, text}] + style"
+      - "中文标签：利用 GPT Image 2 强文字能力，指定位置坐标约束"
+    pitfalls:
+      - "模块数量不限制 → 信息溢出，画面混乱"
+      - "把大段正文塞进画面 → 文字乱码；只写标题+短句，正文用 Simulated text blocks"
+      - "不指定图表类型 → 模型随机选布局，结果不可控"
 
   - id: brand-logo-showcase
     label: "Logo 展示图 / 品牌设计"
-    aliases: [logo, 图标, 品牌, brand, 徽标, icon, 标志, logo展示, 展示图, showcase, 品牌展示图]
+    aliases: [logo, 图标, 品牌, brand, 徽标, icon, 标志, logo展示, 展示图, showcase, 品牌展示图, 品牌识别]
     references_file: "references/brand-logo-showcase.json"
     recommended_signature: [high-contrast-industrial]
     recommended_rendering: [minimalism, 3d-render]
     logo_showcase_backgrounds:
       dark: [logo-void, logo-frosted, logo-fluid-abyss, logo-spotlight, logo-analog-liquid, logo-led-matrix]
       light: [logo-editorial-paper, logo-iridescent-frost, logo-morning-aura, logo-clinical, logo-ui-container, logo-swiss-flat]
-    default_backend: nano-banana-2    # 展示图默认用 Gemini
+    default_backend: nano-banana-2
     default_size: "1024x1024"
     default_aspect: "1:1"
-    special_note: "SVG logo 代码生成请使用专属 logo-generator skill；本用途专注于 logo 展示图幕中的高端背景生成。待用户提供 PNG logo 后，读取 brand-logo-showcase.json 选择匹配的背景风格。"
+    layout_hints:
+      - "品牌设计必须：关键词(3个) + Logo方向(几何/字标/图形) + 纯白背景"
+      - "Logo展示：先提供PNG，再选展示背景风格"
+    pitfalls:
+      - "Logo展示图注意：此用途是展示背景生成，SVG代码生成→用专属 logo-generator skill"
+      - "品牌设计别堆砌复杂意象（如'喷火龙缠绕长城'）→ 那是插画不是 Logo"
+      - "必须强调 pure white background，否则抠图困难"
+    special_note: "SVG logo 代码生成请使用专属 logo-generator skill；本用途专注于 logo 展示图高端背景生成。"
+
+  # ── 以下 4 个用途来自 awesome-gpt-image-2 方法论，2026-04-27 新增 ──
+
+  - id: architectural-space
+    label: "建筑与空间设计"
+    aliases: [建筑, 室内设计, 空间, 效果图, 建筑可视化, architectural, interior design, space visualization, 建筑渲染, 室内效果图]
+    references_file: "references/architectural-space.json"
+    recommended_signature: []
+    recommended_rendering:
+      - photography         # 写实空间渲染
+      - 3d-render           # 建筑3D效果图
+      - minimalism          # 极简现代空间
+    default_backend: gpt-image-2
+    default_size: "1536x1024"
+    default_aspect: "16:9"
+    layout_hints:
+      - "camera: Eye-level perspective（人眼视角），避免透视变形"
+      - "冷暖对比作弊码：室外冷光（蓝/灰）+ 室内暖光（黄/橙）"
+      - "materials 字段写具体：exposed concrete + timber + glass 比'现代风格'稳"
+    pitfalls:
+      - "透视变形：必须指定 'Eye-level perspective'，避免广角畸变"
+      - "材质不具体 → 空间缺乏质感层次，写明 stone/wood/glass/metal"
+      - "光线时段未说明 → 可能输出平光无层次；指定白天/夜景/黄金时段"
+
+  - id: historical-oriental
+    label: "历史与古风"
+    aliases: [古风, 古代, 历史, 汉服, 国风, 朝代, 古装, historical, oriental, 唐朝, 宋朝, 明朝, 清朝, 古典]
+    references_file: "references/historical-oriental.json"
+    recommended_signature: []
+    recommended_rendering:
+      - photography         # 影视写实古风
+      - ink-chinese-style   # 水墨国画风
+      - oil-painting        # 古典油画风
+    default_backend: gpt-image-2
+    default_size: "1024x1536"
+    default_aspect: "3:4"
+    layout_hints:
+      - "明确朝代（唐/宋/元/明/清/先秦）+ 阵营/场景（宫廷/市井/山水）"
+      - "强制排雷：加 'No modern elements, historically accurate clothing'"
+      - "中文诗词图：利用 GPT Image 2 文字排版能力，指定诗词位置和字体方向"
+    pitfalls:
+      - "朝代不明确 → 服饰大杂烩（和服+折扇+清朝发式同框）"
+      - "未加 'No modern elements' → 古风美女手持星巴克"
+      - "文化细节不写（纹样/礼制/建筑） → 历史氛围飘忽"
+
+  - id: document-publication
+    label: "出版物与版式设计"
+    aliases: [版式, 杂志, 菜单, 排版, 出版, 报纸, 画册, editorial, magazine, publication, layout, 版式设计, 杂志内页]
+    references_file: "references/document-publication.json"
+    recommended_signature: []
+    recommended_rendering:
+      - photography         # 杂志大片主视觉
+      - minimalism          # 极简版式
+    default_backend: gpt-image-2
+    default_size: "1536x1024"
+    default_aspect: "16:9"
+    layout_hints:
+      - "先定结构：栏数（columns）+ 留白（margins）比风格词更重要"
+      - "正文区用 'Simulated text blocks'，只硬编码大标题和副标题"
+      - "双页展开：left_page（图片） + right_page（文字区）结构最稳"
+    pitfalls:
+      - "想要完整正文排版 → 模型不是排版工人，大段正文必出乱码"
+      - "只有风格词没有结构 → 输出无法预测；必须明确栏数/层级"
+      - "标题文案未锁定 → 模型乱编标题内容"
+
+  - id: natural-science-poster
+    label: "自然科普海报"
+    aliases: [科普, 自然, 动物, 生物, 植物, 物种, 科普海报, Apple风格海报, science poster, nature poster, 动物科普, 生物图鉴]
+    references_file: "references/natural-science-poster.json"
+    recommended_signature: []
+    recommended_rendering:
+      - photography         # 高清真实主体
+      - minimalism          # Apple 极简背景
+    default_backend: gpt-image-2
+    default_size: "1024x1536"
+    default_aspect: "9:16"
+    layout_hints:
+      - "主体动物/植物必须占画面 50%-70% 视觉面积，成最强视觉中心"
+      - "底部四列极简信息栏：icon + 彩色小标题 + 1-3 行短文字，细竖线分隔"
+      - "纯白背景（pure white / light gray gradient）+ 棚拍光影"
+    pitfalls:
+      - "主体太小 → 沦为风景图，失去科普海报冲击力"
+      - "用传统信息图卡片/圆角框 → 破坏 Apple 极简风格"
+      - "底部信息区过度拥挤 → '少而准'原则，4 列极简布局，不超过 3 行"
 
   - id: others
     label: "其他 / 自由创作"
@@ -191,3 +356,4 @@ use_cases:
     default_backend: gpt-image-2
     default_size: "1536x1024"
     default_aspect: "16:9"
+    pitfalls: []

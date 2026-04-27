@@ -1,0 +1,50 @@
+[
+  {
+    "title": "JSON Schema 模板：历史古风场景（Agent 调用推荐）",
+    "description": "Prompt-as-Code 结构化模板，适合历史古风题材生成。核心防坑：明确朝代 + 禁用现代元素。来源方法论：awesome-gpt-image-2。",
+    "needReferenceImages": false,
+    "content": {
+      "type": "Historical / Oriental Scene",
+      "setting": "{{朝代 + 场景，如 Tang Dynasty Capital at Night / Song Dynasty Mountain Monastery / Ming Dynasty Scholar Garden}}",
+      "subject": {
+        "identity": "{{人物身份，如 Imperial Noblewoman / Wandering Swordsman / Court Scholar}}",
+        "clothing": "{{服饰描述 + 朝代准确性，如 Traditional Tang Ruqun with elaborate floral embroidery, hanfu with wide sleeves}}",
+        "action": "{{正在做什么，如 Holding a glowing silk lantern / Reading a scroll / Playing guqin}}"
+      },
+      "style": "{{美术风格，如 Cinematic realism / Ink wash painting style / Gongbi fine brushwork}}",
+      "details": "{{文化细节，如 Accurate Tang architecture, Tang-era hair ornaments, period-accurate props}}",
+      "constraints": "No modern elements, historically accurate clothing structure, no anachronistic items"
+    },
+    "promptText": "关键三要素：①明确朝代（不要模糊写'古代'）②服饰描述要有时代感 ③必须加 'No modern elements' 防止穿越感。"
+  },
+  {
+    "title": "唐朝长安夜市 — 影视写实风",
+    "description": "繁华长安夜晚，华服仕女观烟火，影视级写实。",
+    "needReferenceImages": false,
+    "content": "Cinematic realism portrait of a Tang Dynasty noblewoman in Chang'an capital city at night during lantern festival. Subject: elegant court lady wearing traditional Tang-era ruqun (襦裙) with elaborate embroidered phoenix patterns, layered silk fabric in crimson and gold, high-rise bun hairstyle with jade hairpins. Action: holding a glowing red silk lantern, looking upward at fireworks bursting in the night sky. Setting: Tang-era Chang'an street, accurate wooden architecture with sweeping upturned eaves, crowd of people in period dress blurred in background. Style: cinematic realism with film-like color grading, warm lantern light on face, cool night sky. Details: accurate Tang Dynasty hair ornaments, no modern elements, historically authentic clothing structure. 3:4 vertical."
+  },
+  {
+    "title": "宋朝山水书斋 — 水墨意境",
+    "description": "宋代文人书斋，水墨留白风格，清冷山水意境。",
+    "needReferenceImages": false,
+    "content": "Ink wash painting style illustration of a Song Dynasty scholar's study, set within a mountain monastery in misty autumn. Subject: scholarly gentleman (wenren) wearing Song-era simple cotton robe (直裰), seated at a low desk writing with a calligraphy brush, an ancient guqin resting beside him. Setting: open pavilion overlooking misty mountain landscape, ancient pine trees, waterfalls in the distance, morning mist filling valleys. Style: traditional Chinese ink wash painting (水墨画), monochromatic with subtle color washes, minimalist composition with generous white space (留白). Details: Song Dynasty accurate architecture details, scholar's four treasures (文房四宝) on desk. No modern elements. 3:4."
+  },
+  {
+    "title": "明朝园林 — 工笔花鸟氛围",
+    "description": "江南园林春日，工笔重彩风格，牡丹芍药盛放。",
+    "needReferenceImages": false,
+    "content": "Gongbi fine-line painting style scene of a Ming Dynasty scholar's garden in spring. Setting: classical Jiangnan garden (苏州园林 style) with carved stone balustrades, scholar's rock (太湖石), lotus pond with pavilion, weeping willow trees. Foreground: blooming peonies (牡丹) in crimson and pink, white magnolia branches. Background: whitewashed garden walls with traditional window grilles (花格窗). Style: Gongbi fine brushwork (工笔重彩), rich saturated colors, precise detailed line work, gold leaf accents. No modern elements, accurate Ming Dynasty garden architecture, 3:4."
+  },
+  {
+    "title": "赤壁怀古 — 长卷横构图",
+    "description": "《赤壁赋》意境长卷，战火与江水，豪迈历史叙事。利用 GPT Image 2 文字排版能力嵌入全文。",
+    "needReferenceImages": false,
+    "content": "Generate a Chinese landscape long scroll painting (长卷) depicting the historical scene of the Battle of Red Cliffs (赤壁之战, 208 AD). Composition: panoramic horizontal scroll, 3:1 aspect ratio. Left section: vast Yangtze River (长江) with warships, dramatic fire and smoke filling the sky, Three Kingdoms era battle chaos. Center section: dramatic cliffs rising from the river, Su Shi's poet figure standing in contemplation on a rocky promontory. Right section: peaceful moonlit river aftermath, bamboo groves on distant shore. Style: cinematic realism combined with traditional Chinese landscape painting aesthetics, ink wash backgrounds with selective color highlights (red fire, silver moonlight). Typography: embed the complete text of 《赤壁赋》(Su Shi) in vertical Chinese calligraphy along the right margin. Render quality: 8K, ultra-detailed, no modern elements. Aspect ratio: 3:1 horizontal long scroll."
+  },
+  {
+    "title": "诗词意境图 — 《短歌行》",
+    "description": "曹操《短歌行》意境图，苍劲豪迈，三国氛围，含整篇诗文。",
+    "needReferenceImages": false,
+    "content": "Generate an atmospheric ink-wash style visual poem illustration for 《短歌行》(Cao Cao, Eastern Han Dynasty). Setting: dramatic night scene on a battle platform, full moon rising over the Yangtze River, soldiers' torches flickering in wind. Central figure: Cao Cao in military commander's armor, standing tall on a high platform, holding wine vessel (酒樽), gazing at the moon with a complex expression of heroic ambition and melancholy. Style: blend of traditional Chinese ink wash painting with cinematic realism, monochrome with strategic color (moonlight silver, torch flame orange). Typography: embed the complete text of 《短歌行》in vertical Chinese calligraphy arranged along both sides of the composition, calligraphy style matching Eastern Han period. Render quality: GPT Image 2, 4K, historically accurate Three Kingdoms era details. 3:4 vertical."
+  }
+]

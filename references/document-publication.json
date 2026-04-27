@@ -1,0 +1,49 @@
+[
+  {
+    "title": "JSON Schema 模板：出版物版式（Agent 调用推荐）",
+    "description": "Prompt-as-Code 结构化模板，适合杂志、出版物、画册版式设计。核心原则：结构先于风格，正文用 Simulated text blocks。来源方法论：awesome-gpt-image-2。",
+    "needReferenceImages": false,
+    "content": {
+      "type": "Editorial Layout",
+      "document": "{{文档类型，如 Fashion Magazine Double-page Spread / Restaurant Menu / Annual Report Cover / Cultural Magazine Feature}}",
+      "grid": "{{版式结构，如 3-column grid wide margins / 2-column with hero image / Full-bleed single column}}",
+      "content": {
+        "left_page": "{{左页描述，如 Full-bleed high-fashion photograph of model}}",
+        "right_page": {
+          "headline": "{{大标题（硬编码）}}",
+          "subheading": "{{副标题（硬编码）}}",
+          "body_text": "Simulated text blocks (lorem ipsum style)",
+          "pull_quote": "\"{{引用语（硬编码）}}\""
+        }
+      },
+      "typography": "{{字体方向，如 Elegant serif for headlines, clean sans-serif for body / All caps bold display font}}",
+      "palette": "{{配色，如 Monochrome with red accents / Warm ivory and forest green / Bold black and white}}",
+      "constraints": "No real readable body text, headlines must be legible and accurate, no watermarks"
+    },
+    "promptText": "防坑要点：①正文区必须用 Simulated text blocks，② 大标题/副标题硬编码，③先定栏数和留白比定风格词更重要。"
+  },
+  {
+    "title": "时尚杂志双页展开 — 红色文艺复兴",
+    "description": "高端时尚杂志双页展开，全出血摄影 + 三栏文字版式，红色主题。",
+    "needReferenceImages": false,
+    "content": "Fashion magazine double-page spread layout. Left page: full-bleed high-fashion photograph of a model in a flowing red dress, dramatic studio lighting, minimal background. Right page: 3-column editorial grid, wide outer margins. Typography layout: large serif display headline 'THE RED RENAISSANCE' in bold black at top, sub-heading 'A Season of Power and Elegance' below in lighter weight, body text as simulated text blocks (do not render real text), pull quote '\"Color is power.\"' in italic, source credit line at bottom. Color palette: pure white background with stark red and black accents. Font style: elegant editorial serif for headlines, clean sans-serif for body blocks. Professional magazine print quality. 16:9 landscape."
+  },
+  {
+    "title": "中文文化杂志封面",
+    "description": "高端中文文化类杂志封面，硬编码中文标题，minimalist 风格。",
+    "needReferenceImages": false,
+    "content": "Magazine cover design for a high-end Chinese cultural quarterly. Full-bleed photography background: dramatic landscape photograph of misty Huangshan mountains at golden hour. Typography overlay: Chinese magazine title '山海' (fixed text, must be legible) in large modern sans-serif at top left, subtitle '文化季刊 2026春季' below. Feature headline '此刻山水之间' in elegant brush-stroke style font, centered. Small cover lines: '当代水墨新势力 / 山居笔记 / 古村落保育报告' (all text must be accurate Chinese). Bottom barcode area with issue number. Color palette: deep indigo, warm gold, pure white text. Design style: premium editorial, clean spacing, no busy graphics. 3:4 portrait."
+  },
+  {
+    "title": "日式高端餐厅菜单 — 极简风",
+    "description": "极简日式餐厅菜单，食材摄影 + 排版，模拟正文区段。",
+    "needReferenceImages": false,
+    "content": "High-end Japanese restaurant menu layout design. Single page, portrait orientation (A4 proportion). Design aesthetic: minimalist Japanese wabi-sabi, significant white space, off-white textured paper background. Typography: menu section headers in elegant thin Japanese-inspired serif (e.g., 'OMAKASE 季節のおまかせ'), dish names in both Japanese and English, simulated price text blocks. Visual element: single elegant watercolor illustration of a koi fish (hand-painted style) occupying upper third of page. Color palette: off-white, deep charcoal, a single accent of muted terracotta. Layout: two-column grid for menu items, generous margins. No busy graphics, extreme restraint. 3:4."
+  },
+  {
+    "title": "企业年报封面 — 专业商务风",
+    "description": "上市公司年报封面，权威、专业、结构清晰。",
+    "needReferenceImages": false,
+    "content": "Corporate annual report cover design for a financial services company. Cover layout: clean corporate grid. Top section: company logo area (placeholder rectangle), full company name. Center: bold abstract geometric visual element — interlocking curves suggesting growth and connectivity, rendered in premium metallic gold against deep navy blue background. Typography: report title '2025 Annual Report' in clean sans-serif (Helvetica/Roboto style), subtitle 'Building Tomorrow's Infrastructure' in lighter weight. Bottom section: company website placeholder, regulatory text as simulated text block. Color palette: deep navy (#1a2744), premium gold (#c9a84c), pure white. Design style: Scandinavian corporate minimalism, authoritative, trustworthy. 3:4 portrait, print-ready quality."
+  }
+]

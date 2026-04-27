@@ -1,0 +1,47 @@
+[
+  {
+    "title": "JSON Schema 模板：建筑可视化（Agent 调用推荐）",
+    "description": "Prompt-as-Code 结构化模板，适合建筑室内效果图、空间设计图。来源方法论：awesome-gpt-image-2。",
+    "needReferenceImages": false,
+    "content": {
+      "type": "Architectural Visualization",
+      "space": {
+        "type": "{{空间类型，如 Modern Loft Interior / Minimalist Office / Japanese Tea House}}",
+        "function": "{{用途，如 Living room / Co-working space / Restaurant}}",
+        "materials": "{{材质描述，如 Exposed concrete, floor-to-ceiling glass, warm timber accents}}"
+      },
+      "environment": "{{背景环境，如 Dense pine forest visible through glass / City skyline at night}}",
+      "camera": {
+        "angle": "Eye-level perspective, wide-angle lens",
+        "lighting": "{{光线描述，如 Golden hour warm interior / Cool blue ambient outside / Studio softbox}}"
+      },
+      "render_quality": "Unreal Engine 5 style, hyper-realistic, ray tracing, ultra-detailed textures",
+      "constraints": "Photorealistic architecture rendering, no people unless specified"
+    },
+    "promptText": "为以下格式提供 JSON 后，模型会输出专业建筑效果图。关键参数：space.materials（具体材质），camera.angle（Eye-level 避免透视变形），lighting（冷暖对比是高级感作弊码）。"
+  },
+  {
+    "title": "现代小木屋室内 — 雪林黄金时段",
+    "description": "经典冷暖对比空间案例：室内暖光 + 室外冷蓝雪林，高级感范本。",
+    "needReferenceImages": false,
+    "content": "Architectural visualization of a modern cabin interior. Living room with exposed concrete walls, large floor-to-ceiling glass overlooking a dense snowy pine forest. Warm timber accents, natural wool rugs, stone fireplace glowing with warm orange light. Camera: eye-level perspective, wide-angle lens, looking toward the glass wall. Lighting: golden hour, warm interior lights (2700K) contrast with cold blue ambient light from the snowy forest outside. Render quality: Unreal Engine 5, hyper-realistic, ray tracing, soft shadows, realistic material textures. 16:9."
+  },
+  {
+    "title": "日式禅意茶室 — 侘寂风",
+    "description": "极简日式空间，木/竹/纸/石材质，漫射自然光。",
+    "needReferenceImages": false,
+    "content": "Architectural visualization of a minimalist Japanese tea house (chashitsu). Space materials: aged cedar wood ceiling, bamboo shoji screens filtering diffused natural light, roji stepping stones leading to a sunken tatami seating area, rough clay plaster walls with wabi-sabi texture. Camera: low eye-level angle (60cm height), wide perspective to emphasize low horizontal proportions. Lighting: soft diffused morning light through shoji, no harsh shadows, cool and serene atmosphere. Render quality: photorealistic architectural rendering, ultra-detailed material textures, 16:9."
+  },
+  {
+    "title": "现代都市轻奢公寓客厅 — 夜景",
+    "description": "高层夜景城市背景 + 室内暖光设计感，适合房地产宣传图。",
+    "needReferenceImages": false,
+    "content": "Interior design rendering of a luxury high-rise apartment living room at night. Materials: polished white marble floor, brushed gold accents, deep velvet sofa in midnight blue, floor-to-ceiling glass revealing a glittering city skyline at night. Camera: eye-level perspective, slight wide angle, centered on the sofa and city view. Lighting: warm recessed ceiling lights (2800K) + ambient glow from city lights outside, subtle reflections on marble floor. Render quality: high-end architectural photography style, 8K, ultra-sharp details, cinematic color grading. 16:9."
+  },
+  {
+    "title": "工业风咖啡馆 — 砖墙+铁艺",
+    "description": "商业空间效果图，暴露砖墙/铁管/吊灯，文艺咖啡馆氛围。",
+    "needReferenceImages": false,
+    "content": "Interior visualization of an industrial-style coffee shop. Materials: exposed brick walls, black iron pipe shelving, reclaimed wood bar counter, Edison bulb pendant lights hanging at varying heights, concrete floor with industrial epoxy finish. Camera: eye-level perspective, 35mm lens equivalent, slight depth of field blur on background. Lighting: warm Edison bulb ambiance (2200K), golden afternoon light from large factory-style windows, moody and inviting atmosphere. Include: coffee brewing equipment, plants on shelves, chalkboard menu. Render quality: photorealistic architectural visualization, high detail, natural grain. 16:9."
+  }
+]
