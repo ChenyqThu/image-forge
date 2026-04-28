@@ -308,7 +308,7 @@ def main() -> None:
     shared.add_argument(
         "--format", choices=["png", "webp", "jpeg"], default="png", dest="format"
     )
-    shared.add_argument("--timeout", type=int, default=180)
+    shared.add_argument("--timeout", type=int, default=320)  # CRS timeout is 300s; give extra buffer
 
     gen = sub.add_parser("generate", parents=[shared])
     gen.add_argument(
