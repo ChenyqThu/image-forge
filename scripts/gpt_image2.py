@@ -168,18 +168,14 @@ def try_crs(endpoint: str, payload: dict, timeout: int) -> dict | None:
 # ─── Tier-2: Codex OAuth ─────────────────────────────────────────────────────
 
 def try_codex_oauth(endpoint: str, payload: dict, timeout: int) -> dict | None:
-    token = load_codex_token()
-    if not token:
-        log("Codex OAuth token unavailable — skipping tier-2")
-        return None
-    # CRS prefix is /openai/v1/... but direct OpenAI API is /v1/...
-    openai_endpoint = endpoint.replace("/openai/v1/", "/v1/", 1)
-    log(f"Tier-2: Codex OAuth → {OPENAI_BASE}{openai_endpoint}")
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json",
-    }
-    return _api_call(OPENAI_BASE, openai_endpoint, headers, payload, timeout)
+    """
+    NOTE: Codex OAuth tokens (auth_mode=chatgpt) are ChatGPT account tokens,
+    NOT OpenAI Platform API keys. They cannot call api.openai.com directly.
+    This tier is intentionally disabled until a viable exchange mechanism is found.
+    Keeping the function for future use when Codex exposes a usable API token.
+    """
+    log("Tier-2: Codex OAuth — disabled (ChatGPT token ≠ Platform API key, skipping)")
+    return None
 
 
 # ─── Tier-3: Gemini fallback ─────────────────────────────────────────────────

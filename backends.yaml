@@ -22,12 +22,11 @@ backends:
         trigger: primary
       - tier: 2
         id: codex-oauth
+        status: DISABLED
+        reason: "Codex 使用 ChatGPT 账号 token (auth_mode=chatgpt)，与 OpenAI Platform API key 是两套不同体系，无法直接打 api.openai.com。待 Codex 暴露可用的 token 交换流后再启用。"
         base_url: "https://api.openai.com"
-        auth: "Bearer $(~/.codex/auth.json tokens.access_token)"
         auth_file: "~/.codex/auth.json"
-        auth_key_path: "tokens.access_token"
-        trigger: "CRS 失败（连接失败/5xx/429/超时）"
-        note: "token 每次 Codex 启动刷新，如已过期会退化到 tier-3"
+        trigger: "N/A — currently disabled"
       - tier: 3
         id: gemini-nano-banana
         script: "{baseDir}/scripts/generate_image.py"
