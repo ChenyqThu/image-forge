@@ -4,10 +4,9 @@
 # ///
 """
 GPT Image 2 CLI wrapper for image-forge skill.
-Three-tier fallback chain:
-  1. CRS proxy         (CRS_BASE_URL + CRS_API_KEY)
-  2. Codex OAuth       (~/.codex/auth.json access_token → api.openai.com)
-  3. Gemini fallback   (generate_image.py — Nano Banana 2)
+Two-tier fallback chain (GPT Image 2 only, no Gemini):
+  1. CRS proxy             (CRS_BASE_URL + CRS_API_KEY)
+  2. openclaw infer image  (Codex OAuth via OpenClaw — mode=oauth transport=codex-responses)
 
 Usage:
   python gpt_image2.py generate --prompt "..." --output /path/out.png [--size 1536x1024] [--quality high]
@@ -35,12 +34,10 @@ except ImportError:
     print("Missing dependency: pip install requests", file=sys.stderr)
     sys.exit(1)
 
-# ─── Backend config ─────────────────────────────────────────────────────────
+# ─── Backend config ──────────────────────────────────────────────────────────
 
-CRS_BASE    = os.environ.get("CRS_BASE_URL", "http://127.0.0.1:8765")
-CRS_KEY     = os.environ.get("CRS_API_KEY", "")
-OPENAI_BASE = "https://api.openai.com"
-CODEX_AUTH  = Path.home() / ".codex" / "auth.json"
+CRS_BASE = os.environ.get("CRS_BASE_URL", "http://127.0.0.1:8765")
+CRS_KEY  = os.environ.get("CRS_API_KEY", "")
 
 VALID_SIZES = [
     "1024x1024", "1536x1024", "1024x1536",
@@ -48,18 +45,6 @@ VALID_SIZES = [
 ]
 DEFAULT_SIZE_GENERATE = "1536x1024"
 DEFAULT_SIZE_EDIT     = "1024x1536"
-
-# size → Gemini aspect ratio mapping (best-effort)
-SIZE_TO_ASPECT = {
-    "1024x1024": "1:1",
-    "1536x1024": "16:9",
-    "1024x1536": "9:16",
-    "2048x2048": "1:1",
-    "3840x2160": "16:9",
-    "2160x3840": "9:16",
-}
-
-# ─── Retry-worthy error codes ────────────────────────────────────────────────
 
 RETRYABLE_HTTP = {429, 500, 502, 503, 504}
 
@@ -89,30 +74,10 @@ def log(msg: str) -> None:
     print(f"[image-forge] {msg}", file=sys.stderr)
 
 
-# ─── Codex OAuth token ───────────────────────────────────────────────────────
-
-def load_codex_token() -> str | None:
-    """Read access_token from ~/.codex/auth.json. Returns None if unavailable."""
-    if not CODEX_AUTH.exists():
-        return None
-    try:
-        data = json.loads(CODEX_AUTH.read_text())
-        token = data.get("tokens", {}).get("access_token", "")
-        return token if token else None
-    except Exception as e:
-        log(f"Codex auth read error: {e}")
-        return None
-
-
-# ─── Core API call ───────────────────────────────────────────────────────────
+# ─── Tier-1: CRS ─────────────────────────────────────────────────────────────
 
 def _api_call(base_url: str, endpoint: str, headers: dict,
               payload: dict, timeout: int) -> dict | None:
-    """
-    POST to base_url + endpoint.
-    Returns parsed JSON dict on success, None on retryable error,
-    raises on fatal / auth errors.
-    """
     url = f"{base_url}{endpoint}"
     try:
         resp = requests.post(url, headers=headers, json=payload, timeout=timeout)
@@ -124,8 +89,8 @@ def _api_call(base_url: str, endpoint: str, headers: dict,
         return None
 
     if resp.status_code == 401:
-        log(f"Auth error (401) at {base_url} — token invalid/expired")
-        return None  # treat as non-fatal → try next tier
+        log(f"Auth error (401) at {base_url}")
+        return None
 
     if resp.status_code in RETRYABLE_HTTP:
         log(f"HTTP {resp.status_code} from {base_url} — retryable")
@@ -140,7 +105,6 @@ def _api_call(base_url: str, endpoint: str, headers: dict,
     if "error" in d:
         err = d["error"]
         msg = err.get("message", str(err)) if isinstance(err, dict) else str(err)
-        # content policy / invalid param → fatal, don't retry
         if resp.status_code in (400, 415):
             print(f"Fatal API error: {msg}", file=sys.stderr)
             sys.exit(1)
@@ -154,104 +118,97 @@ def _api_call(base_url: str, endpoint: str, headers: dict,
     return d
 
 
-# ─── Tier-1: CRS ─────────────────────────────────────────────────────────────
-
 def try_crs(endpoint: str, payload: dict, timeout: int) -> dict | None:
     if not CRS_KEY:
         log("CRS_API_KEY not set — skipping tier-1")
         return None
     log(f"Tier-1: CRS → {CRS_BASE}{endpoint}")
-    headers = {"Authorization": f"Bearer {CRS_KEY}"}
-    return _api_call(CRS_BASE, endpoint, headers, payload, timeout)
+    return _api_call(CRS_BASE, endpoint, {"Authorization": f"Bearer {CRS_KEY}"},
+                     payload, timeout)
 
 
-# ─── Tier-2: Codex OAuth ─────────────────────────────────────────────────────
+# ─── Tier-2: openclaw infer image (Codex OAuth) ───────────────────────────────
 
-def try_codex_oauth(endpoint: str, payload: dict, timeout: int) -> dict | None:
+def try_openclaw_infer(mode: str, payload: dict, timeout: int,
+                       image_paths: list[str] | None = None) -> str | None:
     """
-    NOTE: Codex OAuth tokens (auth_mode=chatgpt) are ChatGPT account tokens,
-    NOT OpenAI Platform API keys. They cannot call api.openai.com directly.
-    This tier is intentionally disabled until a viable exchange mechanism is found.
-    Keeping the function for future use when Codex exposes a usable API token.
+    Uses `openclaw infer image generate/edit` which internally routes through
+    Codex OAuth (mode=oauth, transport=codex-responses).
+    Returns output file path on success, None on any failure.
     """
-    log("Tier-2: Codex OAuth — disabled (ChatGPT token ≠ Platform API key, skipping)")
-    return None
+    out_path = payload.get("_output") or f"/tmp/gpt-image2-oc-{int(time.time())}.png"
+
+    cmd = ["openclaw", "infer", "image", mode,
+           "--prompt", payload["prompt"],
+           "--model", "openai/gpt-image-2",
+           "--output", out_path,
+           "--json"]
+
+    if payload.get("size"):
+        cmd += ["--size", payload["size"]]
+
+    if mode == "edit":
+        for img in (image_paths or []):
+            cmd += ["--file", img]
+
+    log(f"Tier-2: openclaw infer image {mode} (Codex OAuth)")
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+        if result.returncode != 0:
+            log(f"openclaw infer failed (rc={result.returncode}): {result.stderr[:300]}")
+            return None
+        data = json.loads(result.stdout)
+        if data.get("ok") and data.get("outputs"):
+            return data["outputs"][0]["path"]
+        log(f"openclaw infer unexpected output: {result.stdout[:200]}")
+        return None
+    except subprocess.TimeoutExpired:
+        log(f"openclaw infer timeout ({timeout}s)")
+        return None
+    except FileNotFoundError:
+        log("openclaw CLI not found — skipping tier-2")
+        return None
+    except Exception as e:
+        log(f"openclaw infer error: {e}")
+        return None
 
 
-# ─── Tier-3: Gemini fallback ─────────────────────────────────────────────────
-
-def try_gemini_fallback(prompt: str, size: str, output: str,
-                        image_paths: list[str]) -> None:
-    """
-    Delegate to generate_image.py (Nano Banana 2 / Gemini backend).
-    For edit mode, passes reference images with -i flags.
-    """
-    log("Tier-3: Gemini fallback → generate_image.py")
-
-    script = Path(__file__).parent / "generate_image.py"
-    if not script.exists():
-        print("Error: generate_image.py not found — all backends exhausted", file=sys.stderr)
-        sys.exit(1)
-
-    aspect = SIZE_TO_ASPECT.get(size or DEFAULT_SIZE_GENERATE, "16:9")
-    out = output or f"/tmp/gpt-image2-gemini-{int(time.time())}.png"
-
-    cmd = [
-        sys.executable, str(script),
-        "--prompt", prompt,
-        "--filename", out,
-        "--aspect-ratio", aspect,
-    ]
-    for img in image_paths:
-        cmd += ["-i", img]
-
-    log(f"Gemini cmd: {' '.join(cmd[:6])} ...")
-    result = subprocess.run(cmd, capture_output=False)
-    if result.returncode != 0:
-        print("Error: Gemini fallback also failed — all backends exhausted", file=sys.stderr)
-        sys.exit(1)
-    # generate_image.py prints MEDIA: path itself
-
-
-# ─── Unified dispatch ─────────────────────────────────────────────────────────
+# ─── Dispatch ─────────────────────────────────────────────────────────────────
 
 def dispatch(endpoint: str, payload: dict, args: argparse.Namespace,
              image_paths: list[str] | None = None) -> None:
     """
-    Try tier-1 → tier-2 → tier-3 in order.
-    On success, print MEDIA: path and exit 0.
+    Tier-1: CRS → Tier-2: openclaw infer (Codex OAuth).
+    GPT Image 2 only. No Gemini fallback.
     """
+    # Tier-1: CRS
     result = try_crs(endpoint, payload, args.timeout)
+    if result is not None:
+        item = result["data"][0]
+        b64 = item.get("b64_json", "")
+        if not b64:
+            print("Error: no b64_json in CRS response", file=sys.stderr)
+            sys.exit(1)
+        out_path = save_b64(b64, args.output, args.format)
+        print(f"MEDIA: {os.path.abspath(out_path)}")
+        if item.get("revised_prompt"):
+            log(f"revised_prompt: {item['revised_prompt'][:200]}")
+        return
 
-    if result is None:
-        result = try_codex_oauth(endpoint, payload, args.timeout)
+    # Tier-2: openclaw infer (Codex OAuth)
+    mode = "edit" if image_paths else "generate"
+    payload["_output"] = args.output or f"/tmp/gpt-image2-oc-{int(time.time())}.{args.format}"
+    out_path = try_openclaw_infer(mode, payload, args.timeout, image_paths)
+    if out_path:
+        print(f"MEDIA: {os.path.abspath(out_path)}")
+        return
 
-    if result is None:
-        # Tier-3: Gemini (no structured JSON result, script prints MEDIA itself)
-        size = payload.get("size", DEFAULT_SIZE_GENERATE)
-        try_gemini_fallback(
-            prompt=payload["prompt"],
-            size=size,
-            output=args.output,
-            image_paths=image_paths or [],
-        )
-        return  # generate_image.py handled output
-
-    # Success from tier-1 or tier-2
-    item = result["data"][0]
-    b64 = item.get("b64_json", "")
-    if not b64:
-        print("Error: no b64_json in response", file=sys.stderr)
-        sys.exit(1)
-
-    out_path = save_b64(b64, args.output, args.format)
-    print(f"MEDIA: {os.path.abspath(out_path)}")
-
-    if item.get("revised_prompt"):
-        log(f"revised_prompt: {item['revised_prompt'][:200]}")
+    print("Error: all GPT Image 2 backends exhausted (CRS + openclaw infer both failed)",
+          file=sys.stderr)
+    sys.exit(1)
 
 
-# ─── Commands ────────────────────────────────────────────────────────────────
+# ─── Commands ─────────────────────────────────────────────────────────────────
 
 def cmd_generate(args: argparse.Namespace) -> None:
     payload: dict = {
@@ -264,7 +221,6 @@ def cmd_generate(args: argparse.Namespace) -> None:
     }
     if args.background:
         payload["background"] = args.background
-
     dispatch("/openai/v1/images/generations", payload, args)
 
 
@@ -272,13 +228,8 @@ def cmd_edit(args: argparse.Namespace) -> None:
     if not args.image:
         print("Error: --image required for edit", file=sys.stderr)
         sys.exit(1)
-
-    images = []
-    for img_path in args.image:
-        mime = detect_mime(img_path)
-        b64 = read_image_b64(img_path)
-        images.append({"image_url": f"data:{mime};base64,{b64}"})
-
+    images = [{"image_url": f"data:{detect_mime(p)};base64,{read_image_b64(p)}"}
+              for p in args.image]
     payload: dict = {
         "model": "gpt-image-2",
         "prompt": args.prompt,
@@ -288,15 +239,14 @@ def cmd_edit(args: argparse.Namespace) -> None:
         "output_format": args.format,
         "response_format": "b64_json",
     }
-
     dispatch("/openai/v1/images/edits", payload, args, image_paths=args.image)
 
 
-# ─── CLI ─────────────────────────────────────────────────────────────────────
+# ─── CLI ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="GPT Image 2 CLI for image-forge (3-tier fallback)"
+        description="GPT Image 2 CLI — CRS (Tier-1) + openclaw infer Codex OAuth (Tier-2)"
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
@@ -305,24 +255,18 @@ def main() -> None:
     shared.add_argument("-o", "--output", default="")
     shared.add_argument("--size", choices=VALID_SIZES, default="")
     shared.add_argument("--quality", choices=["standard", "high"], default="high")
-    shared.add_argument(
-        "--format", choices=["png", "webp", "jpeg"], default="png", dest="format"
-    )
-    shared.add_argument("--timeout", type=int, default=320)  # CRS timeout is 300s; give extra buffer
+    shared.add_argument("--format", choices=["png", "webp", "jpeg"], default="png",
+                        dest="format")
+    shared.add_argument("--timeout", type=int, default=320)  # 300s CRS + 20s buffer
 
     gen = sub.add_parser("generate", parents=[shared])
-    gen.add_argument(
-        "--background", choices=["transparent", "white", "auto"], default=""
-    )
+    gen.add_argument("--background", choices=["transparent", "white", "auto"], default="")
 
     edit = sub.add_parser("edit", parents=[shared])
-    edit.add_argument(
-        "-i", "--image", action="append", metavar="PATH",
-        help="Reference image path (repeat for multiple, max 4)"
-    )
+    edit.add_argument("-i", "--image", action="append", metavar="PATH",
+                      help="Reference image (repeat for multiple, max 4)")
 
     args = parser.parse_args()
-
     if args.command == "generate":
         cmd_generate(args)
     elif args.command == "edit":

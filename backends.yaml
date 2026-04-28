@@ -21,24 +21,12 @@ backends:
         auth: "Bearer $CRS_API_KEY"
         trigger: primary
       - tier: 2
-        id: codex-oauth
-        status: DISABLED
-        reason: "Codex 使用 ChatGPT 账号 token (auth_mode=chatgpt)，与 OpenAI Platform API key 是两套不同体系，无法直接打 api.openai.com。待 Codex 暴露可用的 token 交换流后再启用。"
-        base_url: "https://api.openai.com"
-        auth_file: "~/.codex/auth.json"
-        trigger: "N/A — currently disabled"
-      - tier: 3
-        id: gemini-nano-banana
-        script: "{baseDir}/scripts/generate_image.py"
-        trigger: "tier-2 失败（401/连接失败/token 过期）"
-        note: "Gemini Nano Banana 2，尺寸自动映射为宽高比"
-        size_to_aspect:
-          "1024x1024": "1:1"
-          "1536x1024": "16:9"
-          "1024x1536": "9:16"
-          "2048x2048": "1:1"
-          "3840x2160": "16:9"
-          "2160x3840": "9:16"
+        id: openclaw-infer-codex-oauth
+        status: ENABLED
+        command: "openclaw infer image generate/edit --model openai/gpt-image-2 --json"
+        auth: "Codex OAuth 由 OpenClaw 内部处理 (mode=oauth transport=codex-responses)"
+        trigger: "CRS 失败（连接失败/超时/5xx/429）"
+        note: "ChatGPT token 不能直接打 api.openai.com，但 openclaw infer 内部通过 codex-responses 传输层转接。已验证可用。"
     default_size: "1536x1024"
     supported_sizes:
       - "1024x1024"
