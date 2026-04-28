@@ -172,12 +172,14 @@ def try_codex_oauth(endpoint: str, payload: dict, timeout: int) -> dict | None:
     if not token:
         log("Codex OAuth token unavailable — skipping tier-2")
         return None
-    log(f"Tier-2: Codex OAuth → {OPENAI_BASE}{endpoint}")
+    # CRS prefix is /openai/v1/... but direct OpenAI API is /v1/...
+    openai_endpoint = endpoint.replace("/openai/v1/", "/v1/", 1)
+    log(f"Tier-2: Codex OAuth → {OPENAI_BASE}{openai_endpoint}")
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
     }
-    return _api_call(OPENAI_BASE, endpoint, headers, payload, timeout)
+    return _api_call(OPENAI_BASE, openai_endpoint, headers, payload, timeout)
 
 
 # ─── Tier-3: Gemini fallback ─────────────────────────────────────────────────
