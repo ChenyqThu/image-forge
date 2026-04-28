@@ -360,12 +360,8 @@ use_cases:
     default_aspect: "3:4"
     requires_reference_image: true
     workflow:
-      type: two-stage-sequential  # 必须串行，不可并行
-      stage_1: "色彩诊断卡 (Color Diagnosis Card) — 先运行"
-      stage_1_output: "图像 + 季节类型文字（如 Soft Autumn）"
-      stage_2: "综合形象报告 (Image Report Dashboard) — 必须等 Stage 1 完成"
-      stage_2_input: "用户原始参考图 + Stage 1 的季节类型文字"
-      stage_2_not: "不要把 Stage 1 的图作为 Stage 2 的 edit 输入！"
+      default: "1-Stage 直出综合报告（推荐）"
+      optional_2stage: "需要独立色彩卡时才用 2-Stage"
       alt: "简版四卡方案 (4-Card Variant) — 快速版，可并行"
     layout_hints:
       - "两阶段生成：先 Stage 1 (drape 诊断卡) 再 Stage 2 (大版面报告)"
