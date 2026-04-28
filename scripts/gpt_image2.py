@@ -48,6 +48,11 @@ DEFAULT_SIZE_EDIT     = "1024x1536"
 
 RETRYABLE_HTTP = {429, 500, 502, 503, 504}
 
+SIZE_TO_ASPECT = {
+    "1024x1024": "1:1", "1536x1024": "16:9", "1024x1536": "9:16",
+    "2048x2048": "1:1", "3840x2160": "16:9", "2160x3840": "9:16",
+}
+
 
 # ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -172,14 +177,38 @@ def try_openclaw_infer(mode: str, payload: dict, timeout: int,
         log(f"openclaw infer error: {e}")
         return None
 
+# ─── Tier-3: Gemini fallback ─────────────────────────────────────────────────
 
-# ─── Dispatch ─────────────────────────────────────────────────────────────────
+def try_gemini_fallback(prompt: str, size: str, output: str,
+                        image_paths: list[str]) -> None:
+    """Last resort: Gemini Nano Banana 2 via generate_image.py."""
+    log("Tier-3: Gemini fallback → generate_image.py")
+    script = Path(__file__).parent / "generate_image.py"
+    if not script.exists():
+        print("Error: generate_image.py not found — all backends exhausted", file=sys.stderr)
+        sys.exit(1)
+    aspect = SIZE_TO_ASPECT.get(size or DEFAULT_SIZE_GENERATE, "16:9")
+    out = output or f"/tmp/gpt-image2-gemini-{int(time.time())}.png"
+    cmd = [sys.executable, str(script), "--prompt", prompt,
+           "--filename", out, "--aspect-ratio", aspect]
+    for img in image_paths:
+        cmd += ["-i", img]
+    log(f"Gemini cmd: {' '.join(cmd[:6])} ...")
+    result = subprocess.run(cmd, capture_output=False)
+    if result.returncode != 0:
+        print("Error: Gemini fallback failed — all backends exhausted", file=sys.stderr)
+        sys.exit(1)
+    # generate_image.py prints MEDIA: path itself
+
+# ─── Dispatch ────────────────────────────────────────────────────────────────
 
 def dispatch(endpoint: str, payload: dict, args: argparse.Namespace,
              image_paths: list[str] | None = None) -> None:
     """
-    Tier-1: CRS → Tier-2: openclaw infer (Codex OAuth).
-    GPT Image 2 only. No Gemini fallback.
+    Three-tier fallback:
+      Tier-1: CRS (primary)
+      Tier-2: openclaw infer image (Codex OAuth via OpenClaw)
+      Tier-3: Gemini Nano Banana 2 (last resort)
     """
     # Tier-1: CRS
     result = try_crs(endpoint, payload, args.timeout)
@@ -203,9 +232,13 @@ def dispatch(endpoint: str, payload: dict, args: argparse.Namespace,
         print(f"MEDIA: {os.path.abspath(out_path)}")
         return
 
-    print("Error: all GPT Image 2 backends exhausted (CRS + openclaw infer both failed)",
-          file=sys.stderr)
-    sys.exit(1)
+    # Tier-3: Gemini
+    try_gemini_fallback(
+        prompt=payload["prompt"],
+        size=payload.get("size", DEFAULT_SIZE_GENERATE),
+        output=args.output,
+        image_paths=image_paths or [],
+    )
 
 
 # ─── Commands ─────────────────────────────────────────────────────────────────
