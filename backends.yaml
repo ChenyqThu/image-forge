@@ -7,11 +7,39 @@ backends:
   - id: gpt-image-2
     priority: 10
     enabled: true
-    description: "OpenAI GPT Image 2 via CRS，写实/产品/海报/文字渲染首选"
+    description: "GPT Image 2 三级 fallback链：CRS → Codex OAuth → Gemini"
     type: crs
     endpoint: "${CRS_BASE_URL:-http://127.0.0.1:8765}/openai/v1/images/generations"
     edit_endpoint: "${CRS_BASE_URL:-http://127.0.0.1:8765}/openai/v1/images/edits"
     auth_header: "Bearer $CRS_API_KEY"
+
+    # 三级 Fallback 配置（由 gpt_image2.py 自动执行）
+    fallback_chain:
+      - tier: 1
+        id: crs
+        base_url: "${CRS_BASE_URL:-http://127.0.0.1:8765}"
+        auth: "Bearer $CRS_API_KEY"
+        trigger: primary
+      - tier: 2
+        id: codex-oauth
+        base_url: "https://api.openai.com"
+        auth: "Bearer $(~/.codex/auth.json tokens.access_token)"
+        auth_file: "~/.codex/auth.json"
+        auth_key_path: "tokens.access_token"
+        trigger: "CRS 失败（连接失败/5xx/429/超时）"
+        note: "token 每次 Codex 启动刷新，如已过期会退化到 tier-3"
+      - tier: 3
+        id: gemini-nano-banana
+        script: "{baseDir}/scripts/generate_image.py"
+        trigger: "tier-2 失败（401/连接失败/token 过期）"
+        note: "Gemini Nano Banana 2，尺寸自动映射为宽高比"
+        size_to_aspect:
+          "1024x1024": "1:1"
+          "1536x1024": "16:9"
+          "1024x1536": "9:16"
+          "2048x2048": "1:1"
+          "3840x2160": "16:9"
+          "2160x3840": "9:16"
     default_size: "1536x1024"
     supported_sizes:
       - "1024x1024"
