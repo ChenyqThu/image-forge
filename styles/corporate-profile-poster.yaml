@@ -1,0 +1,39 @@
+id: corporate-profile-poster
+name: 人物简介信息图海报（Corporate Profile Infographic Poster）
+source: "@Naiknelofar788 / x.com/Naiknelofar788/status/2049310283613843746"
+original_credit: "Prompt by @Naiknelofar788 (simeon-sanai)，经 image-forge 适配为带变量的 Signature Style"
+placeholder: "[主人公身份，例如：一位科技公司 CEO / 一位产品设计师 / a tech entrepreneur]"
+
+# ── 变量说明 ──────────────────────────────────────────────────────────
+# 使用时替换以下变量：
+#   [person description]  - 主人公描述，例如：a tech CEO / a senior product designer / 一位创业者
+#   [company/product]     - 公司或产品名称，用于右栏 logo/product 区（可留空，自动使用占位符）
+#   [color palette]       - 配色，默认 deep blues + white + soft grey；可改为 dark green / warm navy 等
+#
+# 常见触发：CEO海报、人物简介图、人物信息图、企业人物介绍、profile poster、个人品牌海报
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  A professional, high-resolution corporate infographic poster design.
+
+  Central element: a large, high-quality realistic portrait of [person description] looking
+  towards the side, with studio lighting, sharp details, and a premium photographic quality.
+
+  Layout structure (clean and minimalist with a structured grid system):
+  - Left column: a vertical timeline with bullet points, milestone labels, and simple icons
+  - Right column: organized sections featuring app/product logos, visual data charts, and
+    key metrics with geometric data visualization elements
+  - Bottom sections: two distinct labeled areas with simple modern iconography, stats, and
+    short descriptive text blocks
+  - Color palette: [color palette], clean white backgrounds with deep accent color headers
+
+  Typography: sans-serif placeholders, clearly hierarchical — large name/title at top,
+  medium section headers, small body text labels throughout.
+
+  Style: sleek, modern, magazine-editorial quality. Clean line art, geometric shapes for
+  data visualization, vector-graphic precision combined with the photographic portrait.
+  High-end aesthetic, sharp details, no clutter.
+
+  The overall feel should be: ready to publish as a professional profile feature in a
+  premium business magazine or tech publication. Polished, authoritative, visually rich
+  but never overwhelming.

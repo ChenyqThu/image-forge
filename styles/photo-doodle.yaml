@@ -1,0 +1,35 @@
+id: photo-doodle
+name: 照片手绘涂鸦叠层（Photo Doodle Overlay）
+source: "@oggii_0 / x.com/oggii_0/status/2049538141993001161"
+original_credit: "Prompt by @oggii_0 (Oogie)，经 image-forge 适配为 Signature Style"
+placeholder: "[参考图片路径]"
+
+# ── 说明 ──────────────────────────────────────────────────────────────
+# 此风格 **必须** 配合参考图使用（Path E），走 GPT Image 2 edit endpoint。
+# 无需额外变量，涂鸦内容由 AI 根据图片内容自动生成（context-aware）。
+# 触发后直接问用户要图片，或使用已有参考图。
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  Analyze the uploaded image and preserve the original subject, composition, and lighting.
+  Do not alter the identity or structure of the main subject.
+
+  Add playful, hand-drawn doodles that interact directly with the subject in the image.
+  The doodles should mimic, follow, or exaggerate the shapes, gestures, or motion present —
+  such as outlining poses, extending limbs, adding motion lines, or creating imaginative
+  elements that "respond" to the subject.
+
+  Ensure the doodles feel naturally integrated into the scene, as if they were drawn on top
+  of the photo with intention.
+
+  Use a sketchy, imperfect, hand-drawn style with organic lines, slightly uneven strokes,
+  and a casual illustrated feel.
+
+  Include whimsical handwritten text elements placed around the image. The text should match
+  the mood or implied context of the scene, with a playful and spontaneous tone.
+  Avoid fixed phrases — generate context-aware, creative, and humorous text that fits
+  each unique image.
+
+  Maintain a balanced composition so the doodles enhance the image without overwhelming
+  the original subject. Keep the overall aesthetic fun, expressive, and social-media-ready.
+  High resolution, clean overlay, vibrant yet natural color harmony.

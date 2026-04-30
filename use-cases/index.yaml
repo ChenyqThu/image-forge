@@ -349,7 +349,8 @@ use_cases:
 
   - id: personal-color-diagnosis
     label: "个人色彩诊断 / 个人形象报告"
-    aliases: [个人色彩, 色彩诊断, 韩式色彩, 季节色彩, 个人形象, personal color, color analysis, 色彩测试, 高座诊断看板, drape test, 形象诊断, 穿搭分析, 色彩季节, 色彩风格卡片, 形象报告]
+    # [A-cleanup] 移除「穿搭分析」（已归 style-upgrade-report）；移除「形象诊断」（泛义词，避免与五连图/upgrade系列争抢）
+    aliases: [个人色彩, 色彩诊断, 韩式色彩, 季节色彩, personal color, color analysis, 色彩测试, 高座诊断看板, drape test, 色彩季节, 色彩风格卡片, 形象报告, 专业色彩报告, kinfolk色彩, 综合形象报告]
     references_file: "references/personal-color-diagnosis.json"
     recommended_signature: []
     recommended_rendering:
@@ -371,6 +372,107 @@ use_cases:
       - "人脸一致性是最大挑战：Stage 2 小图 15+ 次出现同一张脸，承认不完美但不要拆得过细"
       - "色彩逻辑必须自洽：季节判定后全版面衣服/妆容/色板必须色彩一致"
       - "不提供素颜自拍（自然光无滤镜）→ 模型无法准确分析肤色基调"
+
+  - id: personal-color-series-xhs
+    label: "小红书个人形象五连图（全套）"
+    # [B-expand] 三连→五连；新增全套形象触发词；「小红书」前缀是区分 XHS 系列与专业报告系列的路由锚点
+    aliases: [小红书色彩, 小红书色彩测试, 小红书色彩诊断, 小红书风格色彩, 小红书风格个人色彩测试, 小红书风格个人色彩诊断, 三连图色彩, xhs color, 色彩三连, 色彩系列图, 小红书形象三连, 小红书诊断三连, 小红书全套形象, 小红书形象诊断, 小红书形象五连, 小红书五连图, 全套形象诊断小红书, xhs全套, 小红书形象升级, 形象诊断小红书]
+    references_file: "references/personal-color-series-xhs.json"
+    recommended_signature: []
+    recommended_rendering:
+      - photography
+    default_backend: gpt-image-2
+    default_size: "1024x1536"
+    default_aspect: "3:4"
+    requires_reference_image: true
+    family: personal-color-series
+    workflow:
+      type: "5-image series"
+      execution: "并发（或顺序）5 次 edit call，依次交付"
+      note: "5 张图视觉风格必须统一（相同背景色系/字体/排版语言），人脸来自同一参考图"
+    layout_hints:
+      - "图1（诊断总览）：季节判定 + 色彩属性 + 最佳色盘 + 关键词标签 — 小红书信息图风格"
+      - "图2（上身测试+穿搭）：5-6 套穿搭上身效果，含推荐/避雷对比"
+      - "图3（妆容+发色+配饰）：唇色/眼影/腮红色号 + 发色推荐 + 配饰参考"
+      - "图4（发型方向）：3-4 款适合发型缩略图 + 避雷 1-2 款，无 Before/After，侧重'适合你的方向'"
+      - "图5（五官优化方向）：高光你的天然优势 + 建议强调方向（正向鼓励框架，非医美报告）"
+      - "铁律：禁止默认暖调/奶茶/土黄；所有颜色必须从诊断出的季节动态派生"
+      - "风格：小红书原生感——渐变背景/圆角卡片/中文主导/轻松有活力，区别于 Kinfolk 极简报告"
+      - "两条产品线分工：XHS五连=广度轻量全套（小红书发帖即用）；upgrade系列=单项深度专业报告"
+    pitfalls:
+      - "默认暖调/奶茶色 → 严格禁止，必须按诊断季节动态生成"
+      - "5 张图视觉风格不统一 → 同一次批次必须保持背景色、字体、整体色调一致"
+      - "图2穿搭套数不足 → 至少 5-6 套才有参考价值"
+      - "图3色号过于模糊 → 必须给出可落地的具体色调描述（如'玫瑰裸粉唇/枫叶红唇'）"
+      - "图4做成 Before/After 发型改造 → 这是'适合方向推荐'，不是深度改造报告，分工不能错位"
+      - "图5变成医美/整容分析报告 → 必须是正向赋能框架（你的加分项是什么），不是缺陷分析"
+      - "不提供素颜参考图 → 必须先向用户要，不可猜测肤色"
+
+  - id: style-upgrade-report
+    label: "穿搭衣品升级改造报告"
+    aliases: [衣品升级, 穿搭升级, 穿搭改造, 穿搭报告, 形象改造, style upgrade report, 穿衣升级, 改造报告, 穿搭诊断, 穿搭分析, before after 穿搭, outfit upgrade]
+    references_file: "references/style-upgrade-report.json"
+    recommended_signature: []
+    recommended_rendering:
+      - photography
+      - minimalism
+    default_backend: gpt-image-2
+    default_size: "1536x1024"
+    default_aspect: "4:3"
+    requires_reference_image: true
+    family: personal-image-upgrade
+    layout_hints:
+      - "Before/After 双人像主视觉占 55-60%，剩余空间放 8 个内容模块"
+      - "必须确保 Before 和 After 是同一个人脸（edit endpoint 保留人脸一致性）"
+      - "After 方向：韩系轻潮/City Boy/日系简约街头，避免商务/老气"
+    pitfalls:
+      - "After 做成通勤西装套装 → 不是目标风格，要有潮流感"
+      - "Before 和 After 不像同一个人 → edit endpoint 用原图约束人脸"
+      - "只换衣服没有层次/配饰/姿态升级 → 改造感弱，整体必须联动"
+
+  - id: facial-aesthetic-report
+    label: "五官美学升级报告"
+    aliases: [五官升级, 五官美学, 颜值升级, 面部美学, 面部升级, 五官改造, facial aesthetic report, 医美报告, 五官分析, 面部分析, 颜值分析, before after 五官]
+    references_file: "references/facial-aesthetic-report.json"
+    recommended_signature: []
+    recommended_rendering:
+      - photography
+      - minimalism
+    default_backend: gpt-image-2
+    default_size: "1536x1024"
+    default_aspect: "4:3"
+    requires_reference_image: true
+    family: personal-image-upgrade
+    layout_hints:
+      - "中央双脸主视觉 + 六区域编号注释（眉/眼/鼻/轮廓/唇/皮肤）"
+      - "左侧信息区（原始五官观察+优化机会）+ 右侧（建议动作）+ 底部优先级矩阵"
+      - "升级方向：韩系自然医美风，绝对不能做成网红脸"
+    pitfalls:
+      - "After 变成网红脸/整容脸 → 必须保留本人辨识度，'自然微调'是核心"
+      - "通过换衣服/妆容制造变化 → 本报告只改五官和皮肤，其余不动"
+      - "遗漏六区域中的任何一个 → 六区域是固定输出结构，必须全部呈现"
+
+  - id: hairstyle-upgrade-report
+    label: "发型美学升级报告"
+    aliases: [发型升级, 发型美学, 发型改造, 发型分析, hairstyle upgrade report, 换发型, 发型报告, 发型建议, 发型诊断, before after 发型]
+    references_file: "references/hairstyle-upgrade-report.json"
+    recommended_signature: []
+    recommended_rendering:
+      - photography
+      - minimalism
+    default_backend: gpt-image-2
+    default_size: "1536x1024"
+    default_aspect: "4:3"
+    requires_reference_image: true
+    family: personal-image-upgrade
+    layout_hints:
+      - "左 Before 大图 + 右 After 大图 + 中下推荐区（4方案✓）+ 避雷区（3方案✗）+ 底部执行指南"
+      - "After 6 点专业注释：刘海/头顶/两侧/层次/发尾/发色"
+      - "避雷区允许轻微趣味感，但不能恶搞/丑化人物"
+    pitfalls:
+      - "After 用夸张发型（杀马特/网红模板/过度油头）→ 目标是自然可执行，偏韩系 Clean Cut"
+      - "多方案里人脸不一致 → 所有方案必须保持同一张脸"
+      - "避雷区变成整蛊图 → 只需展示'确实不适合'的反差，保持整体高级感"
 
   - id: others
     label: "其他 / 自由创作"

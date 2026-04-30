@@ -1,0 +1,52 @@
+id: kawaii-sticker-sheet
+name: Kawaii 表情包贴纸系列（Kawaii Sticker Sheet）
+source: "@Noor_ul_ain43 / x.com/Noor_ul_ain43/status/2049712100843598111"
+original_credit: "Prompt by @Noor_ul_ain43 (Noor 🌸)，经 image-forge 适配为带变量的 Signature Style"
+placeholder: "[角色描述，例如：短卷发黑发女孩，雀斑，金色耳环 / 白发少年，猫耳，红色卫衣]"
+
+# ── 变量说明 ──────────────────────────────────────────────────────────
+# 使用时替换以下变量：
+#   [CHARACTER_DESC]   角色外貌描述（发型/发色/服装/特征）
+#   [COLOR_PALETTE]    配色偏好，默认 soft pastel（peach, pink, yellow）
+#   [EXPRESSIONS]      12 格表情列表，不填则使用默认 12 种
+#
+# 触发后需用户提供角色描述；表情列表和配色可选（不给用默认值）。
+# 若用户说「给我/这个角色做贴纸」，主动问角色长什么样。
+# ─────────────────────────────────────────────────────────────────────
+
+# 默认 12 格表情（用户未指定时使用）
+default_expressions: |
+  1. Holding coffee – "Cute!"
+  2. Winking and peace sign – "Cute!"
+  3. Rubbing eye – "Sleepy"
+  4. Resting face on hand – "Sad"
+  5. Arms up excited – "Happy!"
+  6. Puffy cheeks angry – "Angry!"
+  7. Wearing heart sunglasses – "Love"
+  8. Hugging a cat with headphones – "Cozy Day!"
+  9. Holding paintbrush – "Let's Paint!"
+  10. Bored expression – "Bored…"
+  11. Holding palette/art – "Creative!"
+  12. Dancing pose – "Dance!"
+
+prompt: |
+  Create a 3x4 grid of cute kawaii sticker illustrations featuring the same character:
+  [CHARACTER_DESC].
+  Keep the character's facial features and outfit fully consistent across all 12 stickers.
+
+  Each sticker should show a different emotion or activity in a soft pastel, glossy cartoon
+  style similar to chibi/anime stickers, with white sticker borders and colorful rounded
+  text labels.
+
+  Include these 12 expressions and poses:
+  [EXPRESSIONS]
+
+  Style details:
+  - Color palette: [COLOR_PALETTE] (soft warm tones: peach, pink, yellow)
+  - Blushy cheeks, sparkles, hearts, flowers as decorative accents
+  - Smooth clean lineart, semi-realistic anime face
+  - Glossy sticker effect with subtle drop shadow on each sticker
+  - Cute playful fonts matching each mood label
+  - White sticker border around each individual sticker
+  - High detail, vibrant, aesthetic, Instagram sticker pack style
+  - Grid layout: 3 columns × 4 rows, evenly spaced, clean background

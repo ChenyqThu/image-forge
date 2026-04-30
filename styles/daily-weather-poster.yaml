@@ -1,0 +1,72 @@
+id: daily-weather-poster
+name: 每日天气日签海报（Daily Weather Diorama Poster）
+source: "@xiaoxiaodong01 / x.com/xiaoxiaodong01/status/2049526865115910515"
+original_credit: "风格灵感来自 @xiaoxiaodong01 的软陶微缩地景日签，经 image-forge 适配为带变量的 Signature Style"
+placeholder: "[日期 + 城市 + 天气]"
+
+# ── 变量说明 ──────────────────────────────────────────────────────────
+# 使用时替换以下变量：
+#   [DISPLAY_DATE]     显示日期，如：April 30, 2026 · Wednesday
+#   [CITY]             城市，如：Irvine, California
+#   [LANDMARK]         城市地标，如：UCI Campus / Irvine Spectrum
+#   [WEATHER_ICON]     天气图标词，如：☀️ Sunny / 🌤 Partly Cloudy
+#   [WEATHER_DESC]     天气描述，如：Sunny, 18–27°C, UV 7
+#   [HISTORY_TODAY]    历史上的今天（一句话），如：1945: UN Charter signed in San Francisco
+#   [PERSONAL_NOTE]    个人状态（可选），如：Sleep A · Swim 1000m · "行动先于意义"
+#
+# 此风格专为「每日晨报日签」设计，通过 generate_daily_poster.py 自动填充变量。
+# 也可手动触发：说「画一张今天的日签」并提供城市/天气信息。
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  Create a daily weather journal poster in a soft clay miniature diorama style
+  (高级软陶微缩地景 / clay toy scene aesthetic), with a warm cartoon quality.
+
+  === SCENE BACKGROUND ===
+  A charming miniature clay diorama of [CITY] — featuring a recognizable
+  element of [LANDMARK], rendered in soft sculpted clay with a warm, handcrafted
+  texture. The scene feels like a tiny toy-world version of the city: rounded
+  edges, pastel clay colors, gentle depth of field, soft studio lighting from
+  above. The overall mood is cozy, optimistic, and visually inviting.
+
+  === COLOR PALETTE (55/30/10/5 structure) ===
+  - 55% dominant: sky and atmosphere tones matching [WEATHER_ICON] mood
+    (sunny = warm white + light gold; cloudy = soft blue-grey; rainy = cool slate)
+  - 30% secondary: warm clay terracotta, sage green, or dusty rose for buildings/nature
+  - 10% accent: one vivid accent color (coral, sky blue, or warm amber)
+  - 5% highlight: pure white or near-white for light sources and text areas
+  Low saturation but full of life — absolutely avoid dead grey, flat beige, or muddy brown.
+
+  === INFORMATION LAYERS (5-eye depth reading) ===
+  Layer 1 — First impression: the clay diorama scene fills the upper 60% of the poster,
+    establishing mood and city identity at a glance.
+  Layer 2 — Background detail: subtle city elements embedded in the diorama
+    (tiny buildings, trees, road, people as clay figures).
+  Layer 3 — City & weather identity (upper area, clean sans-serif):
+    « [CITY] »
+    [WEATHER_ICON]  [WEATHER_DESC]
+  Layer 4 — Main copy (center-lower, bold and warm):
+    Large: [DISPLAY_DATE]
+    Sub: [PERSONAL_NOTE]
+  Layer 5 — Historical reading (bottom strip, smaller text, slightly muted):
+    「历史上的今天 · On This Day」
+    [HISTORY_TODAY]
+
+  === TYPOGRAPHY ===
+  - City name: clean modern sans-serif, medium weight, muted tone
+  - Date: large, bold, warm ink color, slightly hand-lettered feel
+  - Weather: icon + short descriptor, readable at a glance
+  - Personal note: smaller, italics or light weight, warm grey
+  - History strip: smallest, elegant serif or thin sans-serif, bottom anchor
+
+  === COMPOSITION ===
+  Vertical portrait format (3:4). The clay diorama occupies top ~60%.
+  Information sections stack cleanly in the bottom 40%, separated by
+  subtle dividers or natural negative space. Overall feel: a premium daily
+  journal card you'd want to screenshot and share.
+
+  === DO NOT ===
+  - No photo-realistic rendering (keep soft clay / toy aesthetic throughout)
+  - No dark or heavy backgrounds
+  - No cluttered layout — breathing room is essential
+  - No generic stock-photo look

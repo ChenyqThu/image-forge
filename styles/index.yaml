@@ -107,6 +107,85 @@ signature_styles:
     tags: [industrial, high-contrast, glitch, film-noir]
     use_case_affinity: [poster-flyer, youtube-thumbnail, product-marketing]
 
+  - id: kawaii-sticker-sheet
+    file: kawaii-sticker-sheet.yaml
+    category: illustration
+    aliases: [表情包贴纸, kawaii贴纸, 可爱贴纸, 贴纸山海, 表情贴纸, 贸贴纸, sticker sheet, sticker pack, kawaii stickers, chibi stickers, emoji stickers, 情绪贴纸]
+    aspect_ratio: "1:1"
+    preferred_backend: gpt-image-2
+    tags: [kawaii, sticker, chibi, anime, grid, illustration]
+    use_case_affinity: [social-media-post, profile-avatar]
+    input_variables:
+      required: ["角色描述"]
+      optional: ["配色偏好", "12格表情列表"]
+    special_note: "必填角色描述。表情列表和配色不填则用默认 12 种情绪。触发后若用户没给角色描述，主动问。"
+    source: "@Noor_ul_ain43 / x.com/Noor_ul_ain43/status/2049712100843598111"
+
+  - id: daily-weather-poster
+    file: daily-weather-poster.yaml
+    category: editorial
+    aliases: [日签, 日签海报, 每日日签, 天气日签, 晚安日签, 软陶地景, clay diorama, daily poster, weather poster, 早安日签]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [daily, weather, diorama, clay, editorial, journal]
+    use_case_affinity: [social-media-post, document-publication]
+    special_note: "通常由 generate_daily_poster.py 自动调用，也可手动触发。手动触发时需提供城市+日期+天气信息。"
+    source: "@xiaoxiaodong01 / x.com/xiaoxiaodong01/status/2049526865115910515"
+
+  - id: photo-doodle
+    file: photo-doodle.yaml
+    category: illustration
+    aliases: [手绘涂鸦, 涂鸦风格, 照片涂鸦, 手绘贴纸, 涂鸦叠层, photo doodle, doodle overlay, sketch overlay, 手绘贴纸风, 信封涂鸦, 小涂鸦]
+    aspect_ratio: "auto"
+    preferred_backend: gpt-image-2
+    tags: [doodle, sketch, overlay, photo, handdrawn, whimsical]
+    use_case_affinity: [social-media-post, profile-avatar, poster-flyer]
+    requires_reference_image: true
+    special_note: "必须配合参考图使用（Path E）。没有图就问用户要。涂鸦内容由 AI 根据图片内容自动生成，无需额外变量。"
+    source: "@oggii_0 / x.com/oggii_0/status/2049538141993001161"
+
+  - id: mono-optical-poster
+    file: mono-optical-poster.yaml
+    category: typographic
+    aliases: [黑白光学, 光学抽象, 单色概念海报, 黑白概念, Op Art, 黑白海报, monochrome optical, optical art, 光学错觉海报, 黑白实验海报]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [monochrome, optical, op-art, typographic, concept, poster]
+    use_case_affinity: [poster-flyer, document-publication]
+    avoid_for: [ecommerce-main-image, product-marketing, profile-avatar]
+    input_variables:
+      required: ["主题文字"]
+      optional: ["图片比例"]
+    special_note: "触发时需用户提供主题文字。若用户只说'黑白海报'未给文字内容，主动问：'主题词是什么？（中/英均可）'"
+
+  - id: corporate-profile-poster
+    file: corporate-profile-poster.yaml
+    category: editorial
+    aliases: [CEO海报, 人物简介图, 人物信息图, 人物档案海报, 企业人物介绍, profile poster, corporate infographic, 个人品牌海报, 人物海报排版]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [editorial, corporate, infographic, portrait, magazine]
+    use_case_affinity: [document-publication, social-media-post, poster-flyer]
+    avoid_for: []
+    input_variables:
+      required: ["人物描述"]
+      optional: ["公司/产品名", "配色方案"]
+    special_note: "多变量模板风格。人物描述必填；配色默认深蓝+白+浅灰；公司/产品名可留空自动占位。"
+
+  - id: neon-sketch
+    file: neon-sketch.yaml
+    category: illustration
+    aliases: [霓虹线稿, 霓虹素描, 发光线稿, 霓虹涂鸦, neon sketch, neon line art, glowing sketch, 写实+线稿, 混合霓虹]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [neon, sketch, mixed-media, photo, dreamy, whimsical]
+    use_case_affinity: [social-media-post, profile-avatar, poster-flyer]
+    avoid_for: [ecommerce-main-image, product-marketing]
+    input_variables:
+      required: ["霓虹主角/主体"]
+      optional: ["背景场景", "自然元素", "霓虹主色", "手持物品"]
+    special_note: "多变量模板风格。只提供主体时，背景/颜色/物品自动匹配。若用户给出详细描述，直接填入对应变量。"
+
   - id: geo-typography
     file: geo-typography.yaml
     category: typographic
@@ -227,6 +306,14 @@ rendering_styles:
     modifier: "cyberpunk dystopian aesthetic, high-saturation neon signs reflected in rain-slicked streets, holographic interference patterns, volumetric fog and atmospheric haze, vibrant magenta-cyan-amber color language, Blade Runner or Ghost in the Shell atmosphere"
     preferred_backend: gpt-image-2
     tags: [cyberpunk, neon, futuristic]
+
+  - id: minimal-line-accent
+    category: illustration
+    aliases: [极简线稿, 线稿配色, 色彩点缀插画, 极简插画, minimal line art, line accent, line and color, 线稿+颜色, 极简配色线稿, editorial illustration]
+    modifier: "minimal illustration, clean thin lines with selective vibrant color accents, lots of negative space, refined composition, modern editorial style, elegant and simple"
+    preferred_backend: gpt-image-2
+    tags: [minimal, line-art, color-accent, editorial, illustration]
+    source: "@aleenaamiir / x.com/aleenaamiir/status/2049400614195794230"
 
   - id: minimalism
     category: minimal

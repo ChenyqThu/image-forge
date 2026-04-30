@@ -1,0 +1,26 @@
+[
+  {
+    "title": "工作流说明：发型美学升级报告",
+    "description": "用户提供本人正面照片 → GPT Image 2 edit 生成「Before & After 发型美学升级报告」横向 4:3。重点只在发型，不改五官/穿搭。含推荐方案 + 避雷区 + 趣味感。",
+    "needReferenceImages": true,
+    "workflow": {
+      "backend": "gpt-image-2-edit",
+      "size": "1536x1024",
+      "reference_image": "required（本人正面形象照，发型可见，面部清晰）",
+      "output": "单张横向 4:3 发型美学报告",
+      "steps": [
+        "Step 1: 确认用户已提供本人照片（正面，发型可见）",
+        "Step 2: 运行下方完整 prompt + 参考图（edit endpoint）",
+        "Step 3: 交付报告图"
+      ],
+      "important": "本报告只升级发型，严禁改变五官/磨皮美颜/改变穿搭。避雷区可有轻微趣味感但不得恶搞。"
+    },
+    "content": "此条目为工作流说明，不含可执行 prompt。"
+  },
+  {
+    "title": "发型美学升级报告（@mrlarus 完整版）",
+    "description": "AI 发型 Before & After 升级报告。生成横向 4:3，含 Before/After 主视觉 + 6 点专业注释 + Best Options 推荐区（4方案） + Less Flattering 避雷区（3方案，轻趣味） + Hair Style Guide 执行指南。",
+    "needReferenceImages": true,
+    "content": "请基于用户上传的正面形象照片，生成一张横向 4:3 的高完成度「AI 发型美学升级报告 / Before & After Hairstyle Upgrade Report」。\n\nImage A 是用户上传的本人形象照片，是本次生成的核心身份参考。请严格保留用户本人的脸部辨识度、五官结构、脸型比例、年龄感、皮肤真实质感、表情气质和原有穿搭，让人一眼能认出是同一个人。本次升级重点只放在发型设计、头发长度、刘海处理、层次结构、蓬松度、两侧体积、发尾质感和发色建议上。不要改变五官、不要瘦脸、不要磨皮美颜、不要换衣服、不要靠妆容提升效果。\n\n请把画面设计成一张融合「高端发型顾问提案板 + 杂志型视觉编排 + 多方案对比 + 轻度幽默避坑感」的个人发型升级报告。它既要专业、清晰、有设计感，也要有一点\"原来这些发型不适合我\"的轻微趣味感，让观众会心一笑，但不能恶搞、不能故意丑化人物、不能做成整蛊图。\n\n【整体版式】\n横向 4:3 构图，背景以白色、米白、浅灰为主，少量浅橄榄绿、灰蓝、柔和红色作为功能性强调色。整体版式不要做成整页均匀小卡片矩阵，而是更有主次层级、更像个人专属提案。画面采用「左侧 Before 原始发型大图 + 右侧 After 主推发型大图 + 中下部 Best Options 推荐区 + 下方 Less Flattering 避雷区 + 底部 Hair Style Guide 执行指南」的结构。\n\n【标题区】\n顶部主标题：AI 发型美学升级报告 / 英文副标题：Before & After Hairstyle Upgrade Report / 辅助小标签：HAIR RESET / STYLE PROPOSAL / BEST CUT FOR YOU\n\n【中央主视觉】\n左侧 Before：保持用户当前发型的真实状态，包括原始长度、自然发量、头发凌乱度、贴头皮感、刘海状态、发尾状态。不要偷偷优化原图。\n右侧 After：必须仍然是同一个人，同样的脸、同样的气质、同样的服装和相似光线构图，只升级发型。After 发型应明显更适合这个人，偏韩系自然、Clean Cut、松弛有型、低维护、生活化，不要夸张杀马特，不要网红模板发型，不要过度油头，不要明显漂染。\n\n【After 主推发型优化方向】\n根据人物真实条件自动判断，体现：更合适的刘海或露额比例 / 更自然的头顶蓬松度 / 更合理的两侧体积控制 / 更干净的发尾与层次 / 更有秩序的发量视觉 / 更适合肤色与气质的自然发色 / 整体头面比例更协调、更有精神。\n\n【专业注释（6 点）】\n在 After 主图上加入精致编号圆点、细线箭头和局部放大注释：\n01 刘海 / Bangs：说明刘海方向、长度或露额比例\n02 头顶 / Crown Volume：说明头顶蓬松度如何提升精神感\n03 两侧 / Side Balance：说明两侧体积如何修饰脸型宽度\n04 层次 / Layers：说明层次处理如何减轻厚重感\n05 发尾 / Hair Ends：说明发尾更干净利落\n06 发色 / Hair Color：说明自然发色如何提升整体气质\n\n【左侧信息栏：Key Features】\n使用图标 + 中英混排短标签，不要写长段文字。自动分析展示：Face Shape / Hair Density / Hair Texture / Natural Wave / Forehead Ratio / Current Length / Styling Difficulty。\n\n【Best Options 推荐区（4 方案，绿色 ✓）】\n4 个推荐发型方案卡，每张都是同一个人只改发型，附简短名称和一句优势描述。方案要彼此有差异，偏自然、真实、可执行，例如：Soft Layer Cut / Korean Clean Style / Side Part Natural / Airy Texture Look。\n\n【Less Flattering 避雷区（3 方案，红色 ✗）】\n3 个不推荐发型，带轻微趣味感，让人感觉\"确实不太行\"但不离谱、不恶搞：过度贴头皮 / 过厚齐刘海 / 过度油头 / 过短或过尖锐等。控制趣味分寸，保持高级感，不能变成夸张搞笑造型。\n\n【Hair Style Guide 底部执行指南】\n1. Best Hair Length / 最佳发长建议\n2. Trim Focus / 修剪重点\n3. Styling Method / 日常打理方式\n4. Maintenance Cycle / 建议维护周期\n5. Best Hair Colors / 推荐发色（3—4 个自然色卡：Natural Black / Dark Brown / Ash Brown / Soft Cool Brown）\n\n【视觉语气】\n专业顾问感 + 轻度避坑趣味感并存。推荐区让人觉得\"这些确实挺适合\"，避雷区让人觉得\"哈哈，这种真的不太行\"，但整体仍然必须高级、干净、好看、有设计感。\n\n底部小字：本报告为 AI 发型美学视觉提案，仅供参考。实际发型建议请以专业发型师面诊为准。\n\n【严格避免】不要改变用户身份，不要换脸，不要改变五官，不要磨皮美颜，不要改变穿搭，不要通过化妆或服装提升效果。不要生成夸张发型、杀马特、二次元造型、舞台造型、过度油头、过度漂染。不要让多个发型方案长得不像同一个人。不要做成普通发型合集图，要做成高完成度、专业又有点趣味感的个人发型美学升级报告。"
+  }
+]

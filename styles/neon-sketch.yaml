@@ -1,0 +1,26 @@
+id: neon-sketch
+name: 霓虹线稿（Neon Sketch）
+source: "@azed_ai / x.com/azed_ai/status/2049080959140798902"
+original_credit: "Prompt by Amira Zairi (@azed_ai)，经 image-forge 适配为带变量的 Signature Style"
+placeholder: "[霓虹主角，例如：一个快乐的女孩 / 一只小猫 / 一个少年骑手]"
+
+# ── 变量说明 ──────────────────────────────────────────────────────────
+# 使用时替换以下变量（均有默认建议，用户未提供时可自动填充）：
+#   [background scene]  - 写实摄影背景场景，例如：a flower-filled garden / a sunny city street / a cozy café terrace
+#   [nature elements]   - 背景中的自然元素，例如：blooming wildflowers and tall grass / lush green trees and soft moss
+#   [subject]           - 霓虹线稿主体，例如：a joyful girl in a flowing dress / a playful puppy / a skateboarder
+#   [neon color]        - 霓虹主色调，例如：electric blue / glowing pink / vivid cyan / warm amber
+#   [held object]       - 主体手持物品，例如：a balloon / a bouquet of flowers / an ice cream cone / a glowing lantern
+#
+# 若用户只给出主体描述，背景/颜色/物品可自动填入与主体气质匹配的默认值。
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  A realistic blurred photo of a [background scene], filled with bright sunlight, soft bokeh,
+  and lush [nature elements]. In the foreground, a glowing neon line-art illustration of
+  [subject] holding a [neon color] [held object] with joy, outlined in thick luminous white
+  lines. Sketchy doodles, floating sparkles, playful drips, and hand-drawn accents surround
+  the objects, adding a whimsical mixed-media feel. The figure's glowing shoes lightly touch
+  the ground, creating a dreamy blend of real photography and vibrant neon sketch art.
+  High resolution, vivid neon colors, soft real-world atmosphere behind, magical and
+  whimsical mood.

@@ -2,8 +2,8 @@
 name: image-forge
 description: |
   画图技能路由中枢（统一入口）。三维路由体系（用途 × 风格 × 主体），双后端调度。
-  - Signature 风格：11 种有独立 YAML 的视觉方案（构成主义/克莱因/Risograph/故障艺术/平面几何字体等）
-  - Rendering 风格：15 种通用渲染技法 modifier（写真/动漫/3D/水彩/赛博朋克等），prompt 源自实战案例
+  - Signature 风格：17 种有独立 YAML 的视觉方案（构成主义/克莱因/Risograph/故障艺术/平面几何字体/霓虹线稿/黑白光学/人物信息图等）
+  - Rendering 风格：16 种通用渲染技法 modifier（写真/动漫/3D/水彩/赛博朋克等），prompt 源自实战案例
   - Logo 展示背景：12 种专业展示场景（来源 logo-generator，已内化）
   - 用途库：16 类场景 + 全实战 prompt 案例，含推荐风格 + 后端默认 + pitfalls 防坑
   - 后端调度：GPT Image 2（写实/产品/文字/4K）/ Gemini（动漫/艺术/多参考图）
@@ -65,6 +65,12 @@ description: |
 | 波普水墨、pop art、ink splash | pop-ink-splash | 头像、社媒 |
 | 克莱因蓝、克莱因秩序、极简仰拍 | klein-blue-order | 头像、社媒 |
 | 高对比度工业、电光蓝故障 | high-contrast-industrial | 海报、产品、封面 |
+| 霓虹线稿、发光素描、写实+线稿 | **neon-sketch** | 社媒、头像 |
+| 表情包贴纸、kawaii贴纸、贴纸山海、chibi贴纸 | **kawaii-sticker-sheet** | 社媒、头像 |
+| 日签、日签海报、天气日签、软陶地景 | **daily-weather-poster** | 日签、社媒 |
+| 手绘涂鸦、涂鸦叠层、照片涂鸦、手绘贴纸 | **photo-doodle** | 社媒、头像 |
+| 黑白光学、Op Art、单色概念、光学错觉海报 | **mono-optical-poster** | 海报、封面 |
+| CEO海报、人物信息图、人物简介、企业档案 | **corporate-profile-poster** | 海报、社媒 |
 | 字体海报、平面几何、概念海报 | **geo-typography** | 海报、社媒 |
 
 **注：** geo-typography 有必填变量。命中后若用户未提供核心词语，必须主动问其前再生成。
@@ -81,6 +87,7 @@ description: |
 | 等距视角、isometric、2.5D | isometric | **GPT Image 2** |
 | 复古、retro、vintage | retro-vintage | **GPT Image 2** |
 | 赛博朋克、霓虹、cyberpunk | cyberpunk-sci-fi | **GPT Image 2** |
+| 极简线稿、线稿配色、色彩点缀插画 | minimal-line-accent | **GPT Image 2** |
 | 极简、minimalism、简约 | minimalism | **GPT Image 2** |
 | 动漫、二次元、anime | anime-manga | Gemini |
 | 插画、手绘插画 | illustration | Gemini |
@@ -114,12 +121,23 @@ description: |
 | 版式、杂志、出版 | document-publication | **GPT Image 2** | photography, minimalism |
 | 科普、动物、Apple风海报 | natural-science-poster | **GPT Image 2** | photography, minimalism |
 | 个人色彩诊断、形象报告 | **personal-color-diagnosis** | **GPT Image 2** (edit) | photography, minimalism |
+| 穿搭升级、衣品改造报告 | **style-upgrade-report** | **GPT Image 2** (edit) | photography, minimalism |
+| 五官升级、面部美学报告 | **facial-aesthetic-report** | **GPT Image 2** (edit) | photography, minimalism |
+| 发型升级、发型美学报告 | **hairstyle-upgrade-report** | **GPT Image 2** (edit) | photography, minimalism |
 
 **注：** personal-color-diagnosis 为特殊两阶段工作流。命中后：
 1. 必须确认用户已提供素颜参考图（正面/自然光/无滤镜）
 2. 先运行 Stage 1 色彩诊断卡 → 再运行 Stage 2 综合形象报告
 3. 两次均使用 gpt-image-2 edit endpoint + 参考图
 4. 简版可选四卡方案 (4-Card Variant)
+
+**「个人形象升级」家族（family: personal-image-upgrade）路由规则：**
+- personal-color-diagnosis（色彩/季节/肤色/穿搭色系）→ 两阶段工作流，素颜自拍
+- style-upgrade-report（衣品/穿搭/穿衣升级/改造报告）→ 单次生成，横向 4:3
+- facial-aesthetic-report（五官/颜值/面部/医美报告）→ 单次生成，横向 4:3
+- hairstyle-upgrade-report（发型/发型升级/换发型/发型美学）→ 单次生成，横向 4:3
+
+全家族共用规则：① 必须确认用户已提供本人照片 ② GPT Image 2 edit endpoint ③ 输出单张横向 4:3 报告图 ④ 飞书渠道用 message filePath 发送
 
 ---
 
