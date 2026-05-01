@@ -1,0 +1,37 @@
+id: bokeh-wonderland
+name: 梦幻散景仙境（Whimsical Bokeh Wonderland）
+source: "@LudovicCreator / x.com/LudovicCreator/status/2049949448810246379"
+original_credit: "Prompt by @LudovicCreator，经 image-forge 适配为 Signature Style"
+
+# ── 变量说明 ──────────────────────────────────────────────────────────
+# 必填变量（命中后若用户未提供，主动问再生成）：
+#   {subject}  — 画面主体（人物/动物/场景，如：a red panda, a girl in a garden）
+#   {color1}   — 主色调（如：purple, coral, midnight blue）
+#   {color2}   — 辅色调（如：golden, teal, rose gold）
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  A Whimsical Bokeh Wonderland illustration of {subject}, surrounded by a dreamy landscape
+  of out-of-focus light orbs. Feature fantastical elements in a color scheme dominated by
+  vibrant {color1} and {color2} hues.
+
+  The background is filled with soft, glowing bokeh circles of varying sizes, creating a
+  magical, ethereal atmosphere. The subject is rendered with a painterly, illustrative
+  quality, blending seamlessly with the dreamlike bokeh environment.
+
+  Whimsical and fantastical details: floating petals, glowing fireflies, sparkling particles,
+  soft mist, and delicate light trails weave through the scene.
+
+  Overall aesthetic: dreamy, magical, soft, otherworldly — like stepping into a fairy tale
+  lit by a thousand floating lanterns.
+
+required_variables:
+  - name: subject
+    description: 画面主体（人物/动物/场景）
+    example: "a red panda, a girl in a garden, a lone fox"
+  - name: color1
+    description: 主色调
+    example: "purple, coral, midnight blue"
+  - name: color2
+    description: 辅色调
+    example: "golden, teal, rose gold"

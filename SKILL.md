@@ -11,8 +11,10 @@ description: |
   Use when: 用户想画图/生图/做海报/插画/风格迁移/图片编辑/logo展示图 — 这是唯一的图像生成入口。
   【铁律】绝对禁止使用 image_generate 工具（configured: no，不可用）。所有画图请求必须走本 skill。
   【注意】SVG logo 代码生成 → 请用专属 logo-generator skill。
+pinned: false
+source: user_created
+created_at: 2026-04-25
 ---
-
 # Image Forge — 统一画图路由
 
 ## 目录结构
@@ -68,6 +70,13 @@ description: |
 | 霓虹线稿、发光素描、写实+线稿 | **neon-sketch** | 社媒、头像 |
 | 表情包贴纸、kawaii贴纸、贴纸山海、chibi贴纸 | **kawaii-sticker-sheet** | 社媒、头像 |
 | 日签、日签海报、天气日签、软陶地景 | **daily-weather-poster** | 日签、社媒 |
+| 水墨羽流、墨水扩散、ink bloom | **ink-bloom-reverie** | 海报、社媒 |
+| 微缩模型、韦斯安德森、tilt-shift diorama | **miniature-wes** | 社媒、产品 |
+| 世界观设定、角色设定资料、world building | **world-character-sheet** | 海报、游戏素材 |
+| 散景仙境、梦幻光斑、bokeh wonderland | **bokeh-wonderland** | 社媒、海报 |
+| 商务证件照、档案头像、business headshot | **business-headshot** | 头像、海报 |
+| 动漫双重曝光、剪影海报、character poster | **anime-double-exposure** | 海报、社媒 |
+| 蜡笔画、蜡笔风、儿童画、crayon style | **crayon-kid** | 社媒、头像 |
 | 手绘涂鸦、涂鸦叠层、照片涂鸦、手绘贴纸 | **photo-doodle** | 社媒、头像 |
 | 黑白光学、Op Art、单色概念、光学错觉海报 | **mono-optical-poster** | 海报、封面 |
 | CEO海报、人物信息图、人物简介、企业档案 | **corporate-profile-poster** | 海报、社媒 |

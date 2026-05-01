@@ -1,0 +1,26 @@
+id: ink-bloom-reverie
+name: 水墨绽放梦境（Ink Bloom Reverie）
+source: "@azed_ai / x.com/azed_ai/status/2050167617932194239"
+original_credit: "Prompt by @Amira Zairi（azed_ai），经 image-forge 适配为 Signature Style"
+
+# ── 说明 ──────────────────────────────────────────────────────────────
+# 文生图风格。主体从乳白色液体中的漩涡墨水羽流里浮现，黑色颜料+柔白云雾，
+# 梦幻诗意的纯艺术氛围。无需参考图，直接描述主体即可。
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  A {subject} emerges from swirling liquid plumes suspended in milky water, shaped by
+  flowing ink diffusion and abstract organic movement. Rich black pigments and soft cloudy
+  whites blend naturally into one another, creating a dreamy, poetic composition with
+  delicate depth, fluid elegance, and an ethereal fine art atmosphere.
+
+required_variables:
+  - name: subject
+    description: 从墨水羽流中浮现的主体
+    example: "dragon / lone wolf / woman's face / lotus flower / samurai silhouette"
+
+routing_hints: |
+  - 无需参考图，Path S 直接生成
+  - 后端：GPT Image 2（黑白高对比细节更强）
+  - 尺寸建议：1:1 或 3:4（主体居中，墨云铺满画面）
+  - subject 用英文描述主体；若用户用中文，自动翻译后填入

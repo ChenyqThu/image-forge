@@ -132,6 +132,96 @@ signature_styles:
     special_note: "通常由 generate_daily_poster.py 自动调用，也可手动触发。手动触发时需提供城市+日期+天气信息。"
     source: "@xiaoxiaodong01 / x.com/xiaoxiaodong01/status/2049526865115910515"
 
+
+
+
+  - id: ink-bloom-reverie
+    file: ink-bloom-reverie.yaml
+    category: illustration
+    aliases: [水墨绽放, 墨水羽流, 水墨梦境, ink bloom, ink reverie, ink diffusion, 墨水扩散, 乳白墨云, 墨水浮现, liquid ink art]
+    aspect_ratio: "auto"
+    preferred_backend: gpt-image-2
+    tags: [ink, monochrome, dreamy, fine-art, fluid, poetic, black-white]
+    use_case_affinity: [poster-flyer, social-media-post, profile-avatar]
+    requires_reference_image: false
+    has_required_variables: true
+    required_variables: [subject]
+    special_note: "文生图。主体从乳白色液体中的漩涡墨水羽流里浮现，黑色颜料+柔白云雾。只需填 subject。source: @azed_ai"
+
+  - id: miniature-wes
+    file: miniature-wes.yaml
+    category: photo-edit
+    aliases: [微缩模型, 微缩沙盘, 韦斯安德森, 模型风, tilt-shift, miniature model, wes anderson, diorama, 微型世界, 沙盘风格, 玩具质感]
+    aspect_ratio: "auto"
+    preferred_backend: gpt-image-2
+    tags: [miniature, diorama, wes-anderson, tilt-shift, pastel, model, handcraft]
+    use_case_affinity: [social-media-post, poster-flyer, product-marketing]
+    requires_reference_image: true
+    has_required_variables: false
+    special_note: "需参考图（Path E）。两种变体：soft（柔和马卡龙色+底部标注文字，默认）/ vivid（鲜明饱和色+无文字）。source: @xiaoxiaodong01（提示词在原帖图片中，本版为合成）"
+
+  - id: world-character-sheet
+    file: world-character-sheet.yaml
+    category: illustration
+    aliases: [世界观设定, 角色设定资料, 世界角色设计, 设定集风格, world building, character design sheet, 概念设定图, 动漫设定资料, 世界观角色, 设定资料集]
+    aspect_ratio: "16:9"
+    preferred_backend: gpt-image-2
+    tags: [world-building, character-design, anime, concept-art, setting-document, flat-color]
+    use_case_affinity: [poster-flyer, game-asset, comic-storyboard]
+    requires_reference_image: false
+    has_required_variables: true
+    required_variables: [world_seed, character_roles]
+    special_note: "文生图。生成「世界观设定资料+角色全身图+道具细节+设定集版式」一体图。最简：只填 world_seed + character_roles，其余自动推断。source: @Toshi_nyaruo_AI（日语原版超长prompt精简适配）"
+
+  - id: bokeh-wonderland
+    file: bokeh-wonderland.yaml
+    category: illustration
+    aliases: [散景仙境, 梦幻散景, bokeh wonderland, whimsical bokeh, 散景光球, 梦幻光斑, 仙境插画, dreamy bokeh, magical bokeh]
+    aspect_ratio: "auto"
+    preferred_backend: gpt-image-2
+    tags: [bokeh, dreamy, whimsical, magical, fantasy, colorful, soft-light]
+    use_case_affinity: [social-media-post, profile-avatar, poster-flyer]
+    requires_reference_image: false
+    has_required_variables: true
+    required_variables: [subject, color1, color2]
+    special_note: "有必填变量：主体(subject)、主色(color1)、辅色(color2)。命中后若用户未提供，主动问再生成。source: @LudovicCreator"
+
+  - id: business-headshot
+    file: business-headshot.yaml
+    category: portrait
+    aliases: [商务证件照, 证件照海报, 商务头像海报, 企业档案照, 职业头像, 正式头像, business headshot, id photo poster, professional headshot, 档案头像]
+    aspect_ratio: "1:1"
+    preferred_backend: gpt-image-2
+    tags: [portrait, business, professional, headshot, formal, white-background]
+    use_case_affinity: [profile-avatar, poster-flyer, social-media-post]
+    requires_reference_image: true
+    has_required_variables: true
+    required_variables: [name, title, organization]
+    special_note: "必须配合参考人像照片（Path E）。命中后确认：(1)参考照片 (2)姓名 (3)职位 (4)机构，四项齐全才生成。输出1:1白底商务头像+底部信息栏。source: @qisi_ai"
+
+  - id: anime-double-exposure
+    file: anime-double-exposure.yaml
+    category: illustration
+    aliases: [动漫双重曝光, 双重曝光海报, 剪影散景动漫, anime double exposure, double exposure poster, 樱花剪影海报, 动漫宣传海报, 竖版动漫海报, character poster]
+    aspect_ratio: "9:16"
+    preferred_backend: gpt-image-2
+    tags: [anime, double-exposure, silhouette, cherry-blossom, cinematic, watercolor, poster]
+    use_case_affinity: [poster-flyer, social-media-post, profile-avatar]
+    requires_reference_image: false
+    has_required_variables: true
+    required_variables: [character_name, character_desc]
+    special_note: "两种角色来源：(A)参考图→Path E edit；(B)知名角色名/原创描述→Path S。flower_element留空则从角色气质自动推断（武士→菊/落叶，冰雪→冰晶，科幻→星云粒子，默认→樱花）。颜色也可自动推断。必填：poster_title；无参考图时还需character_ref。竖版9:16。source: @AiwithLariab"
+
+  - id: crayon-kid
+    file: crayon-kid.yaml
+    category: illustration
+    aliases: [蜡笔画, 蜡笔风, 蜡笔插画, 蜡笔童趣, 儿童画, 小朋友画, 10岁小孩画的, crayon, crayon drawing, crayon style, crayon illustration, kid drawing, childlike]
+    aspect_ratio: "auto"
+    preferred_backend: gpt-image-2
+    tags: [crayon, childlike, whimsical, colorful, handdrawn, cute, innocent]
+    use_case_affinity: [social-media-post, profile-avatar, poster-flyer]
+    requires_reference_image: false
+    special_note: "支持两种用法：(1) 有参考图 → Path E，把照片改成蜡笔画；(2) 无参考图 → Path S，直接生成蜡笔风插画。白纸背景 + 明亮蜡笔色 + 幼稚感线条。source: @mdmadeit"
   - id: photo-doodle
     file: photo-doodle.yaml
     category: illustration

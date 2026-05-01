@@ -1,0 +1,78 @@
+id: miniature-wes
+name: 韦斯安德森微缩模型（Miniature Wes Anderson）
+source: "@xiaoxiaodong01 / x.com/xiaoxiaodong01/status/2050178967362302215"
+original_credit: "Style by @小小东（xiaoxiaodong01）。原始提示词嵌在 X Article 图片中无法提取，本 prompt 由 Jarvis 根据风格描述合成。"
+
+# ── 说明 ──────────────────────────────────────────────────────────────
+# 需要参考图（Path E）：把真实场景/建筑/玩具/室内小景转换为微缩模型风格。
+# 两种变体（variant）：
+#   soft  — 柔和马卡龙色调 + 底部文字标注（默认）
+#   vivid — 鲜明饱和色 + 无文字（适合纯视觉）
+# Wes Anderson 美学：对称构图、柔和暖色、精致布景感、像真实存在的微型世界。
+# ─────────────────────────────────────────────────────────────────────
+
+# ── 柔和版（默认，含文字）──────────────────────────────────────────────
+prompt_soft: |
+  Transform the uploaded image into a hyper-realistic miniature model diorama in the style
+  of Wes Anderson's film aesthetics. Convert the entire scene into a meticulously crafted
+  scale model: buildings become tiny architectural models, people (if any) become figurines,
+  trees and plants become model foliage, vehicles become toy-scale models.
+
+  Color palette: soft, desaturated pastel tones — muted pinks, sage greens, warm creams,
+  dusty blues. Everything feels like it was hand-painted with loving precision.
+
+  Lighting: warm, even, studio-quality light from slightly above — like a museum display
+  case or a director's beloved prop. No harsh shadows.
+
+  Textures: visible model-making materials — painted plaster, balsa wood, felt, model glue
+  seams, tiny laser-cut details. The imperfect perfection of a hand-crafted world.
+
+  Composition: symmetrical or near-symmetrical framing (Wes Anderson signature). Slightly
+  elevated bird's-eye or straight-on angle to emphasize the diorama effect.
+
+  Add a small clean label at the bottom in the style of a museum exhibit card:
+  "{label_text}" — use a thin serif font, soft grey text on white or cream.
+
+  Overall feel: whimsical, nostalgic, meticulously detailed. Like a beloved childhood toy
+  brought to life, or a film set in miniature. Photorealistic scale model photography.
+
+# ── 鲜明版（无文字）──────────────────────────────────────────────────
+prompt_vivid: |
+  Transform the uploaded image into a hyper-realistic miniature model diorama in the style
+  of Wes Anderson's film aesthetics. Convert the entire scene into a meticulously crafted
+  scale model.
+
+  Color palette: vivid, saturated, jewel-toned colors — rich teals, warm ambers, bold reds,
+  deep greens. Colors are intensified and pop like a storybook illustration come to life.
+  No desaturation — everything is chromatic and alive.
+
+  Lighting: dramatic but clean — warm overhead light with gentle rim lighting to highlight
+  the three-dimensionality of the model elements.
+
+  Textures: visible model-making craft — painted surfaces, visible construction details,
+  the charming imperfections of hand-built miniatures.
+
+  Composition: symmetrical framing (Wes Anderson signature). Elevated angle to showcase
+  the full diorama layout.
+
+  No text, no labels. Pure visual impact.
+
+  Overall feel: bold, cinematic, theatrical — like a production designer's dream scale model.
+  Photorealistic miniature model photography.
+
+optional_variables:
+  - name: variant
+    default: soft
+    description: "soft（柔和色+文字标注）或 vivid（鲜明色+无文字）"
+    options: ["soft", "vivid"]
+
+  - name: label_text
+    default: "[auto from scene content]"
+    description: "柔和版底部标注文字。留空则根据图片内容自动生成（如地点名、场景描述）"
+    example: "Sacred Heart Cathedral · Guangzhou, 1888 / Corner Bookshop · Est. 1962"
+
+routing_hints: |
+  1. 必须有参考图 → Path E，GPT Image 2 edit endpoint
+  2. 默认走 soft 版（柔和色+标注），用户说「鲜明/无文字/vivid」→ 切 vivid 版
+  3. label_text 未填 → 根据图片场景自动推断一个合适的标注（地点/名称/年份）
+  4. 尺寸建议：1:1 或 4:3（完整展示场景）

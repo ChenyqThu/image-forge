@@ -1,0 +1,55 @@
+id: business-headshot
+name: 商务证件照海报（Business ID Headshot Poster）
+source: "@qisi_ai / x.com/qisi_ai/status/2049779470144552976"
+original_credit: "Prompt by @骑司Chase（qisi_ai），经 image-forge 适配为 Signature Style"
+
+# ── 说明 ──────────────────────────────────────────────────────────────
+# 必须配合参考人像照片使用（Path E），走 GPT Image 2 edit endpoint。
+# 命中后若用户未提供：(1) 参考照片 (2) 姓名 (3) 职位 (4) 机构/部门，逐一确认再生成。
+# 输出：1:1 方形，白底商务头像+底部信息栏。
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  Based on the uploaded portrait photo, generate a formal business profile headshot poster.
+  Preserve the person's real identity features, facial proportions, face shape, and overall
+  temperament — do not change the person's identity.
+
+  Moderately enhance facial contours for cleaner, more natural, photogenic lines. Smooth
+  skin texture, reduce blemishes and uneven tone, but do not over-retouch — preserve real
+  skin details and natural lighting.
+
+  Design a matching professional hairstyle suited to the face shape: clean, mature,
+  appropriate for formal occasions, with natural layering, not exaggerated.
+
+  Dress the subject in formal business attire: dark suit jacket, white or light shirt,
+  optional tie. Overall styling: premium, clean, professional, trustworthy.
+
+  Composition: frontal half-body portrait, subject centered, looking directly at the camera,
+  natural and confident expression. Pure white background, soft and even lighting — like a
+  professional ID photo, corporate headshot, or university faculty profile.
+
+  Overall style: clean, formal, business, high-resolution photorealistic quality. Square
+  ratio 1:1.
+
+  At the bottom of the image, add a clean information bar with modern minimalist typography:
+  Line 1 (large, bold, dark blue): {name}
+  Line 2 (regular, black): {title}
+  Line 3 (regular, black): {organization}
+
+  Important: All text in the image must be in English. Translate the name, title, and
+  organization into natural, accurate, formal English if they are in Chinese or other
+  languages (unless the user explicitly requests otherwise).
+
+  Typography style: university faculty profile page, academic conference name card, or
+  professional business headshot poster.
+
+required_variables:
+  - name: name
+    description: 姓名（会翻译为英文显示）
+    example: "张伟 → Zhang Wei"
+  - name: title
+    description: 职位/身份
+    example: "高级产品经理 → Senior Product Manager"
+  - name: organization
+    description: 机构/部门/公司
+    example: "腾讯互联网事业群 → Tencent Interactive Entertainment Group"

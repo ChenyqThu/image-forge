@@ -1,0 +1,31 @@
+id: crayon-kid
+name: 蜡笔童趣（Crayon Kid Drawing）
+source: "@mdmadeit / x.com/mdmadeit/status/2050013641861214518"
+original_credit: "Prompt by @mdmadeit (MD)，经 image-forge 适配为 Signature Style"
+
+# ── 说明 ──────────────────────────────────────────────────────────────
+# 两种用法：
+# 1. 参考图编辑（Path E）：把真实照片/图片改成蜡笔画风，走 GPT Image 2 edit endpoint。
+# 2. 文生图（Path D/Path S）：直接描述主体，生成蜡笔风插画，走 GPT Image 2。
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  Rework the given image into a crayon-style illustration, transforming the entire scene
+  into something that feels hand-drawn by a 10-year-old. Keep the forms simple and slightly
+  imperfect, like a child's drawing.
+
+  Avoid using the original color palette — replace it with bright, playful crayon colors
+  on a clean white paper background. Aim for a soft, cute, and innocent aesthetic.
+
+  Incorporate fun, childlike details such as castles or towers, candy, stars, clouds, and
+  other whimsical decorations to amplify the playful vibe.
+
+  The final result should feel charming, colorful, and full of childlike imagination.
+
+# 文生图时使用（无参考图）
+prompt_text2img: |
+  Crayon-style illustration, hand-drawn by a 10-year-old child. Simple and slightly
+  imperfect forms, bright and playful crayon colors on a clean white paper background.
+  Soft, cute, and innocent aesthetic. Fun childlike details: stars, clouds, candy, castles.
+  Charming, colorful, full of childlike imagination. No photorealism, no digital polish.
+  Subject: {subject}

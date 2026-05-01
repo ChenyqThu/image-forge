@@ -1,0 +1,119 @@
+id: world-character-sheet
+name: 世界观+角色设定资料（World & Character Design Sheet）
+source: "@Toshi_nyaruo_AI / x.com/Toshi_nyaruo_AI/status/2050035125728207331"
+original_credit: "Prompt by @Toshi@ニャルオAI（Toshi_nyaruo_AI），经 image-forge 适配为 Signature Style"
+
+# ── 说明 ──────────────────────────────────────────────────────────────
+# 生成「世界观设定资料 + 原创动漫角色设定资料」一体式概念艺术图。
+# 画面包含：世界观场景板 + 角色全身立绘 + 服装/道具细节图 + 设定资料版式。
+# 画风：流畅线稿 + 平铺动漫配色 + 1级阴影 + 公式设定集风格。
+#
+# 最简触发：只填 world_seed + character_roles，其余全部自动推断。
+# 完整控制：所有字段均可指定。
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  Create an original anime "World Setting Document + Character Design Sheet" style image.
+
+  World concept seed: {world_seed}
+  Number of world variants: {world_variants}
+  Characters: {character_count} characters with roles: {character_roles}
+  Setting/environment: {setting}
+  Society & systems: {society}
+  Technology, faith & taboos: {tech_faith}
+  Daily culture: {daily_culture}
+  Overall atmosphere: {atmosphere}
+  Visual direction: {visual_direction}
+
+  Drawing style: smooth line art, flat anime coloring, subtle cel shading, 1-step shadows
+  only, no gradients, no thick paint, no photorealism, no strong chiaroscuro.
+  Clean, animation-ready character designs.
+
+  The image must contain all four elements:
+
+  1. WORLD BOARD — small landscape vignettes, architecture, living spaces, tools, symbols,
+  currency, writing systems, vehicles, seasonal events; materials and color rules of the
+  world visible at a glance.
+
+  2. CHARACTER DESIGN — full-body standing pose for each character; costume that communicates
+  role and status; small costume detail views, equipment diagrams, back views, carried items.
+  Express individuality through costume, equipment, materials, colors, silhouette, and
+  cultural symbols — not just face/hair.
+
+  3. WORLD ↔ CHARACTER CONNECTION — the character's clothing and equipment must visibly
+  derive from the world's environment, technology, culture, and faith. Decorations carry
+  meaning: rank, belief, affiliation, ritual, material constraints.
+
+  4. PUBLICATION LAYOUT — the layout itself should reflect the world (e.g. scroll for
+  ancient culture, blueprint for tech world, specimen sheet for nature world). Minimal
+  text: short English labels, numbers, arrows, symbols. Visual-first, official concept
+  art sheet aesthetic.
+
+  Visual rules derived from world seed: extract a unique "visual language" (shape grammar,
+  materials, color meaning, pattern logic) and apply it consistently to background,
+  architecture, tools, costume, and typography.
+
+  Each world variant (if multiple) must differ in: terrain/climate, architecture structure,
+  primary materials, color rules, costume silhouette, equipment design, cultural symbols,
+  layout style.
+
+  Final quality standard: viewer sees not just characters but the entire living world they
+  inhabit. Costume, tools, architecture, writing, and patterns all feel culturally unified.
+
+required_variables:
+  - name: world_seed
+    description: 世界观种子，一句话描述核心概念
+    example: "地下菌丝文明 / 蒸汽朋克沙漠帝国 / 海底遗忘王国 / 被树木吞噬的废弃都市"
+
+  - name: character_roles
+    description: 角色职能/身份（逗号分隔）
+    example: "孢子使者, 地下工程师 / 沙漠骑兵, 炼金术师 / 深海祭司"
+
+optional_variables:
+  - name: world_variants
+    default: "1"
+    description: 世界观方案数量（1=单一世界，2-3=多方案对比）
+    example: "1 / 2 / 3"
+
+  - name: character_count
+    default: "1-2"
+    description: 角色数量
+    example: "1 / 2 / 3"
+
+  - name: setting
+    default: "[auto-derive from world_seed]"
+    description: 舞台/环境（气候、地形、光照）
+    example: "永夜高原，光源来自发光矿石 / 潮湿雨林，树冠遮天"
+
+  - name: society
+    default: "[auto-derive from world_seed]"
+    description: 社会制度/共同体规则
+    example: "以香气辨身份的贸易共和国 / 沉默仪礼决定阶级的神权社会"
+
+  - name: tech_faith
+    default: "[auto-derive from world_seed]"
+    description: 技术/信仰/禁忌
+    example: "禁止书写文字，知识只能口传 / 以声音开门的机械神殿"
+
+  - name: daily_culture
+    default: "[auto-derive from world_seed]"
+    description: 生活文化（住居/饮食/道具/服饰意义）
+    example: "衣物折叠方式代表家系 / 餐具形状显示职级"
+
+  - name: atmosphere
+    default: "[auto-derive from world_seed]"
+    description: 整体氛围
+    example: "黑暗神秘 / 温暖生活感 / 后启示录荒凉 / 明亮儿童向"
+
+  - name: visual_direction
+    default: "[auto-derive from world_seed]"
+    description: 仕上りの方向性
+    example: "强化生活感 / 强化神秘性 / 衣装实用性优先 / 建筑多展示"
+
+routing_hints: |
+  1. 无需参考图，Path S 文生图
+  2. 后端：GPT Image 2（复杂多元素构图精细度更强）
+  3. 尺寸建议：16:9 横版（设定资料风）或 3:4 竖版（单角色特写）
+  4. 未填字段一律"[auto-derive from world_seed]"，AI 根据世界观种子自动推断
+  5. world_variants ≥ 2 时，明确要求每个方案拥有不同的地形/素材/配色/版式
+  6. 画风锁定：平铺动漫 + 1级阴影，禁止写实渲染和厚涂

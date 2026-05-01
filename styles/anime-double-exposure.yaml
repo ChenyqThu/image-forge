@@ -1,0 +1,101 @@
+id: anime-double-exposure
+name: 动漫双重曝光竖版海报（Anime Double Exposure Poster）
+source: "@AiwithLariab / x.com/AiwithLariab/status/2050040703074619540"
+original_credit: "Prompt by @Lariab Fatima（AiwithLariab），经 image-forge 适配为 Signature Style"
+
+# ── 使用说明 ───────────────────────────────────────────────────────────
+# 两种角色来源（二选一）：
+#   A. 参考图（Path E）：上传角色图/真人图 → GPT Image 2 edit endpoint
+#   B. 知名角色名（Path S）：直接写角色名，如"雷电将军" / "Rem from Re:Zero"
+#
+# 装饰元素（flower_element）：
+#   - 留空 → 根据角色气质自动推断（如武士→菊花、精灵→荧光藤蔓、机甲→星云碎片）
+#   - 显式指定 → 按指定内容生成（如 "cherry blossoms" / "neon dandelions" / "ice crystals"）
+#
+# 颜色可选覆盖：{color_left} / {color_right}，不指定则从角色特征自动推断
+# ─────────────────────────────────────────────────────────────────────
+
+# ── 有参考图时（Path E）──────────────────────────────────────────────
+prompt_edit: |
+  A character promotional poster titled "{poster_title}", designed in a cinematic vertical
+  key visual composition (9:16).
+
+  The upper half features a large, softly glowing silhouette of the character's face (derived
+  from the reference image), formed from flowing wind and {flower_element}. The silhouette
+  feels dreamy, delicate, and slightly transparent. Preserve the character's identity and
+  visual style from the reference.
+
+  The lower section shows the full-body character in a calm pose, faithful to the reference
+  image's design: outfit, hair, and overall aesthetic maintained.
+
+  Inside the silhouette, use double-exposure storytelling: floating {flower_element}, memory
+  fragments, soft sky gradients, emotional close-up moments, and subtle nature elements
+  blended into watercolor mist.
+
+  Left side: {color_left} tones and floral energy. Right side: {color_right} tones for
+  balance. A thin glowing breeze line connects top silhouette to the character below.
+
+  Edges are soft, painterly, and fade into white negative space with an ethereal anime
+  aesthetic. High quality, cinematic lighting, detailed anime illustration style.
+
+# ── 无参考图时（Path S，知名角色或文字描述）────────────────────────────
+prompt_text2img: |
+  A character promotional poster titled "{poster_title}", designed in a cinematic vertical
+  key visual composition (9:16). Character: {character_ref}.
+
+  The upper half features a large, softly glowing silhouette of the character's face, formed
+  from flowing wind and {flower_element}. The silhouette feels dreamy, delicate, and slightly
+  transparent. Character design faithful to {character_ref}'s canonical appearance.
+
+  The lower section shows the full-body character standing gently in a calm pose, wearing
+  their signature outfit with light fabric movement.
+
+  Inside the silhouette, use double-exposure storytelling: floating {flower_element}, memory
+  fragments, soft sky gradients, emotional close-up moments, and subtle nature elements
+  blended into watercolor mist.
+
+  Left side: {color_left} tones and floral energy. Right side: {color_right} tones for
+  balance. A thin glowing breeze line connects top silhouette to the character below.
+
+  Edges are soft, painterly, and fade into white negative space with an ethereal anime
+  aesthetic. High quality, cinematic lighting, detailed anime illustration style.
+
+required_variables:
+  - name: poster_title
+    description: 海报标题（显示在画面上方）
+    example: "YUNA / 雷電將軍 / ARIA"
+
+  - name: character_ref
+    description: 角色来源（无参考图时必填）。可写知名角色全名，或自定义角色描述
+    example: "Raiden Shogun from Genshin Impact / Rem from Re:Zero / an original elf archer with silver hair"
+    note: "有参考图时此字段可省略，prompt_edit 会从参考图提取角色特征"
+
+optional_variables:
+  - name: flower_element
+    default: "[auto-derive from character traits]"
+    description: |
+      双重曝光内部的装饰元素。留空则由 AI 根据角色气质自动推断：
+        武士/战斗系 → 菊花/落叶
+        自然/精灵系 → 荧光藤蔓/萤火虫
+        冰雪系 → 冰晶/雪花
+        机甲/科幻系 → 星云碎片/电路粒子
+        默认动漫少女 → cherry blossoms
+    example: "cherry blossoms / ice crystals / neon dandelions / falling leaves / fireflies"
+
+  - name: color_left
+    default: "[auto from character palette]"
+    description: 左侧主色调，不填则从角色配色推断
+    example: "warm pink / deep crimson / electric purple"
+
+  - name: color_right
+    default: "[auto from character palette]"
+    description: 右侧主色调，不填则从角色配色推断
+    example: "cool sky blue / silver white / midnight teal"
+
+# ── 路由提示（给 Jarvis 的判断指令）──────────────────────────────────
+routing_hints: |
+  1. 有参考图 → 用 prompt_edit，走 GPT Image 2 edit endpoint
+  2. 无参考图，用户给了知名角色名/原创描述 → 用 prompt_text2img，走 GPT Image 2
+  3. flower_element 未填 → 先根据角色特征推断，填入 prompt 后再生成，并告诉用户推断了什么
+  4. color_left/color_right 未填 → 从角色经典配色推断，填入 prompt 后再生成
+  5. poster_title 未填 → 用角色名作为标题
