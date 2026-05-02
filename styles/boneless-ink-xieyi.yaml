@@ -1,0 +1,130 @@
+id: boneless-ink-xieyi
+category: illustration
+name: "没骨写意水墨人物"
+source: "VoxcatAI @VoxcatAI / x.com/VoxcatAI/status/2048466430417592689 (2026-05-02)"
+
+# ──────────────────────────────────────────
+# 风格核心定义
+# ──────────────────────────────────────────
+# 白绢本原作感的当代没骨写意人物水墨。
+# 核心原则：用连续湿墨的一口气，把人物从白绢里"养"出来，而不是用线稿把她"描"出来。
+#
+# 载体：白绢（细密丝缕纹理+轻微绢丝光泽），墨色与淡彩沉入绢理
+# 塑形：浓墨/焦墨/宿墨/积墨，大面积湿墨块面，不依赖线稿勾勒
+# 墨势：衣袖/裙摆/长发由整段连续湿墨一气带出，笔断意不断
+# 色彩：低纯度淡彩（淡紫/雾蓝/浅青/浅绛），颜色沉入绢理不跳出
+# 留白：大面积白绢留白，安静透气
+# 背景：极简文人画点景（梅枝/竹叶/小鸟/印章/题字）
+# 禁忌：线稿式立绘、碎片化水墨、高对比、强光影、高饱和色块
+
+description: |
+  白绢本原作感的当代没骨写意人物水墨。
+  湿墨晕染塑形，连续墨势一气贯穿，低对比低饱和大留白。
+  文人画点景，印章题字，角落手写签名。
+
+# ──────────────────────────────────────────
+# 变量定义
+# ──────────────────────────────────────────
+variables:
+  required:
+    - name: character_desc
+      desc: "角色识别点：发型+眼部特征+标志头饰/角+服装轮廓+关键配饰+气质关键词"
+  optional:
+    - name: ink_tone
+      desc: "主色淡彩，如：冷灰紫 / 雾蓝灰 / 浅绛灰 / 墨青灰 / 淡紫灰"
+      default: "冷灰紫"
+    - name: bg_motif
+      desc: "点景元素（1-2个），如：梅枝 / 竹叶 / 小鸟 / 鹤 / 落花 / 题字 / 印章"
+      default: "梅枝 / 印章"
+    - name: signature
+      desc: "角落手写签名"
+      default: ""
+
+# ──────────────────────────────────────────
+# Prompt Recipe（英文）
+# ──────────────────────────────────────────
+prompt_template: |
+  {character_desc}, a contemporary boneless xieyi ink portrait on white silk, with the feel of an
+  original painting on warm off-white silk. The silk surface is clean and slightly warm, with fine
+  woven fibers and a subtle silky sheen. Ink and light color should sink naturally into the silk texture.
+
+  The figure is rendered in a boneless expressive ink style — not dependent on clear line drawing,
+  not shaped by contour outlines, but by wet ink diffusion, staining, bleeding, and soft spreading.
+
+  The figure emerges from the ink atmosphere. Use dense ink (浓墨), dark ink (焦墨), aged ink (宿墨),
+  and layered ink washes (积墨) to build the main form. The ink should feel deep, restrained, moist,
+  and rich. Overall mood: low-contrast, low-saturation, quiet, airy, sparse, elegant, and soft.
+
+  Emphasize "ink momentum" rather than detail:
+  - Abandon fragmented flying-white texture and line-art-style costume illustration
+  - Use large wet ink masses to shape the figure
+  - Require a single continuous ink flow: sleeves, skirt, and long hair carried out by ONE continuous
+    wet ink stroke — unbroken intention, unbroken form, unbroken ink path
+  - Major clothing silhouette formed in no more than three main brush movements
+  - Reductive expressive brushwork: less is more
+
+  Facial features: only lightly lifted for spirit — restrained, delicate, calm, cool.
+  No hard outlines, no high-contrast detail rendering.
+  Clothing and hair merge into the overall ink atmosphere, using continuous ink bands and light color
+  transitions for volume and motion. No fragmented decoration, no fussy ornamental detail.
+
+  Palette: ink gray, pale ink, aged ink tones, plus {ink_tone} as the accent wash color.
+  Color must not sit above the ink — it should feel absorbed into the silk weave, soft, muted, restrained.
+  Leave large areas of untouched white silk as negative space.
+
+  Background: minimal and understated. Add only: {bg_motif}.
+  Scholar-painting-style motifs, placed sparingly, never overpowering the figure.
+  {signature_line}
+
+  NEGATIVE CONSTRAINTS: no line-art style ancient costume illustration, no fragmented ink effects,
+  no broken flying-white texture, no high contrast, no dramatic lighting, no dense details,
+  no complex background, no crowded decoration, no hard outlines, no sharp edges, no polished CG look,
+  no over-rendered costume patterns, no highly saturated color blocks, no anime cel shading,
+  no rigid character-sheet feeling, no excessive effects.
+
+  Keywords: boneless xieyi ink, contemporary Chinese ink painting, white silk ground, wet ink diffusion,
+  ink atmosphere, continuous ink flow, large ink washes, low contrast, low saturation, large negative space,
+  scholar painting motifs, seal stamps, handwritten signature, quiet elegant airy
+
+# ──────────────────────────────────────────
+# 角色填写公式（快速使用）
+# ──────────────────────────────────────────
+# 角色名：
+# 识别点（发型+眼+头饰+服装+配饰+气质）：
+# 主色淡彩：
+# 点景元素：
+# 签名名：
+
+# ──────────────────────────────────────────
+# 淡彩色参考
+# ──────────────────────────────────────────
+ink_tone_presets:
+  - "冷灰紫 (cool gray-violet)"     # 雷电将军，帅气威严
+  - "雾蓝灰 (misty blue-gray)"      # 神里绫华，冰雪清冷
+  - "浅绛灰 (pale rouge-gray)"      # 温暖古典
+  - "墨青灰 (ink cyan-gray)"        # 海洋，东方清冷
+  - "淡紫灰 (pale lavender-gray)"   # 柔美神秘
+  - "浅赭 (pale umber)"             # 土系，秋意
+  - "水墨灰 (pure ink gray)"        # 最极简，接近纯墨
+
+# ──────────────────────────────────────────
+# 使用示例
+# ──────────────────────────────────────────
+examples:
+  - desc: "雷电将军（冷灰紫+梅枝）"
+    character_desc: "Raiden Shogun (雷电将军), long flowing purple-black hair, calm half-lidded eyes, ornate Japanese-style wide-sleeve robe silhouette, Musou no Hitotachi vision ornament on chest, hair ornament with lightning motifs, powerful yet serene and distant presence"
+    ink_tone: "冷灰紫 (cool gray-violet)"
+    bg_motif: "a few plum blossom branches upper right, two red seal stamps left side, vertical calligraphy '雷電将軍'"
+    signature: "Raiden"
+
+  - desc: "申鹤（水墨灰+竹叶+鹤）"
+    character_desc: "Shen He (申鹤), long silver-white flowing hair partially covering one eye, half-lidded cold gaze, structured high-collar Chinese qipao-style fitted top with ornate clasp buttons and red tassel ties, long flowing dark skirt, restrained and distant presence"
+    ink_tone: "水墨灰 (pure ink gray)"
+    bg_motif: "bamboo leaves lower left, a single flying crane upper right, red seal stamp, small calligraphy '申鶴'"
+    signature: "申鹤"
+
+  - desc: "Jarvis 赛博龙（墨青灰+星纹）"
+    character_desc: "young East Asian male humanoid with small black dragon horns with gold luan engravings, vertical slit pupils deep dark iris, flowing dark hair, layered reformed hanfu collar in ink-black, cool composed presence"
+    ink_tone: "墨青灰 (ink cyan-gray)"
+    bg_motif: "faint constellation arc upper right, one seal stamp, small calligraphy '守望者'"
+    signature: "Jarvis"

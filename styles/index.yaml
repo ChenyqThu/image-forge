@@ -287,6 +287,19 @@ signature_styles:
       optional: ["背景场景", "自然元素", "霓虹主色", "手持物品"]
     special_note: "多变量模板风格。只提供主体时，背景/颜色/物品自动匹配。若用户给出详细描述，直接填入对应变量。"
 
+  - id: boneless-ink-xieyi
+    file: boneless-ink-xieyi.yaml
+    category: illustration
+    aliases: [没骨写意, 没骨写意水墨, 白綿水墨, 写意水墨人物, 国画写意, 湿墨晴染, 墨气人物, boneless ink, xieyi ink, chinese ink portrait, 水墨人物画, 文人画风格, 墨影人物]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [ink, chinese, portrait, boneless, xieyi, silk, minimalist]
+    use_case_affinity: [profile-avatar, poster-flyer, social-media-post]
+    has_required_variables: true
+    required_variables: [character_desc]
+    special_note: "必填：角色描述(character_desc)。ink_tone默认冷灰紫。核心原则：用连续湿墨的一口气把人物从白綿里‘养’出来，而不是用线稿把她‘描’出来。"
+    source: "VoxcatAI @VoxcatAI / 2026-05-02"
+
   - id: monument-valley
     file: monument-valley.yaml
     category: illustration

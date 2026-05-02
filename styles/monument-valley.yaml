@@ -6,17 +6,14 @@ source: "小小东 @xiaoxiaodong01 / x.com/xiaoxiaodong01/status/205042650704320
 # ──────────────────────────────────────────
 # 风格核心定义
 # ──────────────────────────────────────────
-# 《纪念碑谷》游戏美学 DNA 提炼：
-# - 等距 45° 透视，埃舍尔式不可能几何建筑（无尽楼梯、矛盾空间）
-# - 极简留白，画面中一个孤独微型人影（比例悬殊，强化宏大感）
-# - 两套配色方案：素雅版（莫兰迪/马卡龙柔和色）/ 多色版（饱和协调色+明暗对比）
-# - 细无衬线字体中英排版叠加，杂志感，VOL. / NO. 编号标签
-# - 治愈系宁静氛围，不是壮观，是内心栖息地
+# 两套变体，原版提示词已内嵌：
+# elegant（素雅版）：语义转译为几何空间，莫兰迪低饱和浅色，哑光质感，1-2氛围元素
+# colorful（多色版）：空间+中文排版双核心，通透动态配色，中文作为平面设计主标题
 
 description: |
-  纪念碑谷几何治愈美学。等距视角埃舍尔式不可能建筑，极简留白，
-  孤独微型人影，中英排版叠加。
-  两套变体：素雅版（莫兰迪柔和色）/ 多色版（饱和色+强对比）。
+  纪念碑谷气质极简超现实主义3D艺术海报。
+  等距视角几何建筑，语义转译为空间结构，微型人影，排版叠加。
+  两套变体：elegant（素雅/莫兰迪）/ colorful（多色/中文主导版式）。
 
 # ──────────────────────────────────────────
 # 变量定义
@@ -24,114 +21,152 @@ description: |
 variables:
   required:
     - name: theme_text
-      desc: "画面主题文字（中文短句，如：千金散尽还复来 / 阅书·越山·悦己）"
+      desc: "主题短句（中文），如：太阳就站在黑夜的门口 / 千金散尽还复来"
     - name: sub_text
-      desc: "副标题或英文对照（如：WHAT IS LOST WILL RETURN AGAIN）"
+      desc: "英文副标题或对照句，如：THE SUN STANDS AT THE DOOR OF THE NIGHT"
   optional:
     - name: variant
-      desc: "配色方案：elegant（素雅，默认）/ colorful（多色）"
+      desc: "elegant（素雅版，默认）/ colorful（多色版）"
       default: "elegant"
-    - name: scene_type
-      desc: "建筑场景类型（默认 auto），如：tower / staircase / gate / waterfall / bridge / arch"
-      default: "auto"
     - name: vol_label
-      desc: "左上角 VOL 标签（如 VOL. 02），留空则不显示"
+      desc: "VOL标签，如 VOL. 07，留空则不显示"
       default: ""
+    - name: aspect_ratio
+      desc: "比例，默认 3:4；多色版推荐 2:1（1536x1024）"
+      default: "3:4"
 
 # ──────────────────────────────────────────
-# Prompt Recipe
+# 素雅版 Prompt（原版）
 # ──────────────────────────────────────────
-prompt_template: |
-  Monument Valley game aesthetic, isometric geometric healing art, minimalist editorial illustration.
+prompt_elegant: |
+  Generate a "Monument Valley aesthetic" minimalist surrealist 3D art poster based on the theme below.
 
-  Architecture: impossible isometric geometry in the style of M.C. Escher — endless staircases,
-  paradoxical pillars, interlocking impossible structures, floating geometric platforms.
-  A single tiny solitary human silhouette standing in the vast architecture, dwarfed by scale,
-  creating a sense of poetic solitude and quiet wonder.
+  Core approach:
+  First understand the meaning, emotion, and imagery of the input, then translate it into a set of
+  architecturally-inspired geometric spaces — do NOT mechanically turn Chinese characters into 3D letterforms.
+  Extract the core semantics and weave keywords, atmosphere, or symbolic elements cleverly into the
+  main form, spatial structure, and typography.
 
-  Composition: large negative space, clean geometric forms, strong isometric 45-degree perspective.
-  No realistic perspective foreshortening. Flat but dimensional. Every frame feels frameable.
+  Main subject:
+  Generate a Monument Valley-style three-dimensional geometric scene from the theme's semantics —
+  platforms, walls, archways, corridors, bridges, staircases, labyrinths, or floating structures.
+  Use a light top-down isometric / axonometric perspective overall. The image should look like a
+  premium design poster, architectural concept model, or art magazine cover.
 
-  Color palette ({variant}):
-  {color_instruction}
+  Color and texture:
+  Keep overall tone premium, bright, clean, suitable for print output. Main palette: cream white,
+  light gray, sandstone, misty rose, pale blue, mint green, light apricot, soft warm gray —
+  all low-saturation light tones. Minimize large dark areas. Add only a small amount of accent color
+  based on theme semantics, used precisely on local edges, interior spaces, cut surfaces, archway
+  depths, or tiny decorative details. Material: matte micro-cement, gypsum, frosted resin, or
+  high-quality paper sculpture texture. Light is soft and luminous, layers are clear.
 
-  Typography overlay: elegant thin sans-serif text (Chinese and English), magazine-style layout.
-  Main text: "{theme_text}"
-  Sub text: "{sub_text}"
-  {vol_label_instruction}
-  Small corner labels (VOL number, year like 2024, series name). Clean typographic hierarchy.
+  Composition and depth:
+  The main subject remains the visual center, but add a small amount of thematically resonant
+  decorative elements around it to create a complete poster feel — avoid empty surroundings.
+  Decoration must be restrained and simple, naturally forming foreground / midground / background
+  or subject / supporting / micro-decoration layers. May include small repeated geometrics, floating
+  small volumes, thin structural lines, local symbols, corner echo elements, or micro-landscapes.
 
-  Mood: healing, serene, contemplative, quietly melancholic yet warm. Not dramatic — peaceful.
-  The feeling of "ten minutes of being cured" in a busy world.
+  Atmospheric elements:
+  Add only one or two minimal poetic elements: faint light, pale moon, thin branches, bird silhouette,
+  light mist, petals, distant small volumes, or symbolic shapes. Make the image poetic but do not pile up.
 
-  No photorealism. No characters with faces. No complex realistic lighting. No cluttered details.
-  Keep it clean, minimal, geometric, and emotionally resonant.
+  Human scale:
+  May add one or two very small-scale figures as emotional anchors. Figures must not exceed 8% of
+  image height. Quiet natural poses: standing, walking, gazing, passing through. Never overpowering.
 
-  Keywords: monument valley aesthetic, isometric illustration, impossible geometry, escher style,
-  minimalist healing art, tiny figure vast architecture, editorial typography overlay,
-  geometric puzzle art, serene contemplative mood, clean flat design
+  Typography:
+  May add very minimal design-oriented text: small subtitle, number, year, vol.01, vertical
+  auxiliary text, or one short handwritten English phrase. Typography must serve the image, not dominate.
+
+  Final requirements:
+  Overall: simple, premium, light, cleverly layered. Combines Monument Valley spatial language,
+  semantic translation ability, poster design sensibility, and print-level color control.
+
+  Theme input: {theme_text}
+  Sub text overlay: {sub_text}
+  {vol_label}
 
 # ──────────────────────────────────────────
-# 配色方案细节
+# 多色版 Prompt（原版）
 # ──────────────────────────────────────────
-variant_colors:
-  elegant:
-    desc: "素雅版 — 莫兰迪/马卡龙柔和色调"
-    instruction: |
-      Elegant Morandi/macaron color palette: soft muted tones — dusty rose, sage gray, warm ivory,
-      pale sky blue, blush pink, muted terracotta. Low saturation, high harmony.
-      Colors feel like faded watercolor or aged pastel. Gentle light, no harsh shadows.
-      Overall feeling: quiet, delicate, a little dreamy.
+prompt_colorful: |
+  Generate a "Monument Valley aesthetic" minimalist surrealist 3D art poster based on the theme below.
 
-  colorful:
-    desc: "多色版 — 饱和协调色 + 明暗强对比"
-    instruction: |
-      Rich harmonious color palette with stronger saturation: deep navy against warm amber light,
-      teal and coral, midnight purple with golden glow, deep forest green with pale dawn.
-      Strong light-dark contrast (like dawn breaking over deep night, or a single lantern in darkness).
-      Colors are vibrant but still controlled — not chaotic, just more alive and dramatic.
+  Core logic (critical):
+  Do NOT forcibly turn Chinese text into 3D architectural forms.
+  First understand the theme semantics and use "spatial structure" to express emotion and metaphor.
+  Then use "Chinese typography" as the visual headline — both elements work in coordination,
+  not merged or distorted together.
 
-# ──────────────────────────────────────────
-# 场景类型参考
-# ──────────────────────────────────────────
-scene_presets:
-  tower: "Tall impossible tower with winding staircases and floating geometric platforms"
-  staircase: "Endless M.C. Escher-style staircase looping back on itself"
-  gate: "Monumental gateway arch with geometric stepped flanking walls, sun or moon framed in opening"
-  waterfall: "Geometric stepped waterfall cascading through impossible rocky formations"
-  bridge: "Impossible bridge connecting floating geometric islands"
-  arch: "Massive stone arch over an endless geometric valley"
-  book: "Giant open book whose pages transform into architectural landscapes"
-  auto: "Any iconic Monument Valley-style impossible geometric architecture"
+  Spatial design:
+  Build a Monument Valley-style geometric space (platforms / staircases / archways / corridors /
+  floating structures), using isometric perspective.
+  Space must serve the theme expression — use height differences, paths, occlusion, isolation,
+  connection to metaphorically convey emotion. Not purely formal stacking.
+
+  Chinese text design (key focus):
+  Chinese must appear as a clear, legible main headline and become one of the visual cores of the layout.
+  Use "graphic design treatment" rather than 3D extrusion:
+  - Use ultra-minimal sans-serif / thin gothic / geometric character forms
+  - May apply slight stretching, cutting, offset, or negative space design
+  - May interact with the space via occlusion, threading, or overlay (but NOT become architecture)
+  - Maintain premium, restrained, readable quality
+
+  Supporting text:
+  May add small amounts of English or numeric info (vol. / year / number) as layout balance elements,
+  but clearly subordinate in visual weight to the Chinese headline.
+
+  Color system (key optimization):
+  Use "Monument Valley dynamic color palette" adapted for print:
+  - Base: bright, soft, low-saturation (cream, misty rose, pale blue, mint green, sandstone, light gray)
+  - Avoid large areas of dark color or dead black
+  - Use same-hue lightness variations to build spatial layers (front / mid / back)
+  - Add 1-2 high-purity accent colors for visual focal points (archway interiors / edges / turning points)
+  Overall color must feel "transparent, airy, layered" — not a fixed color scheme.
+
+  Composition and layers:
+  Main subject is clear, but the image must not feel empty:
+  - Add small amounts of "same-origin weakened structural extensions" around the periphery
+  - Use repeated geometrics, distant volumes, edge slices to create compositional closure
+  - Establish foreground / midground / background relationship with depth but not excessive complexity
+
+  Atmospheric control:
+  Allow only minimal poetic elements (faint moon, micro-light, thin branches, light mist, geometric
+  symbols) — just enough, no piling up.
+
+  Human figures:
+  Optional very small-scale figures (≤8%) as scale and emotional anchors. Quiet and restrained movements.
+
+  Final effect:
+  A premium design poster where "space expresses theme + Chinese-led layout" — with Monument Valley
+  spatial language, clear visual hierarchy, restrained color, and strong design sensibility.
+  Suitable for art exhibitions or design annuals.
+
+  Theme input: {theme_text}
+  Sub text overlay: {sub_text}
+  {vol_label}
 
 # ──────────────────────────────────────────
 # 使用示例
 # ──────────────────────────────────────────
 examples:
-  - desc: "素雅版 — 失去与重逢"
-    theme_text: "千金散尽还复来"
-    sub_text: "WHAT IS LOST WILL RETURN AGAIN"
-    variant: "elegant"
-    scene_type: "waterfall"
-    vol_label: "VOL. 08"
-
-  - desc: "素雅版 — 阅读与山川"
-    theme_text: "阅书·越山·悦己"
-    sub_text: "Read. Cross mountains. Delight in yourself."
-    variant: "elegant"
-    scene_type: "book"
-    vol_label: "VOL. 01"
-
-  - desc: "多色版 — 黎明与黑夜"
+  - desc: "素雅版 — 太阳与黑夜"
     theme_text: "太阳就站在黑夜的门口"
     sub_text: "THE SUN STANDS AT THE DOOR OF THE NIGHT"
-    variant: "colorful"
-    scene_type: "gate"
+    variant: "elegant"
     vol_label: "VOL. 07"
 
-  - desc: "多色版 — 启程"
+  - desc: "多色版 — 千金散尽（2:1横版）"
+    theme_text: "千金散尽还复来"
+    sub_text: "WHAT IS LOST WILL RETURN AGAIN"
+    variant: "colorful"
+    vol_label: "VOL. 08"
+    aspect_ratio: "2:1"
+
+  - desc: "素雅版 — 以此启程"
     theme_text: "以此启程，永远有远方可以奔赴"
     sub_text: "START HERE — ALWAYS FAR AWAY"
-    variant: "colorful"
-    scene_type: "bridge"
+    variant: "elegant"
     vol_label: "VOL. 07"
