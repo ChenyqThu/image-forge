@@ -287,6 +287,19 @@ signature_styles:
       optional: ["背景场景", "自然元素", "霓虹主色", "手持物品"]
     special_note: "多变量模板风格。只提供主体时，背景/颜色/物品自动匹配。若用户给出详细描述，直接填入对应变量。"
 
+  - id: monument-valley
+    file: monument-valley.yaml
+    category: illustration
+    aliases: [纪念碑谷, monument valley, 几何治愈, 等距美学, 埃舍尔建筑, 极简几何, 不可能建筑, 孤独小人影, 广宣美学山湿, geometric healing, impossible geometry, isometric healing]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [isometric, geometric, minimalist, healing, editorial, typography]
+    use_case_affinity: [poster-flyer, social-media-post, document-publication]
+    has_required_variables: true
+    required_variables: [theme_text, sub_text]
+    special_note: "必填：主题文字(theme_text) + 副标题/英文(sub_text)。variant 选 elegant(素雅版,默认)/colorful(多色版)。未指定时默认素雅版。"
+    source: "小小东 @xiaoxiaodong01 / 2026-05-02"
+
   - id: dense-line-etching
     file: dense-line-etching.yaml
     category: print-art

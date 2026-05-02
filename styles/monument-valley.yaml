@@ -1,0 +1,137 @@
+id: monument-valley
+category: illustration
+name: "纪念碑谷几何治愈美学"
+source: "小小东 @xiaoxiaodong01 / x.com/xiaoxiaodong01/status/2050426507043209321 (2026-05-02)"
+
+# ──────────────────────────────────────────
+# 风格核心定义
+# ──────────────────────────────────────────
+# 《纪念碑谷》游戏美学 DNA 提炼：
+# - 等距 45° 透视，埃舍尔式不可能几何建筑（无尽楼梯、矛盾空间）
+# - 极简留白，画面中一个孤独微型人影（比例悬殊，强化宏大感）
+# - 两套配色方案：素雅版（莫兰迪/马卡龙柔和色）/ 多色版（饱和协调色+明暗对比）
+# - 细无衬线字体中英排版叠加，杂志感，VOL. / NO. 编号标签
+# - 治愈系宁静氛围，不是壮观，是内心栖息地
+
+description: |
+  纪念碑谷几何治愈美学。等距视角埃舍尔式不可能建筑，极简留白，
+  孤独微型人影，中英排版叠加。
+  两套变体：素雅版（莫兰迪柔和色）/ 多色版（饱和色+强对比）。
+
+# ──────────────────────────────────────────
+# 变量定义
+# ──────────────────────────────────────────
+variables:
+  required:
+    - name: theme_text
+      desc: "画面主题文字（中文短句，如：千金散尽还复来 / 阅书·越山·悦己）"
+    - name: sub_text
+      desc: "副标题或英文对照（如：WHAT IS LOST WILL RETURN AGAIN）"
+  optional:
+    - name: variant
+      desc: "配色方案：elegant（素雅，默认）/ colorful（多色）"
+      default: "elegant"
+    - name: scene_type
+      desc: "建筑场景类型（默认 auto），如：tower / staircase / gate / waterfall / bridge / arch"
+      default: "auto"
+    - name: vol_label
+      desc: "左上角 VOL 标签（如 VOL. 02），留空则不显示"
+      default: ""
+
+# ──────────────────────────────────────────
+# Prompt Recipe
+# ──────────────────────────────────────────
+prompt_template: |
+  Monument Valley game aesthetic, isometric geometric healing art, minimalist editorial illustration.
+
+  Architecture: impossible isometric geometry in the style of M.C. Escher — endless staircases,
+  paradoxical pillars, interlocking impossible structures, floating geometric platforms.
+  A single tiny solitary human silhouette standing in the vast architecture, dwarfed by scale,
+  creating a sense of poetic solitude and quiet wonder.
+
+  Composition: large negative space, clean geometric forms, strong isometric 45-degree perspective.
+  No realistic perspective foreshortening. Flat but dimensional. Every frame feels frameable.
+
+  Color palette ({variant}):
+  {color_instruction}
+
+  Typography overlay: elegant thin sans-serif text (Chinese and English), magazine-style layout.
+  Main text: "{theme_text}"
+  Sub text: "{sub_text}"
+  {vol_label_instruction}
+  Small corner labels (VOL number, year like 2024, series name). Clean typographic hierarchy.
+
+  Mood: healing, serene, contemplative, quietly melancholic yet warm. Not dramatic — peaceful.
+  The feeling of "ten minutes of being cured" in a busy world.
+
+  No photorealism. No characters with faces. No complex realistic lighting. No cluttered details.
+  Keep it clean, minimal, geometric, and emotionally resonant.
+
+  Keywords: monument valley aesthetic, isometric illustration, impossible geometry, escher style,
+  minimalist healing art, tiny figure vast architecture, editorial typography overlay,
+  geometric puzzle art, serene contemplative mood, clean flat design
+
+# ──────────────────────────────────────────
+# 配色方案细节
+# ──────────────────────────────────────────
+variant_colors:
+  elegant:
+    desc: "素雅版 — 莫兰迪/马卡龙柔和色调"
+    instruction: |
+      Elegant Morandi/macaron color palette: soft muted tones — dusty rose, sage gray, warm ivory,
+      pale sky blue, blush pink, muted terracotta. Low saturation, high harmony.
+      Colors feel like faded watercolor or aged pastel. Gentle light, no harsh shadows.
+      Overall feeling: quiet, delicate, a little dreamy.
+
+  colorful:
+    desc: "多色版 — 饱和协调色 + 明暗强对比"
+    instruction: |
+      Rich harmonious color palette with stronger saturation: deep navy against warm amber light,
+      teal and coral, midnight purple with golden glow, deep forest green with pale dawn.
+      Strong light-dark contrast (like dawn breaking over deep night, or a single lantern in darkness).
+      Colors are vibrant but still controlled — not chaotic, just more alive and dramatic.
+
+# ──────────────────────────────────────────
+# 场景类型参考
+# ──────────────────────────────────────────
+scene_presets:
+  tower: "Tall impossible tower with winding staircases and floating geometric platforms"
+  staircase: "Endless M.C. Escher-style staircase looping back on itself"
+  gate: "Monumental gateway arch with geometric stepped flanking walls, sun or moon framed in opening"
+  waterfall: "Geometric stepped waterfall cascading through impossible rocky formations"
+  bridge: "Impossible bridge connecting floating geometric islands"
+  arch: "Massive stone arch over an endless geometric valley"
+  book: "Giant open book whose pages transform into architectural landscapes"
+  auto: "Any iconic Monument Valley-style impossible geometric architecture"
+
+# ──────────────────────────────────────────
+# 使用示例
+# ──────────────────────────────────────────
+examples:
+  - desc: "素雅版 — 失去与重逢"
+    theme_text: "千金散尽还复来"
+    sub_text: "WHAT IS LOST WILL RETURN AGAIN"
+    variant: "elegant"
+    scene_type: "waterfall"
+    vol_label: "VOL. 08"
+
+  - desc: "素雅版 — 阅读与山川"
+    theme_text: "阅书·越山·悦己"
+    sub_text: "Read. Cross mountains. Delight in yourself."
+    variant: "elegant"
+    scene_type: "book"
+    vol_label: "VOL. 01"
+
+  - desc: "多色版 — 黎明与黑夜"
+    theme_text: "太阳就站在黑夜的门口"
+    sub_text: "THE SUN STANDS AT THE DOOR OF THE NIGHT"
+    variant: "colorful"
+    scene_type: "gate"
+    vol_label: "VOL. 07"
+
+  - desc: "多色版 — 启程"
+    theme_text: "以此启程，永远有远方可以奔赴"
+    sub_text: "START HERE — ALWAYS FAR AWAY"
+    variant: "colorful"
+    scene_type: "bridge"
+    vol_label: "VOL. 07"
