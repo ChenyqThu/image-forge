@@ -1,0 +1,79 @@
+id: chinese-window-aesthetic
+name: 新中式窗景美学（Chinese Window Aesthetic）
+source: "@xiaoxiaodong01 / x.com/xiaoxiaodong01/status/2050401096833872006"
+original_credit: "Prompt by 小小东（xiaoxiaodong01），灵感来自苏州园林古建，经 image-forge 适配为双版 Signature Style"
+
+# ── 说明 ──────────────────────────────────────────────────────────────
+# 核心理念：中国古典"框景/借景"手法 × 当代极简平面设计。
+# 以古典窗棂（海棠窗/圆窗/方格棂窗/扇形窗）为前景画框，
+# 窗外是留白自然景观（竹/月/山/湖/远亭），室内侧大量留白用于排版。
+# 哲学底色：道家"只言片语让一切发生"——提示词是美学磁场而非堆砌清单。
+#
+# 两个子风格：
+#   婉约版（graceful）— 月色、水岸、轻雾、冷蓝银白，静谧诗意
+#   豪放版（bold）    — 金日、山岳、云涛、琥珀暖金，壮阔磅礴
+# ─────────────────────────────────────────────────────────────────────
+
+prompt_graceful: |
+  A high-end Chinese aesthetic editorial image.
+  A delicate {window_type} lattice window frames the foreground,
+  beyond it: {scene_graceful}.
+  Bamboo shadows cast softly on a clean off-white Xuan paper wall.
+  Moonlight silver and deep indigo palette, cool and serene.
+  Generous negative space on the wall — vertical Chinese calligraphy in fine Songti,
+  a small cinnabar red seal as accent. Matte paper texture, cinematic depth of field,
+  poetic Zen minimalism. 8K resolution.
+
+prompt_bold: |
+  A high-end Chinese aesthetic editorial image, bold and magnificent.
+  A grand {window_type} lattice window frames the foreground,
+  beyond it: {scene_bold}.
+  Strong directional light floods through — amber gold and deep crimson.
+  Warm honey-gold and ink-black palette, dramatic and powerful.
+  Generous negative space on the wall — vertical Chinese calligraphy in brushstroke Kaishu,
+  a cinnabar red seal stamp. Fine wood grain texture, cinematic composition,
+  monumental Zen grandeur. 8K resolution.
+
+required_variables:
+  - name: window_type
+    description: 窗棂类型（前景画框）
+    default: "traditional Chinese lattice"
+    options:
+      - "Begonia-shaped hollow window (海棠窗)"
+      - "circular moon gate window (圆窗)"
+      - "rectangular lattice window (方格棂窗)"
+      - "fan-shaped carved window (扇形漏窗)"
+      - "hexagonal pavilion window (六角亭窗)"
+
+  - name: scene_graceful
+    description: 婉约版窗外景致
+    default: "a full moon reflected on a still river, misty weeping willows, distant ink-wash mountains"
+    options:
+      - "a full moon reflected on a still river, misty weeping willows, distant mountains"
+      - "gentle snowfall over a frozen lake, bare plum blossom branches"
+      - "morning mist rising over a lotus pond, distant pavilion silhouette"
+      - "bamboo grove in soft rain, dew on emerald leaves"
+      - "West Lake at dusk, a lone wooden boat, fading pink clouds"
+
+  - name: scene_bold
+    description: 豪放版窗外景致
+    default: "towering mountain peaks bathed in golden sunrise, dramatic clouds, ancient pine trees"
+    options:
+      - "towering mountain peaks bathed in golden sunrise, dramatic clouds, ancient pines"
+      - "a vast river valley at sunset, amber light on cliff faces, eagle soaring"
+      - "crashing ocean waves at golden hour, rocky coastline, dramatic sky"
+      - "autumn maple forest ablaze in crimson and orange, fallen leaves"
+      - "Great Wall winding over mountain ridges at sunrise, epic landscape"
+
+routing_hints: |
+  - 无需参考图，Path S 直接生成
+  - 后端：GPT Image 2（写实细节、纸质质感、文字渲染均更强）
+  - 默认选婉约版；用户说"豪放"/"大气"/"壮阔"/"磅礴"则切豪放版
+  - 尺寸建议：
+      · 海报/竖版：1024x1536 或 2160x3840（4K竖）
+      · 横版/封面：1536x1024
+      · 方形/头图：1024x1024
+  - 若用户提供了具体诗词/文字，将其写入 prompt 的 typography 层（直接 hardcode）
+  - 窗型如未指定，默认用海棠窗或方格棂窗
+  - 场景如未指定，婉约默认月夜江景，豪放默认日出山岳
+  - 中文主题词自动翻译为英文再注入 prompt

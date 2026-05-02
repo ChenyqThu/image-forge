@@ -57,6 +57,7 @@ created_at: 2026-04-25
 
 | 触发词示例 | 风格 id | 擅长用途 |
 |-----------|---------|---------|
+| 新中式窗景、中式窗景美学、借景/框景、园林窗棂、婉约版、豪放版 | **chinese-window-aesthetic** | 海报、社媒 |
 | 俄国构成主义、苏联海报、几何宣传 | constructivism | 海报、社媒 |
 | 故障艺术、错位矩形、glitch | glitch-window-v1 | 头像、社媒 |
 | 窗口重叠、数字拼贴 | glitch-window-v2 | 头像、社媒 |
@@ -81,6 +82,8 @@ created_at: 2026-04-25
 | 黑白光学、Op Art、单色概念、光学错觉海报 | **mono-optical-poster** | 海报、封面 |
 | CEO海报、人物信息图、人物简介、企业档案 | **corporate-profile-poster** | 海报、社媒 |
 | 字体海报、平面几何、概念海报 | **geo-typography** | 海报、社媒 |
+| 高密度线蚀刻、铜版画动漫、蚀刻肖像、线刻风格、黑白蚀刻、dense etching | **dense-line-etching** | 头像、游戏素材、海报 |
+| 极简高定线描、高定线描肖像、时装插画、疏朗线描、留白线稿、couture line art | **couture-line-portrait** | 头像、社媒、海报 |
 
 **注：** geo-typography 有必填变量。命中后若用户未提供核心词语，必须主动问其前再生成。
 

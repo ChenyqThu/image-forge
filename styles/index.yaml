@@ -13,6 +13,17 @@
 # ──────────────────────────────────────────
 signature_styles:
 
+  - id: chinese-window-aesthetic
+    file: chinese-window-aesthetic.yaml
+    category: chinese-art
+    aliases: [新中式窗景, 中式窗景美学, 窗景美学, 借景, 框景, 古典窗棂, 中式留白, 园林窗景, chinese window, new chinese aesthetic, zen window]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [chinese, minimalism, zen, editorial, window, negative-space]
+    use_case_affinity: [poster-flyer, social-media-post, document-publication, historical-oriental]
+    avoid_for: [ecommerce-main-image]
+    variants: [graceful, bold]
+
   - id: constructivism
     file: constructivism.yaml
     category: print-art
@@ -275,6 +286,31 @@ signature_styles:
       required: ["霓虹主角/主体"]
       optional: ["背景场景", "自然元素", "霓虹主色", "手持物品"]
     special_note: "多变量模板风格。只提供主体时，背景/颜色/物品自动匹配。若用户给出详细描述，直接填入对应变量。"
+
+  - id: dense-line-etching
+    file: dense-line-etching.yaml
+    category: print-art
+    aliases: [高密度线蚀刻, 铜版画动漫, 蚀刻肖像, 线刻风格, 线刻肖像, etching portrait, 黑白蚀刻, 动漫版画, 铜版画角色, monochrome etching, engraving portrait, 蚀刻版画, 版画风格动漫, 高密度线描, dense etching]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [engraving, etching, monochrome, anime, portrait, fantasy, dark-background]
+    use_case_affinity: [profile-avatar, poster-flyer, game-asset]
+    has_required_variables: true
+    required_variables: [character_desc, accent_color]
+    special_note: "必填：角色描述(character_desc) + 唯一强调色(accent_color)。深色背景+密集交叉排线+涡旋蚀刻背景。强调色只能一种，精准点在眼睛/宝石/配饰/背景。"
+    source: "GPT逆向 + 参考图分析 (2026-05-01)"
+
+  - id: couture-line-portrait
+    file: couture-line-portrait.yaml
+    category: illustration
+    aliases: [极简高定线描, 高定线描肖像, 极简线描, 时装插画, 疏朗线描, 留白线稿, couture line art, minimalist portrait, editorial line art, 高定插画, 线描肖像, 极简肖像, sparse line portrait]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [minimalist, line-art, portrait, couture, editorial, sparse, white-space]
+    use_case_affinity: [profile-avatar, social-media-post, poster-flyer]
+    has_required_variables: true
+    required_variables: [character_desc, accent_color]
+    special_note: "必填：角色描述(character_desc，3-6个最强识别点) + 唯一淡彩色(accent_color，必须低饱和)。白色背景+极稀疏线条+大留白，强调色为淡水彩晕染，非填色块。"
 
   - id: geo-typography
     file: geo-typography.yaml

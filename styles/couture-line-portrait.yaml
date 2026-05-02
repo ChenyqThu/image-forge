@@ -1,0 +1,140 @@
+id: couture-line-portrait
+category: illustration
+name: "极简高定线描肖像"
+source: "GPT逆向 + 参考图分析 (2026-05-01)"
+
+# ──────────────────────────────────────────
+# 风格核心定义
+# ──────────────────────────────────────────
+# 极简高定线描角色肖像，时装杂志感艺术插画。
+# 核心原则：少即是多。不是"画出"角色，而是用极克制的笔墨"暗示"角色。
+#
+# 人物：超稀疏干净轮廓线（断点留气），皮肤纯白无填色，发型只勾外轮廓+关键发束，
+#        服装只保留轮廓+1-2个识别结构，绝不堆细节。
+# 点缀色：只有一种极淡低饱和度色彩（如淡冰蓝、雾蓝、浅粉），
+#          以水彩晕染方式点在眼睛/发梢/关键配饰，不填色块。
+# 背景：纯白或极淡浅灰，几乎留空。只加1-2个微小辅助元素（雪花/细弧线/小花枝）。
+#        背景散布多处极低可见度的隐藏水印签名。右下角手写签名。
+# 禁忌：密集排线、重阴影、强光影、大面积上色、完整服装纹样、满屏装饰。
+
+description: |
+  极简高定线描角色肖像，时装杂志感艺术插画。
+  超稀疏干净细线勾勒人物轮廓，大面积留白，纯白背景。
+  只保留角色最核心的识别点，一种极淡水彩色点缀眼睛和关键配饰。
+  背景几乎为空，含隐藏低可见度水印和右下角手写签名。
+
+# ──────────────────────────────────────────
+# 变量定义
+# ──────────────────────────────────────────
+variables:
+  required:
+    - name: character_desc
+      desc: "角色核心识别点（发型+眼睛+标志配饰+服装轮廓+气质关键词），3-6个最强识别点即可"
+    - name: accent_color
+      desc: "唯一淡彩色，必须是低饱和度的，如：pale icy blue / misty lavender / soft rose / faint gold / dusty teal"
+  optional:
+    - name: bg_motif
+      desc: "背景辅助元素（1-2个即可），如：a single faint snowflake / thin curved arcs / tiny floral branch / faint water ripple"
+      default: "a single faint snowflake and a few thin curved lines"
+    - name: signature
+      desc: "右下角手写签名文字"
+      default: ""
+
+# ──────────────────────────────────────────
+# Prompt Recipe
+# ──────────────────────────────────────────
+prompt_template: |
+  Minimalist haute couture line-art portrait, editorial fashion illustration style.
+  Large negative space, pure white or very light gray background.
+  Bust or half-body composition, three-quarter pose or over-the-shoulder glance.
+  Overall feel: sparse, cool, clean, elegant, and refined. Less is more.
+
+  Character: {character_desc}
+  Keep ONLY the most iconic identity markers. Do NOT overcrowd with details.
+  Do NOT fully render the costume. Do NOT add complex background. Do NOT use dense decoration.
+
+  Linework: use very few but precise thin contour lines — delicate, clean, restrained.
+  Lines have intentional "breathing gaps" (not fully closed), creating an airy quality.
+  Facial features: simplified but expressive, calm distant soft expression, eyes are the focus.
+  Hair: suggested with only the most important strands and outer silhouette flow, not filled.
+  Clothing: reduced to collar, shoulder line, chest structure, 1-2 key recognizable elements only.
+  Skin: pure white, almost no shading at all.
+
+  ACCENT COLOR RULE — apply {accent_color} ONLY as diluted watercolor wash, used sparingly on:
+  the irises and eyes (main focus), hair tips and shadow areas, earring gems or tassels,
+  key brooch or ribbon accents. This color must remain pale and low-saturation — never vivid or filled.
+  Everything else is pure black line on white — no other colors.
+
+  Background: pure white, almost completely empty.
+  Add only: {bg_motif}
+  Also add multiple very low-visibility hidden watermark-like text scattered across the background
+  (opacity ~5-8%, barely visible, color close to background).
+  {signature_line}
+
+  NEGATIVE CONSTRAINTS: no complex background, no full scene, no dense details, no heavy painting,
+  no dramatic lighting, no strong shadows, no large color fill, no over-rendered costume patterns,
+  no crowded decorations, no highly saturated colors, no strong perspective, no realistic skin texture,
+  no messy sketch lines, no overfilled composition, no excessive visual effects.
+
+  Keywords: minimalist line art, haute couture illustration, editorial fashion sketch,
+  sparse clean linework, large white space, single pale accent color, watercolor wash,
+  anime portrait, elegant distant expression, simplified costume, flowing hair silhouette,
+  hidden watermark background, handwritten signature, light and airy aesthetic
+
+# ──────────────────────────────────────────
+# 强调色参考（accent_color 常用值）
+# ──────────────────────────────────────────
+# 注意：必须是低饱和度淡色，不是高饱和度鲜色
+accent_color_presets:
+  - "pale icy blue"          # 淡冰蓝：最常用，清冷纯净
+  - "misty sky blue"         # 雾天蓝：柔和，云感
+  - "soft dusty lavender"    # 浅薰衣草紫：优雅神秘
+  - "faint warm gold"        # 极淡暖金：古典华贵
+  - "pale rose pink"         # 浅玫瑰粉：柔美少女
+  - "light sage green"       # 淡灰绿：自然冷感
+  - "silver gray"            # 银灰：最极简，接近单色
+  - "soft teal mist"         # 雾青绿：清冷东方感
+
+# ──────────────────────────────────────────
+# 背景辅助元素选项
+# ──────────────────────────────────────────
+bg_motif_presets:
+  - "a single faint snowflake crystal and two or three thin curved lines"
+  - "a few delicate floral branch sketches"
+  - "faint water ripple arcs"
+  - "tiny butterfly wing silhouette in outline only"
+  - "scattered star dots and thin arc"
+  - "a single falling petal and a thin curved line"
+
+# ──────────────────────────────────────────
+# 角色识别点填写公式
+# ──────────────────────────────────────────
+# character_desc 推荐格式：
+#   [发型] + [眼睛] + [标志性头饰/耳朵/角] + [服装核心轮廓] + [1-2个代表性配饰] + [气质关键词]
+# 示例：
+#   "silver-white long ponytail with black-red curved horns, pale blue eyes, Liyue-style high collar outfit
+#    with minimal tassel ornaments, cool and serene temperament" （甘雨）
+#   "wavy silver-blue hair with ornate butterfly hair clip, clear pale blue eyes, vintage European ruffled
+#    collar dress, elegant blue gemstone brooch, theatrical yet poised expression" （芙宁娜）
+
+# ──────────────────────────────────────────
+# 使用示例
+# ──────────────────────────────────────────
+examples:
+  - desc: "神里绫华（pale icy blue + 雪花）"
+    character_desc: "white silver hair tied in high elegant ponytail with ornate black hairpin crown, pale blue eyes, traditional Japanese-style high collar white outfit with minimal kimono sleeve details, ice crystal accessory, dignified cool poised temperament"
+    accent_color: "pale icy blue"
+    bg_motif: "a single faint snowflake and a few thin curved arcs"
+    signature: "Ayaka"
+
+  - desc: "芙宁娜（soft blue + 细弧线）"
+    character_desc: "wavy silver-blue hair with ornate butterfly hair ornament, clear pale blue eyes, vintage Fontaine-style ruffled white collar dress silhouette, elegant blue gemstone brooch on chest, dramatic yet composed expression"
+    accent_color: "pale icy blue"
+    bg_motif: "a few thin curved arc lines"
+    signature: "Furina"
+
+  - desc: "rr 虎斑猫（极简线条版，pale teal）"
+    character_desc: "gray-white tabby cat ears and subtle whiskers, cool detached expression, round sunglasses frames (just the outline), minimal black jacket collar silhouette, composed and unreadable attitude"
+    accent_color: "soft teal mist"
+    bg_motif: "two thin curved lines"
+    signature: "rr"

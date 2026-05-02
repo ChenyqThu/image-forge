@@ -1,0 +1,107 @@
+id: dense-line-etching
+category: print-art
+name: "高密度线蚀刻动漫肖像"
+source: "GPT逆向 + 参考图分析 (2026-05-01)"
+
+# ──────────────────────────────────────────
+# 风格核心定义
+# ──────────────────────────────────────────
+# 极细致黑白铜版画/蚀刻版画风格，动漫幻想人物肖像。
+# 人物：密集交叉排线，雕刻感阴影，黑白象牙灰主调。
+# 点缀色：全画面只保留一种高饱和色，精准点在眼睛/宝石/配饰/背景。
+# 背景：平面装饰性蚀刻线条（非真实场景），密集弯曲旋涡线形成风/水/星云纹理，
+#        可含稀疏主题元素（星芒、灵兽轮廓、星轨弧线），但不能压过主体。
+
+description: |
+  极细致黑白铜版画 / 蚀刻版画风格，动漫幻想人物半身肖像。
+  人物全程黑白灰象牙色刻线渲染，只有一种高饱和强调色点在眼睛、宝石、配饰和背景。
+  背景是平面装饰性蚀刻线条纹理（密集弯曲涡旋线 + 可选稀疏主题元素），
+  非真实场景，具有强节奏感和版画质地，但不压过主体。
+
+# ──────────────────────────────────────────
+# 变量定义（调用时填入）
+# ──────────────────────────────────────────
+variables:
+  required:
+    - name: character_desc
+      desc: "角色外貌描述（种族/发型/服装/道具等）"
+    - name: accent_color
+      desc: "唯一强调色，如：icy blue / crimson red / teal / mint green / amber gold / neon green / violet purple"
+  optional:
+    - name: thematic_element
+      desc: "背景主题元素（默认留空=纯涡旋），如：a ghostly dragon spirit / snowflake crystal motifs / constellation arcs / spirit-beast silhouette"
+      default: ""
+
+# ──────────────────────────────────────────
+# Prompt Recipe（英文，直接投喂后端）
+# ──────────────────────────────────────────
+prompt_template: |
+  A highly detailed anime fantasy portrait in monochrome engraving / copperplate etching style,
+  ultra-fine ink linework, dense cross-hatching, carved shadow texture, crisp high-contrast outlines,
+  elegant ornate fantasy costume details, refined metallic ornaments and gemstone accents.
+  Bust-up or half-body three-quarter portrait, calm elegant distant expression, delicate facial features.
+  Mostly black, ivory, white, and cool gray palette.
+
+  Character: {character_desc}
+
+  STRICT SINGLE ACCENT COLOR RULE — apply {accent_color} ONLY to:
+  the irises / eyes, gemstone centers on jewelry and accessories, key trim edges and ornament accents.
+  Everything else must be strictly black / white / ivory / cool gray — no other colors anywhere.
+
+  Background: a flat decorative engraved backdrop, NOT a realistic scene or environment.
+  Dense curved etched lines forming swirling wind, water, nebula, or magical energy vortex patterns —
+  all rendered in monochromatic {accent_color} tones (deep base with lighter etched-line strokes creating depth).
+  {thematic_element}
+  The background should feel rhythmic, ornamental, mystical, and highly textured,
+  but must NOT overpower the character — character remains the clear visual focus.
+
+  Keywords: monochrome engraving, etched linework, fine cross-hatching, dense contour lines,
+  ornate fantasy portrait, anime character illustration, high contrast ink drawing,
+  ivory black and gray palette, single accent color, swirling engraved background,
+  celestial motifs, elegant gothic fantasy accessories, delicate facial features,
+  flowing hair, decorative flat background, highly detailed line art
+
+# ──────────────────────────────────────────
+# 背景元素选项参考（thematic_element 可选值）
+# ──────────────────────────────────────────
+thematic_element_presets:
+  - "Add subtle starbursts and four-pointed sparkles scattered in the background."
+  - "Include a ghostly spirit-beast silhouette (dragon / phoenix / qilin) subtly emerging from the swirling lines."
+  - "Add faint constellation arcs and rune-like curves woven into the vortex."
+  - "Include snowflake-like crystal motifs and frost sparkles scattered lightly."
+  - "Add abstract phantom motifs and flowing energy wisps."
+  - ""  # 留空 = 纯涡旋线，最干净
+
+# ──────────────────────────────────────────
+# 强调色参考（accent_color 常用值）
+# ──────────────────────────────────────────
+accent_color_presets:
+  - "icy blue"          # 冰蓝：冷静、冰雪、神官
+  - "teal"              # 青绿：龙族、海洋、赛博
+  - "crimson red"       # 猩红：热烈、武将、血脉
+  - "mint green"        # 薄荷绿：自然、药师、精灵
+  - "emerald green"     # 翡翠绿：森林、炼金、毒系
+  - "amber gold"        # 琥珀金：档案、书生、古典
+  - "violet purple"     # 深紫：魔法、神秘、贵族
+  - "neon green"        # 霓虹绿：赛博、黑客、AI
+  - "cyan"              # 青色：科幻、水系
+  - "rose gold"         # 玫瑰金：优雅、幻想、少女
+
+# ──────────────────────────────────────────
+# 使用示例
+# ──────────────────────────────────────────
+examples:
+  - desc: "Jarvis 赛博龙（icy blue 背景+龙灵）"
+    character_desc: "young East Asian male humanoid with small black dragon horns with gold luan-pattern engravings, vertical slit pupils, flowing dark hair, layered reformed hanfu in deep ink-black, outer transparent circuit-pattern armor, holding a glowing bamboo luopan compass"
+    accent_color: "icy blue"
+    thematic_element: "Include a ghostly translucent cyber-dragon spirit silhouette subtly emerging from the swirling lines in the upper area."
+
+  - desc: "rr 虎斑猫（neon green 背景）"
+    character_desc: "anthropomorphic gray-white tabby cat, cat ears, subtle whiskers, tabby striped fur, round dark sunglasses, full black structured jacket"
+    accent_color: "neon green"
+    thematic_element: ""
+
+  - desc: "通用幻想角色（crimson red 背景+星芒）"
+    character_desc: "elegant fantasy female character with long flowing silver hair, ornate gothic armor with intricate engravings, gemstone choker necklace"
+    accent_color: "crimson red"
+    thematic_element: "Add subtle starbursts and four-pointed sparkles scattered in the background."
