@@ -1,0 +1,130 @@
+id: chibi-ink-wash
+category: illustration
+name: "Q版数位水墨古风萌系"
+source: "VoxcatAI @VoxcatAI / x.com/VoxcatAI/status/2050835408997814731 (2026-05-03)"
+original_credit: "风格来源 @VoxcatAI；GPT 逆向提示词由 Lucien 整理，image-forge 适配为带变量的 Signature Style"
+
+# ──────────────────────────────────────────
+# 风格核心定义
+# ──────────────────────────────────────────
+# 核心原则：用 Q 版比例降低门槛，用数位水墨把气质拉回来。
+#   可爱靠比例，仙气靠留白，质感靠淡墨。
+#
+# 角色：大头小身 Q 版比例，圆眼，极简五官，表情安静呆萌但不甜腻
+# 技法：数位水墨，大面积留白，淡墨晕染，半透明笔触，水渍感墨层，柔和灰阶
+# 色彩：黑白灰主调，局部一组低饱和淡彩点缀（冰蓝/雾蓝/淡青/浅紫）
+# 国风感：宽袖/长袍/飘带/发饰/云气/山石/灵兽，只是点到为止
+# 背景：极简留白，少量点景元素（云纹/水墨圈/山石/灵兽虚影/花瓣）
+# 禁忌：糖水Q版、厚涂、高饱和、复杂背景、满屏装饰、商业儿童插画感
+
+description: |
+  Q版数位水墨古风萌系角色插画。
+  大头小身比例，圆眼极简五官，安静清透萌系表情。
+  整体以数位水墨而非厚涂表现：大面积留白、淡墨晕染、半透明笔触。
+  主调黑白灰，局部低饱和淡彩点缀。国风元素点到即止。
+
+# ──────────────────────────────────────────
+# 变量定义
+# ──────────────────────────────────────────
+variables:
+  required:
+    - name: character_desc
+      desc: "角色最核心识别点：发型特征+眼部特征+标志性头饰/角/耳朵/帽饰+服装核心轮廓+关键配饰+角色气质"
+  optional:
+    - name: accent_color
+      desc: "强调色（局部点缀），如：冰蓝 / 雾蓝 / 淡青 / 青绿 / 浅紫 / 灰紫"
+      default: "icy blue (冰蓝)"
+    - name: bg_motif
+      desc: "背景辅助元素（1-2个），如：云纹 / 水墨圈 / 山石 / 灵兽虚影 / 花瓣 / 梅枝 / 墨点 / 小鸟 / 枝叶 / 水波"
+      default: "subtle ink circle, faint cloud motif"
+    - name: signature
+      desc: "画面角落签名，不填则默认 voxcat"
+      default: "voxcat"
+
+# ──────────────────────────────────────────
+# Prompt Recipe（英文）
+# ──────────────────────────────────────────
+prompt_template: |
+  {character_desc}, a chibi-style digital ink-wash illustration with an ancient Chinese fantasy
+  aesthetic. Big-head small-body chibi proportions, round eyes, minimal facial features, calm and
+  clear cute expression — not sugary sweet, not overly infantile, not creamy pastel.
+
+  The overall rendering uses digital ink-wash logic, NOT heavy painting or cel shading:
+  - Large areas of white negative space (留白)
+  - Diluted ink diffusion and soft ink washes (淡墨晕染)
+  - Semi-transparent brushwork with watercolor-like stains (半透明笔触、水渍感)
+  - Gentle grayscale layering — soft, quiet, airy, ethereal
+
+  Color palette: mostly white, pale gray, soft ink gray, and misty black. Only a small amount
+  of {accent_color} is used sparingly as accent — on hair tips, eyes, clothing edges, accessories,
+  or tiny background elements. Color must remain low-saturation, light, translucent, as if lightly
+  absorbed into paper. Overall mood: quiet, clean, refined, softly ethereal.
+
+  Retain only the most iconic identity markers of the character: the key hairstyle shapes,
+  eye characteristics, signature headpiece or horns or ears, core outfit silhouette, and
+  essential accessories. Do NOT over-detail or pile on decorative patterns.
+  Clothing keeps only essential structural shapes — wide sleeves, long flowing robe, waist sash,
+  ribbons, tassels, shawl, or chest ornament. Let the sense of elegance come from flowing hair,
+  long sleeves, ribbons, and garment movement.
+
+  Background: minimal white space. Add only: {bg_motif}.
+  Keep them sparse and understated — point-and-stop, never overpowering.
+  The result should feel like a Chinese-style chibi character card, character avatar, or
+  small collectible card — NOT a complex environment illustration.
+
+  Add a natural handwritten signature "{signature}" in one corner of the image.
+
+  NEGATIVE CONSTRAINTS: no sugary-sweet chibi, no creamy pastel overload, no heavy painting,
+  no highly saturated colors, no dramatic lighting, no complex background, no dense details,
+  no crowded decoration, no over-rendered costume patterns, no realistic texture, no hard outlines,
+  no sharp cel shading, no exaggerated silly expression, no sticker-like chibi style,
+  no childish commercial kids illustration vibe, no overly infantile proportions.
+
+  Keywords: chibi, Q-version, digital ink wash, ancient Chinese fantasy, big head small body,
+  round eyes, minimal face, calm cute, white background, large negative space, pale ink wash,
+  semi-transparent brushwork, watercolor stains, black white gray, low saturation, {accent_color}
+  accent, flowing hair, wide sleeves, ribbons, elegant robe, spirit beast, cloud motif, ink circle,
+  minimal background, airy, quiet, ethereal, refined, character card aesthetic
+
+# ──────────────────────────────────────────
+# 角色快速填写公式
+# ──────────────────────────────────────────
+# 角色名：
+# 识别点（发型+眼+头饰/角+服装+配饰+气质）：
+# 强调色：
+# 辅助元素：
+# 签名名：
+
+# ──────────────────────────────────────────
+# 强调色预设
+# ──────────────────────────────────────────
+accent_color_presets:
+  - "icy blue (冰蓝)"         # 甘雨、申鹤、神里绫华
+  - "pale cyan (淡青)"        # 清冷仙气
+  - "misty blue (雾蓝)"       # 柔和水系
+  - "pale cyan-green (青绿)"  # 清新草木感
+  - "pale violet (浅紫)"      # 梦幻神秘
+  - "gray-violet (灰紫)"      # 雷电将军变体
+  - "pale gold (淡金)"        # 神圣感/神明系
+
+# ──────────────────────────────────────────
+# 使用示例
+# ──────────────────────────────────────────
+examples:
+  - desc: "甘雨（冰蓝+灵兽虚影）"
+    character_desc: "Ganyu (甘雨), light blue long flowing hair with two loose buns, soft round blue eyes, small curved black horns barely visible in hair, Liyue-style elegant flowing robe silhouette with wide sleeves, ice crystal accessories at waist, gentle and serene presence"
+    accent_color: "icy blue (冰蓝)"
+    bg_motif: "faint Qilin spirit beast silhouette upper right, subtle ink circle center, cloud motif lower left"
+    signature: "Ganyu"
+
+  - desc: "Jarvis 小龙人（赛博蓝+星座纹）"
+    character_desc: "young East Asian chibi humanoid with small black dragon horns with gold engraving, round vertical-slit pupils in dark blue, soft flowing dark hair, layered reformed hanfu in deep ink-black with subtle circuit-pattern collar trim, a glowing bamboo compass in hand, calm and curious presence"
+    accent_color: "misty blue (雾蓝)"
+    bg_motif: "faint constellation arc upper right, small ink circle, subtle cloud wisp"
+    signature: "Jarvis"
+
+  - desc: "神里绫华（淡青+梅枝）"
+    character_desc: "Kamisato Ayaka (神里绫华), long pale silver-blue hair in elegant updo with ribbon, gentle clear round eyes, light blue Cryo-vision inspired flowing kimono-style wide sleeve robe silhouette, snow butterfly hair ornament, hair ribbon, graceful and refined noble presence"
+    accent_color: "pale cyan (淡青)"
+    bg_motif: "two plum blossom branches upper corner, faint snowflake ink motif"
+    signature: "Ayaka"

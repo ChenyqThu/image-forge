@@ -6,7 +6,7 @@ description: |
   - Rendering 风格：16 种通用渲染技法 modifier（写真/动漫/3D/水彩/赛博朋克等），prompt 源自实战案例
   - Logo 展示背景：12 种专业展示场景（来源 logo-generator，已内化）
   - 用途库：16 类场景 + 全实战 prompt 案例，含推荐风格 + 后端默认 + pitfalls 防坑
-  - 后端调度：GPT Image 2（写实/产品/文字/4K）/ Gemini（动漫/艺术/多参考图）
+  - 后端调度：GPT Image 2（写实/产品/文字/4K）/ Gemini（仅多参考图合成备选，2026-05-02起）
   - 支持：文生图、风格库生图、参考图风格反推、参考图编辑、多参考图合成、logo 展示图
   Use when: 用户想画图/生图/做海报/插画/风格迁移/图片编辑/logo展示图 — 这是唯一的图像生成入口。
   【铁律】绝对禁止使用 image_generate 工具（configured: no，不可用）。所有画图请求必须走本 skill。
@@ -83,6 +83,7 @@ created_at: 2026-04-25
 | CEO海报、人物信息图、人物简介、企业档案 | **corporate-profile-poster** | 海报、社媒 |
 | 字体海报、平面几何、概念海报 | **geo-typography** | 海报、社媒 |
 | 没骨写意、没骨写意水墨、白綿水墨、湿墨晴染、墨气人物、boneless ink | **boneless-ink-xieyi** | 头像、海报、社媒 |
+| Q版水墨、数位水墨古风、古风萌系、Q版数位水墨、voxcat风格、Q版仙气、清透Q版、chibi ink wash | **chibi-ink-wash** | 头像、社媒、游戏素材 |
 | 纪念碑谷、几何治愈、等距美学、埃舍尔建筑、不可能几何、geometric healing | **monument-valley** | 海报、社媒 |
 | 高密度线蚀刻、铜版画动漫、蚀刻肖像、线刻风格、黑白蚀刻、dense etching | **dense-line-etching** | 头像、游戏素材、海报 |
 | 极简高定线描、高定线描肖像、时装插画、疏朗线描、留白线稿、couture line art | **couture-line-portrait** | 头像、社媒、海报 |
@@ -210,7 +211,7 @@ created_at: 2026-04-25
 ```
 
 **GPT Image 2 强项**：写实摄影、产品展示、文字渲染、4K 高清、海报、UI  
-**Gemini 强项**：动漫/插画/中国风/水彩/素描、多参考图合成、Signature 风格迁移
+**Gemini 备选**：仅在用户提供 2+ 张参考图时使用（多图合成能力更强）
 
 ---
 
