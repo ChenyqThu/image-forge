@@ -1,0 +1,249 @@
+id: cinematic-character-sheet
+name: 电影级角色卡片（Cinematic Character Design Sheet）
+source: "@frametheory058 / x.com/frametheory058/status/2051863204025045167"
+original_credit: "Prompt by @frametheory058，经 @johnAGI168 验证可 100% 过 Seedance 2.0 人脸，image-forge 适配"
+
+# ── 说明 ──────────────────────────────────────────────────────────────
+# 生成「电影级角色设计卡片」——专为 AI 视频（Seedance 2.0 等）制作角色一致性参考素材。
+# 画面包含：角色身份/外貌/心理档案 + 全身转面图 + 面部表情研究 + 服装细节 + 电影感肖像。
+#
+# 核心价值：
+#   - 100% 通过 Seedance 2.0 人脸识别（已验证）
+#   - 多角度一致性锁定（正面/3/4/侧/背/3/4背 共 5 角度）
+#   - 表情微动作指引（lip tension / eye flicker / brow shift）
+#   - 制作级服装精细度（材质/磨损/缝线/皱褶）
+#
+# 后端：仅 GPT Image 2（Gemini/Nano Banana 效果不佳，已验证）
+# 尺寸：1024x1536（3:4 竖版设定集标准）
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  Create a cinematic, film-production-grade character design sheet for a director, casting
+  team, and costume department. Character name: {character_name}. Must feel like a high-budget
+  animated film pitch board, not a generic model sheet.
+
+  CORE DIRECTIVE (NON-NEGOTIABLE): No generic layouts. No evenly spaced grids. No symmetry
+  for symmetry's sake. Composition must feel art-directed, intentional, slightly asymmetrical.
+  Every section must feel placed, not auto-generated.
+
+  CHARACTER IDENTITY:
+  Name: {full_name} | Alias: {alias} | Age: {age} | Height: {height} | Build: {build} |
+  Ethnicity / Design Language: {ethnicity_design}
+
+  FACE DESIGN:
+  Structure: {face_structure} | Skin: {skin} | Eyes: {eyes} | Hair: {hair} |
+  Distinct Features: {distinct_features}
+
+  PSYCHOLOGICAL PROFILE:
+  Core Traits: {core_traits} | Internal Conflict: {internal_conflict} |
+  Behavior Patterns: {behavior_patterns} | Emotional Baseline: {emotional_baseline}
+
+  PERFORMANCE DIRECTION:
+  Character must feel like a real actor caught mid-moment, NOT posing. Micro-expressions
+  required (lip tension, eye flicker, brow shift). Avoid staged symmetry. Capture transitional
+  emotion.
+  Body Language: {body_language} | Movement rhythm: {movement_rhythm} |
+  Idle behavior: {idle_behavior}
+
+  WARDROBE:
+  Garment 1: {garment_1} | Garment 2: {garment_2} | Layering logic: {layering_logic} |
+  Footwear: {footwear} | Accessories: {accessories} | Props: {props}
+
+  MATERIAL ACCURACY:
+  Fabrics must show stretch, stitching, wrinkles, wear. No plastic look unless intentional.
+  Skin must have soft light interaction. Include imperfections: dirt, smudges, aging, usage marks.
+
+  TURNAROUND (STRICT):
+  Full-body front, 3/4, side, back, 3/4 back views. Identical proportions and design fidelity.
+  No drift in face or costume across any angle.
+
+  HEAD STUDY:
+  Front (neutral) | 3/4 (primary personality) | Profile (structure) | Looking Down |
+  Looking Up | Dynamic Angle (intense state). All expressions mid-thought, not posed.
+
+  CINEMATIC PORTRAIT:
+  Environment: {environment} | Lighting: {lighting} | Color Tone: {color_tone} |
+  Expression: {expression} | Camera: {camera}
+
+  LAYOUT:
+  Clean, art-directed sheet. Neutral gray background. Include: height scale, annotation
+  callouts, wardrobe breakdown, production notes. Must feel like a premium studio board.
+
+  STYLE: {style}
+  Must include: appealing exaggeration, soft geometry, cinematic lighting, high emotional
+  readability.
+
+  CONSISTENCY RULE (STRICT):
+  Face, proportions, costume, and details must remain IDENTICAL across all views.
+  No reinterpretation between angles. Ever.
+
+  OUTPUT:
+  Extremely high detail. Sharp focus. Production-ready fidelity. Suitable for film
+  development, merchandising, and pitch decks.
+
+required_variables:
+  - name: character_name
+    description: 角色名（用于标题）
+    example: "Marco Levine / 林晓雨 / Agent Zero"
+
+optional_variables:
+  - name: full_name
+    default: "[auto from character_name]"
+    description: 角色完整姓名
+    example: "Marco Ethan Levine"
+
+  - name: alias
+    default: "[auto]"
+    description: 别名/代号
+    example: '"The Closer" / 小雨 / Ghost'
+
+  - name: age
+    default: "[auto]"
+    description: 年龄
+    example: "27 / 42 / 19"
+
+  - name: height
+    default: "[auto]"
+    description: 身高
+    example: "5'6\" (168 cm) / 180 cm"
+
+  - name: build
+    default: "[auto]"
+    description: 体型/体态/姿态特征
+    example: "Lean Athletic / Curvy Athletic / Slender with slouched posture"
+
+  - name: ethnicity_design
+    default: "[auto]"
+    description: 族裔/设计语言风格
+    example: "Contemporary American (Realistic-Stylized) / Pixar-esque"
+
+  - name: face_structure
+    default: "[auto]"
+    description: 面部骨骼/轮廓/夸张程度
+    example: "Soft oval face, high cheekbones, rounded jaw, subtle asymmetry"
+
+  - name: skin
+    default: "[auto]"
+    description: 肤色/质感/瑕疵
+    example: "Light warm tone, subtle freckles across nose, faint beauty marks"
+
+  - name: eyes
+    default: "[auto]"
+    description: 眼睛形状/颜色/表现力
+    example: "Almond-shaped, light hazel/green, framed with full lashes"
+
+  - name: hair
+    default: "[auto]"
+    description: 发型/质感/动感
+    example: "Long layered blonde with natural movement and flyaways, slightly darker roots"
+
+  - name: distinct_features
+    default: "[auto]"
+    description: 标志性特征（伤疤/酒窝/痣等）
+    example: "Small mole on upper chest, dimples when smiling, slight brow arch on left"
+
+  - name: core_traits
+    default: "[auto]"
+    description: 3-5 个核心性格特征
+    example: "Confident, Loyal, Witty, Protective, Empathetic"
+
+  - name: internal_conflict
+    default: "[auto]"
+    description: 内心冲突（想要什么 vs 什么阻碍了他/她）
+    example: "Wants freedom but feels responsible for the people she loves"
+
+  - name: behavior_patterns
+    default: "[auto]"
+    description: 3 个揭示性格的行为习惯
+    example: "Runs a hand through hair when thinking; tilts head when listening; smirks when knowing more"
+
+  - name: emotional_baseline
+    default: "[auto]"
+    description: 默认情绪基调 + 情绪切换速度
+    example: "Warm, playful, observant. Shifts to focused and intense when someone she cares about is in danger"
+
+  - name: body_language
+    default: "[auto]"
+    description: 体态习惯
+    example: "Leans forward when interested; crosses arms as default neutral"
+
+  - name: movement_rhythm
+    default: "[auto]"
+    description: 动作节奏
+    example: "fluid and natural / stiff and deliberate / sharp and economical"
+
+  - name: idle_behavior
+    default: "[auto]"
+    description: 静止时的微动作
+    example: "fidgets with ring; stillness that feels watchful; drums fingers"
+
+  - name: garment_1
+    default: "[auto]"
+    description: 主服装（面料/磨损/细节）
+    example: "Beige stretch jersey dress, soft breathable fabric, subtle ruching on waist"
+
+  - name: garment_2
+    default: "[none]"
+    description: 外搭/第二服装层次
+    example: "Tailored wool jacket, modern fit, structured shoulders"
+
+  - name: layering_logic
+    default: "[auto]"
+    description: 穿搭叠层逻辑
+    example: "Minimalist — dresses for comfort and versatility"
+
+  - name: footwear
+    default: "[auto]"
+    description: 鞋履（材质/磨损）
+    example: "Strappy neutral heels, faux leather, worn at sole and straps"
+
+  - name: accessories
+    default: "[auto]"
+    description: 配饰（揭示个性的物品）
+    example: "Gold chain necklace (personal, never removes), small gold earrings, delicate bracelet"
+
+  - name: props
+    default: "[auto]"
+    description: 随身道具
+    example: "Phone (always nearby), leather tote bag, lip balm"
+
+  - name: environment
+    default: "[auto from character backstory]"
+    description: 电影肖像场景
+    example: "Rooftop lounge / High-rise office with Manhattan skyline / Safehouse"
+
+  - name: lighting
+    default: "[auto]"
+    description: 光源设计
+    example: "Warm practicals, rim light, soft fill / Natural window light with warm practicals"
+
+  - name: color_tone
+    default: "[auto]"
+    description: 色调倾向
+    example: "Warm, golden, intimate / Cool neutrals with warm accents"
+
+  - name: expression
+    default: "[auto]"
+    description: 肖像瞬间的具体叙事情绪
+    example: "Playful, confident, thinking ahead / Evaluating a risky idea — curious, cautious, excited"
+
+  - name: camera
+    default: "85mm, shallow depth of field, cinematic realism"
+    description: 镜头参数
+    example: "50mm, shallow DOF / 85mm, shallow DOF, cinematic realism"
+
+  - name: style
+    default: "Semi-realistic cinematic design — photorealistic proportions with subtle stylized appeal"
+    description: 整体视觉风格（写实/Pixar/动漫等）
+    example: "Pixar-style stylized realism / Semi-realistic cinematic design / Anime-inspired with realistic textures"
+
+routing_hints: |
+  1. 无需参考图，Path S 文生图
+  2. 后端：GPT Image 2 强制（Gemini/Nano Banana 对此类多视角一致性表现差，已验证）
+  3. 尺寸：1024x1536（3:4 竖版）
+  4. 所有未填字段一律 "[auto]"，模型根据 character_name 自动推断
+  5. 用途：Seedance 2.0 / AI 视频生成的真人角色一致性素材
+  6. 姓名/年龄/身高等信息会被渲染进图片排版内，用于视频识别锚定
+  7. 与 world-character-sheet 的区别：
+     - world-character-sheet → 动漫世界观+设定集风格，偏概念艺术
+     - cinematic-character-sheet → 写实电影级+视频生产用，偏角色一致性

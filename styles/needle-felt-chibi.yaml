@@ -1,0 +1,44 @@
+id: needle-felt-chibi
+name: 羊毛毡 Chibi 微缩（Needle Felt Diorama）
+source: "@小K / 蛋姐群实战提炼，2026-05-14"
+original_credit: "Prompt by 小K（Kevin's AI），经 image-forge 适配为 Signature Style"
+
+# ── 说明 ──────────────────────────────────────────────────────────────
+# 核心质感：手工羊毛毡玩偶摆拍照，不是 2D 插画也不是 3D 建模。
+# 是「毛茸茸软轮廓 + 真实光影投射」的混合媒介感。
+# 头身比锁 1:1.5–2（大头团子 chibi），加 2D 涂鸦 overlay 是灵魂。
+#
+# 反例禁词：Pixar style / 3D render / smooth（一秒跑偏成光滑塑料公仔）
+# ─────────────────────────────────────────────────────────────────────
+
+prompt: |
+  needle felted wool diorama, chibi plushie style, head-to-body ratio 1:1.5 to 1:2,
+  handmade felt photography, soft fuzzy fiber texture, felted fiber surface (NOT smooth),
+  cream beige warm background, golden hour indoor lighting, shallow depth of field,
+  knitted round rug, mixed media, kawaii, wholesome, square composition,
+  miniature scale product photography,
+  2D doodle overlays on scene (thought bubbles, hearts, paw prints, sparkles),
+  NO Pixar style, NO 3D render, NO smooth plastic texture
+
+# 场景变体 modifiers（可追加到 prompt）
+scene_variants:
+  cozy_tea: "cozy tea party scene, clay teapot with steam, small cups and snacks on low table"
+  cyber_accent: "glowing tron lines on felted body, neon embroidery threads, keep fuzzy wool texture"
+  outdoor: "miniature garden backdrop, felt grass mat, tiny potted plants"
+
+# 文生图时使用（无参考图）
+prompt_text2img: |
+  needle felted wool chibi characters, handmade felt plushie style, head-to-body ratio 1:2,
+  soft fuzzy fiber texture throughout, cream beige warm background, golden hour indoor lighting,
+  shallow depth of field, 2D doodle overlays (hearts, thought bubbles, paw prints),
+  mixed media kawaii aesthetic, wholesome cozy scene, miniature photography feel.
+  NO Pixar style, NO smooth 3D render, NO plastic texture.
+  Subject: {subject}
+
+# 关键 pitfalls
+pitfalls:
+  - "必须显式写 fuzzy / felted fiber texture，否则跑成光滑公仔"
+  - "禁止写 Pixar style / 3D render / smooth，一秒风格漂移"
+  - "头身比要锁 1:1.5–2，不写会被拉成普通人偶"
+  - "2D doodle overlay 不写会少一半味道"
+  - "赛博/发光元素用 glowing tron lines on felted body，保留毛毡材质"

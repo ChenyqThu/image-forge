@@ -92,19 +92,9 @@ backends:
 dispatch:
   global_default: gpt-image-2
 
-  # 触发切换到 nano-banana-2 的信号（任一满足即切换）
+  # 触发切换到 nano-banana-2 的信号（仅剩多参考图合成，2026-05-02 调整：其余全切 gpt-image-2）
   prefer_nano_banana_when:
-    - multi_reference_images: true        # 用户提供 2+ 张参考图
-    - signature_style_matched: true       # 命中 Signature 风格（所有 10 个）
-    - rendering_style_in:                 # 命中以下 Rendering 风格
-        - anime-manga
-        - illustration
-        - sketch-line-art
-        - chibi-q-style
-        - pixel-art
-        - oil-painting
-        - watercolor
-        - ink-chinese-style
+    - multi_reference_images: true        # 用户提供 2+ 张参考图时 Gemini 合成能力更强
 
   # 强制走 gpt-image-2 的任务类型（无论 rendering 属性如何）
   # 根据 2026-04-24 卡牌实测：Gemini 在小细人物+排版组合场景质量较弱

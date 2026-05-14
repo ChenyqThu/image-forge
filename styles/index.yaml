@@ -237,6 +237,17 @@ signature_styles:
     required_variables: [character_name, character_desc]
     special_note: "两种角色来源：(A)参考图→Path E edit；(B)知名角色名/原创描述→Path S。flower_element留空则从角色气质自动推断（武士→菊/落叶，冰雪→冰晶，科幻→星云粒子，默认→樱花）。颜色也可自动推断。必填：poster_title；无参考图时还需character_ref。竖版9:16。source: @AiwithLariab"
 
+  - id: needle-felt-chibi
+    file: needle-felt-chibi.yaml
+    category: illustration
+    aliases: [羊毛毡, 戳戳乐, 毛毡玩偶, 毛毡摄影, 毛毡, needle felt, needle felted, felted chibi, felt diorama, 羊毛毡 chibi, 毛茸茸玩偶, 手工毛毡, felt plushie, 围炉煮茶合照风, 毛毡微缩]
+    aspect_ratio: "1:1"
+    preferred_backend: gpt-image-2
+    tags: [needle-felt, chibi, kawaii, handmade, fuzzy, diorama, mixed-media, cozy]
+    use_case_affinity: [social-media-post, profile-avatar, poster-flyer]
+    requires_reference_image: false
+    special_note: "羊毛毡手工玩偶摆拍风，混合媒介（毛茸茸轮廓+真实光影+2D涂鸦overlay）。头身比1:1.5-2。禁词：Pixar/3D render/smooth。赛博元素用 glowing tron lines on felted body。source: @小K / 蛋姐群实战"
+
   - id: crayon-kid
     file: crayon-kid.yaml
     category: illustration
@@ -351,6 +362,18 @@ signature_styles:
     has_required_variables: true
     required_variables: [character_desc, accent_color]
     special_note: "必填：角色描述(character_desc，3-6个最强识别点) + 唯一淡彩色(accent_color，必须低饱和)。白色背景+极稀疏线条+大留白，强调色为淡水彩晕染，非填色块。"
+
+  - id: keyword-theme-poster
+    file: keyword-theme-poster.yaml
+    category: editorial-poster
+    aliases: [主题词海报, 收藏级海报, 城市拼音海报, 字母橱窗海报, 主题海报, 壁纸海报, keyword poster, theme poster, pinyin poster, city poster, letter scene poster, xiaoxiaodong poster]
+    aspect_ratio: "2:1"
+    preferred_backend: gpt-image-2
+    required_vars: [主题词]
+    tags: [typography, collector, editorial, mid-century, swiss, low-saturation, airy, landscape]
+    use_case_affinity: [poster-flyer, desktop-wallpaper, social-media-post, document-publication]
+    avoid_for: [ecommerce-main-image, product-marketing]
+    notes: "必填变量：主题词（可为任意名词：城市/人物/品牌/概念等）。输入后自动转为英文/拼音大标题，字母内部延展主题场景，顶部剪影装饰带，克制低饱和配色，默认 2:1 横版适合做壁纸。"
 
   - id: geo-typography
     file: geo-typography.yaml
@@ -488,6 +511,66 @@ rendering_styles:
     preferred_backend: gpt-image-2
     tags: [minimal, clean, design]
 
+
+  - id: city-line-poster
+    file: city-line-poster.yaml
+    category: editorial
+    aliases: [极简线条城市海报, 城市线条海报, 线条城市, 收藏级城市海报, 人民币插画风, 城市版画, 旅行海报, city line poster, city print, line art city, travel poster, minimal city, 城市极简海报, 线描城市]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [city, line-art, minimal, editorial, travel, print, vector]
+    use_case_affinity: [poster-flyer, social-media-post, document-publication]
+    avoid_for: [ecommerce-main-image, product-marketing]
+    has_required_variables: true
+    required_variables: [主题]
+    special_note: "必填：主题(城市名/具体街道或地标/地址坐标)。核心特点：先理解城市气质再作图；颜色因城而异不套模板；街头文字必须真实准确。支持(A)城市名→气质提炼；(B)具体地点→真实空间再现；(C)地址/坐标+参考图→实景还原。"
+    source: "小小东 @xiaoxiaodong01 / x.com/xiaoxiaodong01/status/2053782162907029877"
+    inspiration: "灵感源自 @Goodmanprotocol，人民币插画的精致质感 × 城市品牌收藏级旅行海报"
+
+  - id: rinpa-decorative
+    file: rinpa-decorative.yaml
+    category: japanese-art
+    aliases: [琳派, 琳派装饰, 金云银云, 金箔日本画, 本阿弥光悦, 尾形光琳, 金泥流水, rinpa, rinpa style, japanese decorative painting, kinkaku, gold cloud, nihonga decorative]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [japanese, decorative, gold-foil, ornate, flat, pattern, nihonga]
+    use_case_affinity: [poster-flyer, social-media-post, historical-oriental, profile-avatar]
+    avoid_for: [ecommerce-main-image]
+    source_tweet: "https://x.com/notoro_ai/status/2050832733895847972"
+
+  - id: cinematic-character-sheet
+    file: cinematic-character-sheet.yaml
+    category: character-design
+    aliases: [角色卡片, 角色设计卡, 电影角色卡, 人物设定卡, 视频角色卡, Seedance角色卡, 真人角色卡, 人物一致性, character card, character design sheet, cinematic character sheet, seedance character, video character card, film pitch character]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [character, cinematic, realistic, film, seedance, consistency, multi-view, turnaround]
+    use_case_affinity: [game-asset, poster-flyer, social-media-post]
+    avoid_for: [ecommerce-main-image]
+    notes: "100% 通过 Seedance 2.0 人脸验证；GPT Image 2 专用，Gemini/Nano Banana 不适用"
+    source_tweet: "https://x.com/frametheory058/status/2051863204025045167"
+
+  - id: pop-street-manga
+    file: pop-street-manga.yaml
+    category: pop-art
+    aliases: [波普街头漫画, 波普街头, 波普漫画, pop street, pop art manga, street art anime, 街头波普, 动漫波普, 本戴点, ben-day dots, 霓虹波普, neon pop, 几何波普, pop × street, 街头艺术漫画]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [pop-art, street-art, manga, neon, high-contrast, geometric, ben-day, flat-shading]
+    use_case_affinity: [poster-flyer, social-media-post, profile-avatar, game-asset]
+    avoid_for: [ecommerce-main-image, product-marketing]
+    source_tweet: "https://x.com/notoro_ai/status/2051154269064278132"
+
+  - id: tranquil-botanical-sketch
+    file: tranquil-botanical-sketch.yaml
+    category: illustration
+    aliases: [宁静植物线稿, 植物线稿, 线条插画, botanical sketch, tranquil botanical, 线稿植物, 植物线条插画, 宁静线稿, quiet line illustration, flora line art, ink botanical, 线稿插画人物, monochrome botanical]
+    aspect_ratio: "1:1"
+    preferred_backend: gpt-image-2
+    tags: [line-art, botanical, minimalism, monochrome, peaceful, flat, coral-accent]
+    use_case_affinity: [social-media-post, profile-avatar, poster-flyer]
+    avoid_for: [ecommerce-main-image, product-marketing, youtube-thumbnail]
+    source: "2026-05-11 user-derived from Lucien→小K prompt"
 
 # ──────────────────────────────────────────
 # Tier 3: Logo Showcase Backgrounds（来源 logo-generator skill）

@@ -2,7 +2,7 @@
 name: image-forge
 description: |
   画图技能路由中枢（统一入口）。三维路由体系（用途 × 风格 × 主体），双后端调度。
-  - Signature 风格：17 种有独立 YAML 的视觉方案（构成主义/克莱因/Risograph/故障艺术/平面几何字体/霓虹线稿/黑白光学/人物信息图等）
+  - Signature 风格：18 种有独立 YAML 的视觉方案（构成主义/克莱因/Risograph/故障艺术/平面几何字体/霓虹线稿/黑白光学/人物信息图/电影角色卡等）
   - Rendering 风格：16 种通用渲染技法 modifier（写真/动漫/3D/水彩/赛博朋克等），prompt 源自实战案例
   - Logo 展示背景：12 种专业展示场景（来源 logo-generator，已内化）
   - 用途库：16 类场景 + 全实战 prompt 案例，含推荐风格 + 后端默认 + pitfalls 防坑
@@ -87,6 +87,11 @@ created_at: 2026-04-25
 | 纪念碑谷、几何治愈、等距美学、埃舍尔建筑、不可能几何、geometric healing | **monument-valley** | 海报、社媒 |
 | 高密度线蚀刻、铜版画动漫、蚀刻肖像、线刻风格、黑白蚀刻、dense etching | **dense-line-etching** | 头像、游戏素材、海报 |
 | 极简高定线描、高定线描肖像、时装插画、疏朗线描、留白线稿、couture line art | **couture-line-portrait** | 头像、社媒、海报 |
+| 极简线条城市海报、城市线条海报、线条城市、旅行海报、收藏级城市海报、人民币插画风、city line poster | **city-line-poster** | 海报、社媒 |
+| 琳派、琳派装饰、金云银云、金泥流水、金箔日本画、rinpa style、japanese decorative | **rinpa-decorative** | 海报、社媒、古风 |
+| 波普街头漫画、波普街头、波普漫画、pop street、ben-day dots、本戴点、街头波普、霓虹波普 | **pop-street-manga** | 海报、社媒、头像 |
+| 角色卡片、角色设计卡、电影角色卡、视频角色卡、Seedance角色卡、人物一致性卡、character card、character design sheet | **cinematic-character-sheet** | 视频生产、游戏素材 |
+| 宁静植物线稿、植物线稿、线条插画、botanical sketch、flora line art、ink botanical、monochrome botanical | **tranquil-botanical-sketch** | 社媒、头像、海报 |
 
 **注：** geo-typography 有必填变量。命中后若用户未提供核心词语，必须主动问其前再生成。
 
