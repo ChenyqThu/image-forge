@@ -1,0 +1,57 @@
+id: vintage-picture-book
+name: 复古绘本（Vintage Picture Book）
+author: "@rainachan"
+source: |
+  Workspace-grown style. Inspired by mid-century colored-pencil children's
+  book illustration: saturated solid backgrounds, hand-rendered fur texture,
+  tiny decorative accents (stars / dots / sparkles), and a slightly melancholic
+  storybook mood.
+placeholder: "[subject, e.g. a tabby cat / a small dog / a rabbit]"
+
+# ── Variables ────────────────────────────────────────────────────
+# [subject]              Subject description (animal, character, person)
+# [bg_color]             Deep saturated background color, choose one:
+#                          deep blue / forest green / wine red / mustard / plum
+# [accent]               Tiny scattered decoration: star / dot / sparkle / snow
+# [optional_props]       Optional accessory for variant B: floral headscarf,
+#                        silk bow, vintage collar, woven scarf. Leave empty for
+#                        pure portrait (variant A).
+# ─────────────────────────────────────────────────────────────────
+
+prompt: |
+  A colored pencil illustration portrait of [subject],
+  square composition, head and chest framing, slightly off-center natural gaze.
+
+  Deeply saturated solid [bg_color] background with visible colored pencil
+  texture and tiny [accent] accents scattered.
+
+  Highly detailed individual fur strands (or hair strands for humans),
+  soft painterly brushstrokes, fluffy and warm.
+  Vintage children's book illustration style, dreamy, slightly melancholic.
+
+  [optional_props: + wearing a [optional_props], decorative folk-art pattern
+  accessories, retro postcard aesthetic. If empty, skip this line entirely.]
+
+  HARD AVOIDS:
+  - NOT photorealistic
+  - NOT watercolor wash
+  - NOT AI-smooth digital render
+  - visible drawing texture is required
+  - hand-rendered colored pencil + soft pastel feel
+
+defaults:
+  size: "1024x1024"
+  quality: "high"
+
+variants:
+  A_portrait: "Pure portrait, no accessories, just subject + background + accents."
+  B_decorated: "Subject + folk accessories (headscarf / bow / collar), more retro postcard energy."
+
+usage_notes: |
+  - Background must be SOLID and saturated — gradients break the storybook feel.
+  - Use one accent type (don't mix stars and dots) so the decoration reads as
+    intentional, not noisy.
+  - For animals, ask the model for "visible individual fur strands"; for humans
+    the equivalent is "visible pencil hatching in hair and skin shadows".
+  - Works best at 1024x1024; a slightly cropped square is part of the
+    vintage book-cover feeling.

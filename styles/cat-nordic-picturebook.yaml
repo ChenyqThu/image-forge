@@ -1,0 +1,64 @@
+id: cat-nordic-picturebook
+name: 猫向 · 北欧绘本（Cat · Nordic Picture Book）
+author: "@rainachan"
+source: |
+  Workspace-grown style for cat portraits. References the Nordic / English
+  picture-book tradition (Tove Jansson, Carson Ellis lineage): brush-pen
+  varying-weight lines, deliberately misaligned flat watercolor blobs, naive
+  child-like quality, low-saturation literary mood, handmade warmth.
+  Note: artist names are NOT to be written into the prompt.
+
+placeholder: "[the cat, e.g. a ragdoll / a british shorthair / a tabby]"
+
+# ── Variables ────────────────────────────────────────────────────
+# [subject_with_face_anchors]
+#   Cat description + must-keep facial anchors. Required.
+#
+# [pose]                 Pose description; can also be two poses on one page.
+# [expression]           alert / dopey / chill / grumpy / pensive
+#                        (see cat-jean-jullien.yaml for definitions)
+# [optional_caption]     Optional: one short pencil-handwritten phrase, ≤6 words,
+#                        literary tone. Examples: "a quiet day" / "Sunday, late"
+#                        / "small thoughts". Leave empty to skip.
+# ─────────────────────────────────────────────────────────────────
+
+prompt: |
+  An illustration in the style of a Scandinavian / Nordic picture book,
+  featuring [subject_with_face_anchors].
+
+  POSE: [pose].
+  EXPRESSION: [expression].
+
+  Drawing technique:
+  - Drawn with a brush pen in BLACK INK with VARYING LINE WEIGHT — some strokes
+    thick and confident, others thin and quick, intentionally wobbly and naive,
+    like hand-drawn by an illustrator, not traced.
+  - Filled with FLAT WATERCOLOR BLOBS in muted earthy tones (cool light grey,
+    dusty pink, warm cream, occasional muted ochre). Color does NOT align with
+    the ink outlines — washes bleed slightly outside the lines and leave small
+    white gaps inside, like a child's coloring book that grew up.
+  - Off-white / warm cream paper background. Visible paper grain.
+  - The subject sits in generous negative space — composition breathes.
+  - [optional_caption] in light pencil handwriting, small, placed near (but not
+    too close to) the subject. Skip this entirely if not provided.
+
+  Vibe: minimal, naive, witty, literary, folk-art warmth, slightly melancholic,
+  hand-made. Quiet but not boring.
+
+  HARD AVOIDS:
+  - NOT photorealistic, NOT polished AI-smooth render
+  - NOT clean digital vector, NOT cel-shaded anime
+  - NOT cute-cute / kawaii / hyper-cute
+  - NO artist signature / watermark in the image
+  - NO complex background scene unless the [pose] requires one
+
+defaults:
+  size: "1024x1024"
+  quality: "high"
+
+usage_notes: |
+  - Difference from sibling styles:
+      * cat-jean-jullien        = bold thick lines + 3-color flat + lots of white = poster
+      * cat-nordic-picturebook  = medium varying lines + misaligned watercolor + paper grain = picture-book interior
+  - For a series of the same cat, keep the anchors fixed and only vary pose +
+    expression.

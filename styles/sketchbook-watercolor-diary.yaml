@@ -1,0 +1,87 @@
+id: sketchbook-watercolor-diary
+name: 手账水彩日记（Sketchbook Watercolor Diary）
+author: "@rainachan"
+source: |
+  Workspace-grown style. Inspired by the international illustrated-journal
+  / sketchbook-diary tradition: grid paper background, multi-pose composition,
+  dip-pen ink linework, watercolor wash, hand-written English captions, and
+  washi-tape color-bar labels.
+
+placeholder: "[the subject, e.g. a cat / a dog / a person]"
+
+# ── Variables ────────────────────────────────────────────────────
+# [subject_with_face_anchors]
+#   Subject + must-keep identifying anchors. Without anchors, multi-pose
+#   pages drift — one of the figures will look "off-model".
+#
+# [N]
+#   How many poses on one page, recommend 4-8. < 4 looks thin; > 8 risks
+#   timeout / messy composition.
+#
+# [poses_list]
+#   English pose list, comma-separated. Example:
+#     "sleeping curled up, loafing upright, on her back paws up, mid-yawn,
+#      sitting alert ears forward, side profile licking paw"
+#
+# [captions]
+#   2-4 short English captions (≤6 words each) hand-written into the page.
+#   Casual literary tone, not ad-copy. Examples: "sweet gentle soul",
+#   "soft cloud with attitude", "every nap a small adventure".
+#   Mark 1-2 of these to sit inside a colored bar (deep red / navy / olive /
+#   ochre) with white reversed-out text — like washi-tape labels.
+# ─────────────────────────────────────────────────────────────────
+
+prompt: |
+  A page from a hand-drawn sketchbook diary, on faint blue-grey grid / graph
+  paper background.
+
+  Subject: [N] different poses of [subject_with_face_anchors] scattered
+  organically across the page (NOT a clean grid — natural diary placement,
+  some overlap, some breathing room).
+
+  Poses to include: [poses_list].
+
+  Drawing technique:
+  - Black ink linework with a fine-to-medium nib — sketchy, broken, deliberately
+    imperfect outlines. NOT closed clean contours.
+  - Filled with watercolor / gouache washes in muted earth tones: burnt sienna,
+    charcoal grey, warm brown, cool light grey, cream, dusty pink. Washes bleed
+    slightly past the ink lines, leave organic edges, sometimes leave white
+    gaps inside.
+  - Tiny doodled stars, dots, ink splatters scattered around the figures as
+    decoration.
+  - HAND-WRITTEN ENGLISH CAPTIONS placed near some figures in casual messy
+    handwriting: [captions].
+    1-2 of these captions sit inside small painted color bars (deep red /
+    navy / olive / ochre) with WHITE reversed-out text — like washi-tape
+    highlight labels.
+
+  Whole page reads like a real personal diary entry from someone who draws —
+  intimate, not polished, breathing room, hand-made warmth.
+
+  HARD AVOIDS:
+  - NOT a polished editorial illustration, NOT clean digital vector
+  - NOT 3D render, NOT cel-shaded anime
+  - NOT a tidy sticker grid (this is diary, not stationery)
+  - NO artist signature / watermark / dedication / year written into the image
+  - NO photorealistic fur or eyes
+
+defaults:
+  size: "1024x1536"   # portrait orientation works best for a "diary page"
+  quality: "high"
+
+usage_notes: |
+  - This is the highest information-density style in this set — the prompt is
+    intentionally longer than other styles.
+  - At 1024x1024 the page can feel cramped with [N] ≥ 5. Use 1024x1536 for
+    diary-page feel.
+  - Anchors are critical for multi-pose pages. Without them, one of the figures
+    on the page will drift to "generic animal/person".
+  - Style note: the inspirational reference may have an artist signature in the
+    corner — that is NOT part of this style. The prompt explicitly bans any
+    written name / year / watermark in the output.
+  - Differences from sibling styles:
+      * cat-jean-jullien        = single-image bold poster
+      * cat-nordic-picturebook  = single-image picture-book interior
+      * sketchbook-diary        = multi-image diary page (best for "a week of"
+                                   or "a day of" series)

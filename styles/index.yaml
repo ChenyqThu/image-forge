@@ -237,6 +237,72 @@ signature_styles:
     required_variables: [character_name, character_desc]
     special_note: "两种角色来源：(A)参考图→Path E edit；(B)知名角色名/原创描述→Path S。flower_element留空则从角色气质自动推断（武士→菊/落叶，冰雪→冰晶，科幻→星云粒子，默认→樱花）。颜色也可自动推断。必填：poster_title；无参考图时还需character_ref。竖版9:16。source: @AiwithLariab"
 
+  - id: vintage-picture-book
+    file: vintage-picture-book.yaml
+    category: illustration
+    aliases: [复古绘本, 复古童书, 彩铅绘本, vintage picture book, storybook illustration, mid-century children book]
+    aspect_ratio: "1:1"
+    preferred_backend: gpt-image-2
+    tags: [vintage, storybook, colored-pencil, melancholic, handmade, cute]
+    use_case_affinity: [social-media-post, profile-avatar, poster-flyer]
+    requires_reference_image: false
+    special_note: "mid-century 彩铅绘本风，饱和纯色背景+手绘毛皮质感+小装饰细节（星星/点点/闪光）。source: @rainachan"
+
+  - id: minimal-line
+    file: minimal-line.yaml
+    category: illustration
+    aliases: [极简线条肖像, 极简线稿人像, 马蒂斯线条, minimal line portrait, contour drawing, matisse style]
+    aspect_ratio: "3:4"
+    preferred_backend: gpt-image-2
+    tags: [minimal, line-art, portrait, negative-space, elegant]
+    use_case_affinity: [profile-avatar, social-media-post, poster-flyer]
+    requires_reference_image: false
+    special_note: "单线条+大量留白，最多一块填色，马蒂斯轮廓画美学。source: @rainachan"
+
+  - id: sketchbook-watercolor-diary
+    file: sketchbook-watercolor-diary.yaml
+    category: illustration
+    aliases: [手账水彩日记, 水彩日记本, 素描本水彩, sketchbook diary, watercolor journal, illustrated journal]
+    aspect_ratio: "1:1"
+    preferred_backend: gpt-image-2
+    tags: [sketchbook, watercolor, diary, handmade, ink-line, journal]
+    use_case_affinity: [social-media-post, profile-avatar]
+    requires_reference_image: false
+    special_note: "方格纸背景+多姿态构图+蘸水笔墨线+水彩晕染+手写英文说明+和纸胶带色条。source: @rainachan"
+
+  - id: cat-jean-jullien
+    file: cat-jean-jullien.yaml
+    category: illustration
+    aliases: [猫向大粗笔, 猫插画粗笔, 大笔触猫, cat bold brush, jean jullien cat, bold brush cat]
+    aspect_ratio: "1:1"
+    preferred_backend: gpt-image-2
+    tags: [cat, bold-brush, minimal, flat-color, illustration, commercial]
+    use_case_affinity: [social-media-post, profile-avatar]
+    requires_reference_image: false
+    special_note: "极度简化+戏剧性线条粗细变化+三色哑光平涂+大量留白+有点歪的可爱感。source: @rainachan"
+
+  - id: cat-nordic-picturebook
+    file: cat-nordic-picturebook.yaml
+    category: illustration
+    aliases: [猫向北欧绘本, 北欧猫插画, 绘本猫, cat nordic, nordic cat, tove jansson cat, picture book cat]
+    aspect_ratio: "1:1"
+    preferred_backend: gpt-image-2
+    tags: [cat, nordic, picture-book, watercolor, naive, literary]
+    use_case_affinity: [social-media-post, profile-avatar]
+    requires_reference_image: false
+    special_note: "毛笔线条+故意错位水彩色块+幼稚感+低饱和度文学氛围，Tove Jansson/Carson Ellis 传统。source: @rainachan"
+
+  - id: journal-sticker
+    file: journal-sticker.yaml
+    category: illustration
+    aliases: [手账贴纸, 水彩手账贴纸, 日记贴纸, 手账水彩贴纸, journal sticker, watercolor sticker, die-cut sticker]
+    aspect_ratio: "1:1"
+    preferred_backend: gpt-image-2
+    tags: [sticker, journal, watercolor, die-cut, handmade, kawaii]
+    use_case_affinity: [social-media-post, profile-avatar]
+    requires_reference_image: false
+    special_note: "奶油纸日记页+镂空白边+和纸胶带+松散墨线+软水彩晕染。适合人物+宠物贴纸、团队成员系列。source: @rainachan"
+
   - id: needle-felt-chibi
     file: needle-felt-chibi.yaml
     category: illustration

@@ -1,0 +1,65 @@
+id: minimal-line
+name: 极简线条肖像（Minimal Line Portrait）
+author: "@rainachan"
+source: |
+  Workspace-grown style. A Matisse-leaning contour-drawing aesthetic:
+  single-weight black lines, lots of negative space, at most one filled
+  color area, optional pale halo behind the subject.
+
+placeholder: "[subject, e.g. a man with round glasses / a tabby cat / a self portrait]"
+
+# ── Variables ────────────────────────────────────────────────────
+# [framing]            Half-body / chest-up / full-body
+# [subject]            Subject description, keep it simple (3-5 traits max)
+# [accent_fill]        Optional single solid-color element, e.g.
+#                        "the black sunglasses" / "the red lipstick" /
+#                        "the yellow scarf". Leave empty for pure line art.
+# [halo_color]         Optional soft halo circle behind subject, e.g.
+#                        "soft beige" / "pale cyan" / "warm cream". Empty = no halo.
+# ─────────────────────────────────────────────────────────────────
+
+prompt: |
+  Minimal line art portrait illustration, single-weight clean black ink lines
+  on a soft warm off-white / cream background.
+  [framing] portrait of [subject].
+
+  Style: minimalist single-line illustration, like a Matisse-inspired contour
+  drawing — clean continuous strokes, very few details, lots of negative space,
+  no shading, no color fill except [accent_fill].
+  The whole figure is rendered in elegant thin black lines.
+
+  Optional accent: one small color element — a [halo_color] circle behind the
+  figure as a halo. Keep it subtle. (Skip this paragraph if halo_color is empty.)
+
+  Background: clean soft cream / off-white. No clutter, no props.
+
+  HARD RULES:
+  - NOT 3D, NOT colorful, NOT detailed, NOT shaded, NOT realistic
+  - SINGLE-WEIGHT linework only — no thick-thin variation, no sketchy pencil feel
+  - NO cross-hatching, NO scribble shading, NO gradients
+  - AT MOST one solid-color fill (accent_fill); everything else hollow line
+  - Negative space is the main character, not the figure
+
+defaults:
+  size: "1024x1024"
+  quality: "high"
+
+key_constraints:
+  - single-weight: lines must read as a single confident pen, not a hand-drawn sketch
+  - one-fill rule: > 1 filled color area breaks the style
+  - no-shading: shadows, hatching, gradients are all banned
+  - negative-space-first: > 60% of canvas should be empty cream
+
+bad_outputs:
+  - "Multiple line weights → reads as casual sketch, not designer poster"
+  - "Background props (chair, plant, etc.) → kills the minimal energy"
+  - "Multiple colored fills → starts competing with the line"
+  - "Realistic eyes / detailed mouth → over-rendered"
+
+usage_notes: |
+  - Works for any subject — people, animals, objects — as long as it can be
+    abstracted to 5-10 strokes.
+  - For portraits, hint emotion with 1-2 micro strokes (mouth corner, brow)
+    instead of drawing full facial features.
+  - The halo circle is a great way to add gentle color without breaking the
+    single-fill rule (it sits behind the figure, not on it).

@@ -1,65 +1,92 @@
-# tranquil-botanical-sketch.yaml
-# 宁静植物线稿 — 来源：2026-05-11 蛋姐群，Lucien 发给小K的原始 prompt 提炼
-
 id: tranquil-botanical-sketch
-display_name: "宁静植物线稿"
-category: illustration
-preferred_backend: gpt-image-2
-aspect_ratio: "1:1"   # 默认方图，亦适合 3:4 / 4:3
+name: 宁静植物线稿（Tranquil Botanical Sketch）
+author: "@rainachan"
+source: |
+  Workspace-grown style. Originated 2026-05-11 from an iteration that asked
+  for "simple line illustration + delicate botanicals + flat pale shapes +
+  fine even ink lines + monochrome with one coral accent". Sensibility sits
+  between modern editorial illustration and Nordic picture book — quieter
+  and more "designer", with uniform line weight (no thick-thin variation),
+  denser botanicals and tighter negative space.
+  NOTE: an upstream variant of this style exists at
+    https://github.com/ChenyqThu/image-forge (styles/tranquil-botanical-sketch.yaml)
+  This file is an independent rr-flavored evolution. See `styles/upstream/`
+  in this repo for unmodified upstream mirrors of other styles.
 
-description: |
-  极简线条插画美学：人物以平面剪影呈现，背景填以细腻植物细节；
-  墨线匀称柔和，调色高度克制（黑 / 灰 / 象牙）+ 浅珊瑚点缀，
-  整体氛围安静平和，无阴影或透视层次感。
+placeholder: "[subject, e.g. a person and their cat / a couple / a single animal]"
 
-# ─── 核心视觉语言 ───────────────────────────────────────────
-palette:
-  base: ["#1a1a1a", "#888888", "#F8F4EC"]   # 黑、中灰、象牙
-  accent: "#F4A896"                          # 浅珊瑚
-  background: "#FAFAF6"                      # 接近白的象牙底
+# ── Variables ────────────────────────────────────────────────────
+# [subject_with_anchors]
+#   Subject + identifying anchors. Facial features may be minimal, but
+#   identifying anchors (hairstyle, glasses, animal face pattern) must be
+#   spelled out explicitly.
+#
+# [pose_and_composition]
+#   Pose + composition. Example: "the person seated with the cat resting in
+#   their lap, both facing slightly toward the viewer, centered composition"
+#
+# [optional_botanical_palette_hint]
+#   Optional botanical species hint. Default:
+#     "leafy plants, small ferns, branches with tiny leaves, a few simple flowers"
+# ─────────────────────────────────────────────────────────────────
 
-visual_language:
-  - 线条：细腻均匀的墨线（0.5-1px 视觉感，无粗细变化）
-  - 形状：平面几何简化，无透视体积感
-  - 植物：背景铺满细节植物（叶片/枝蔓/小花），密度中高，平面化
-  - 人物：极简线稿轮廓，不强调五官细节，以姿态/轮廓传情
-  - 氛围：安静、平和、留白充足
+prompt: |
+  Minimal line illustration of [subject_with_anchors].
 
-# ─── Prompt 模板 ────────────────────────────────────────────
-prompt_template: |
-  Simple line illustration aesthetic. {subject}.
-  Flat minimal shapes, delicate and uniform ink line work.
-  Dense but flat botanical background — leaves, branches, small flowers in line art style.
-  Monochromatic palette: black, gray, and ivory tones, with a subtle touch of light coral (#F4A896) as accent.
-  Quiet, peaceful atmosphere. No shading, no perspective depth.
-  Clean white-ivory background. Minimalist, editorial feel.
-  High quality, 2048x2048.
+  COMPOSITION: [pose_and_composition].
 
-# subject 占位符填写指南：
-# - 人物：角色的外形描述/动作/关系（e.g. "two people sitting together"）
-# - 非人物：主体物/场景（e.g. "a cat resting on an open book"）
+  STYLE:
+  - Clean simple line-art, very fine EVEN ink linework — every stroke uniform
+    weight, no thick-thin variation, no cross-hatching, no scribbled shading.
+  - Flat geometric simplification — shapes filled with solid flat fills, no
+    perspective, no rendered volume, no airbrush gradients.
+  - Facial features minimal or omitted — emotion comes from posture and line,
+    not from drawn eyes/mouth detail.
+  - Picturebook quality, generous negative space, editorial restraint.
 
-# ─── 变体 ──────────────────────────────────────────────────
-variants:
-  cozy:
-    modifier: "cozy indoor setting, warm ivory, slightly more detail in plants"
-  minimal:
-    modifier: "extreme minimalism, fewer botanical details, more white space"
-  two_figures:
-    modifier: "two figures, equal visual weight, mirrored composition"
+  BACKGROUND: delicately drawn botanicals — [optional_botanical_palette_hint:
+  leafy plants, small ferns, branches with tiny leaves, a few simple flowers] —
+  all rendered in the SAME fine even line as the subject, layered softly behind
+  as a gentle frame. Medium-to-high density but never crowded; leaves overlap
+  with breathing room.
 
-# ─── 用途亲和 ─────────────────────────────────────────────
-use_case_affinity: [social-media-post, profile-avatar, poster-flyer]
-avoid_for: [ecommerce-main-image, product-marketing, youtube-thumbnail]
+  PALETTE: strict monochrome —
+  - ivory / warm cream background
+  - black ink lines (only black, no grey lines)
+  - soft warm grey flat fills for clothing / animal coat / shadow shapes
+  - ONE accent color: muted pale coral (#F4A896), used sparingly on 1–3 small
+    elements only (a flower head, a leaf tip, a cheek dot). Coral is a SPOT
+    COLOR, not a fill.
+  No other colors. No saturation outside this palette.
 
-# ─── 防坑 ─────────────────────────────────────────────────
-pitfalls:
-  - 不要加透明水彩晕染或水彩纹理，会破坏干净的线稿感
-  - 不要强调人物五官，线条人物应是抽象感轮廓
-  - 植物不要过于写实 3D，保持平面线描风格
-  - 不要出现其他高饱和色彩，只用浅珊瑚作点缀
+  MOOD: calm, peaceful, quiet, intimate, contemplative, modern minimalist,
+  editorial, nordic picturebook sensibility.
 
-# ─── Curator 字段 ───────────────────────────────────────────
-pinned: false
-source: user_derived   # 从用户真实 prompt 中提炼
-created_at: 2026-05-11
+  HARD AVOIDS:
+  - NO heavy outlines, NO bold cartoon shading
+  - NO bright saturated colors, NO digital airbrush, NO gradients
+  - NO photorealism, NO 3D render, NO anime cel-shading
+  - NO cross-hatching / scribble shading
+  - NO line-weight variation — the linework must read as fine-liner pen, not
+    brush pen
+  - NO heavy facial detail (eyes / nose / mouth should be a few minimal marks
+    at most, or omitted entirely)
+  - Coral must NEVER dominate — if more than ~5% of the canvas is coral, it's
+    wrong
+
+defaults:
+  size: "1024x1024"   # 1:1 default; switch to 1024x1536 for full-body two-figure scenes
+  quality: "high"
+
+usage_notes: |
+  - Difference from sibling styles in this repo:
+      * cat-jean-jullien            = thick brush, poster, 3-color, very simple shapes
+      * cat-nordic-picturebook      = medium brush, picture-book interior, flat watercolor, papery
+      * tranquil-botanical-sketch   = fine even pen, dense botanicals, monochrome + one coral spot, tight negative space
+  - Person + animal works best at 1:1; only switch to 1024x1536 if it's a
+    full-body standing pair.
+  - For people, spell out: hairstyle, glasses (frame shape + color), one or
+    two clothing notes. For animals, spell out: face pattern, eye color,
+    coat color.
+  - Trigger phrases: "tranquil botanical sketch" / "botanical line art" /
+    "monochrome botanical" / "fine-liner portrait with plants".

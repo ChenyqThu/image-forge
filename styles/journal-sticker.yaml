@@ -1,0 +1,89 @@
+id: journal-sticker
+name: 手账水彩贴纸（Journal Watercolor Sticker）
+author: "@rainachan"
+source: |
+  Workspace-grown style for character + companion stickers. Cream-paper
+  journal page + die-cut white border + washi-tape + loose ink & soft wash.
+  Best for people-with-pets, team / member series stickers, and named
+  character cards.
+
+placeholder: "[person + companion, e.g. a woman + her cat]"
+
+# ── Variables ────────────────────────────────────────────────────
+# [person_desc]
+#   4-5 highest-identifiability traits per person:
+#     - face shape:  round / oval / slim
+#     - hairstyle:   long straight black hair / short buzz-cut / bowl-cut
+#     - glasses:     thin gold round-frame / thick black square-frame / NONE
+#     - clothing:    black turtleneck / cream fleece jacket / red hoodie
+#     - action:      holding a cat / peace sign / laughing / hugging dog
+#
+# [companion_desc]
+#   Pet or sidekick. Examples:
+#     - ragdoll cat:        fluffy bicolor ragdoll, wide white inverted-V blaze,
+#                           sky-blue eyes, grey markings on head
+#     - orange tabby:       short-hair orange-and-white tabby, white chest/paws,
+#                           green eyes
+#     - tabby cat:          short-hair tabby, grey-brown striped fur, amber eyes
+#     - seal-point ragdoll: dark brown mask/ears/legs, white fluffy body,
+#                           blue eyes
+#     - british shorthair:  grey BSH, round face, gold/amber eyes
+#     - tuxedo cat:         black and white, white chest/paws/face patch
+#     - golden retriever:   adult golden, friendly grin, fluffy tail
+#
+# [label]
+#   The handwritten name label, e.g. 'Alex & Mochi' / 'Team Echo'.
+# ─────────────────────────────────────────────────────────────────
+
+prompt: |
+  Watercolor sticker on cream paper sketchbook, washi tape strip, die-cut
+  white border, loose ink + soft wash, tiny doodles.
+  [person_desc].
+  [companion_desc].
+  Handwritten label tags: '[label]'. Handmade journal vibe.
+  NOT vector NOT 3D.
+
+# ── Hard length budget ────────────────────────────────────────────
+# Keep prompt ≤ ~500 chars when filled in. Going over significantly raises
+# the chance of a CloudFlare 524 timeout against the GPT Image 2 backend.
+# ─────────────────────────────────────────────────────────────────
+
+defaults:
+  endpoint: "generate"
+  model: "gpt-image-2"
+  size: "1024x1024"
+  quality: "low"   # forced low — high will time out at this prompt length
+
+retry_policy:
+  http_timeout_seconds: 130
+  max_retries: 4
+  retry_backoff_seconds: 6
+
+key_phrases_to_preserve:
+  - "Watercolor sticker on cream paper sketchbook"
+  - "washi tape strip"
+  - "die-cut white border"
+  - "loose ink + soft wash"
+  - "tiny doodles"
+  - "Handmade journal vibe"
+  - "NOT vector NOT 3D"
+
+edit_mode:
+  endpoint: "/openai/v1/images/edits"
+  notes: |
+    For local edits to an existing sticker:
+    - Mask: transparent = area to change, black opaque = keep
+    - Prompt template: "Keep everything the same EXCEPT [target]: [change description]."
+    - Same quality=low, same 130s timeout
+    - When auto-masking by pixel threshold, protect very dark regions (RGB
+      total < 280) so dark clothing / sunglasses don't get destroyed.
+
+usage_notes: |
+  - quality:low is mandatory, NOT a soft preference. high or auto will 524.
+  - Keep the filled prompt under ~500 chars total. Each extra adjective costs
+    timeout headroom.
+  - For multi-person stickers, write each [person_desc] in 4-5 traits max.
+    More than 6 traits per person makes the model average everyone toward
+    the same generic face.
+  - Sit the label at the bottom of the canvas with a small washi-tape strip
+    underneath for the strongest "sticker" read.

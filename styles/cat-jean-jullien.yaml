@@ -1,0 +1,79 @@
+id: cat-jean-jullien
+name: 猫向 · 大粗笔（Cat · Bold Brush Illustration）
+author: "@rainachan"
+source: |
+  Workspace-grown style for cat portraits. Inspired by bold-brush commercial
+  illustration traditions: extreme simplification, dramatic line-weight
+  variation, three muted flat-fill colors, lots of white space, intentional
+  "wonky" charm.
+  Note: the inspirational artist's name is NOT to be written into the prompt —
+  the model will copy the signature.
+
+placeholder: "[the cat, e.g. a ragdoll / a british shorthair / a tabby]"
+
+# ── Variables ────────────────────────────────────────────────────
+# [subject_with_face_anchors]
+#   Cat description + the must-keep facial anchors (coat colors / pattern /
+#   eye color / nose color etc.). Without anchors the model drifts to a
+#   generic cat very quickly.
+#
+# [pose]
+#   Concrete pose, the more specific the better. Examples:
+#     - "tight loaf, paws tucked, facing forward"
+#     - "lying on her back, belly up, paws floppy in the air"
+#     - "side profile mid-walk, one paw lifted, tail straight up"
+#     - "back view, head turned a quarter back over the shoulder"
+#
+# [expression]
+#   Emotion — DO NOT default to "cute". Pick one:
+#     - alert    : ears forward, eyes wide round, looking off-frame
+#     - dopey    : dilated pupils, slight head tilt, small smile, derpy
+#     - chill    : half-closed eyes, mid-yawn or lounging
+#     - grumpy   : narrowed eyes, downturned mouth, ruff slightly puffed
+#     - pensive  : far gaze, distracted, "not in the room"
+# ─────────────────────────────────────────────────────────────────
+
+prompt: |
+  Bold playful illustration of [subject_with_face_anchors].
+
+  POSE: [pose].
+  EXPRESSION: [expression] — clearly readable from the eyes, ears and mouth shape.
+
+  Drawing technique:
+  - Rendered with a thick brush pen in BLACK INK with DRAMATICALLY VARYING LINE
+    WEIGHT — fat juicy strokes for the body silhouette, thin quick strokes for
+    whiskers, eyes, and small details. Lines confidently "wrong" in places
+    (wobbly, slightly off), like one fast brush sketch.
+  - Extreme simplification: the cat is reduced to a few essential shapes, almost
+    abstract.
+  - FLAT COLOR FILLS in only 3 muted colors: warm cream, cool light grey,
+    dusty pink. Color blocks may sit slightly off-register from the ink lines
+    (a hair outside or inside the outline) for handmade feel.
+  - LOTS OF WHITE SPACE around the subject. No background detail, no setting.
+  - Off-white / cream paper background.
+  - Slightly wonky, intentionally imperfect proportions in a charming way.
+
+  Vibe: naive, bold, witty, child-like but sophisticated, designer-grade
+  playful poster illustration.
+
+  HARD AVOIDS:
+  - NOT realistic, NOT photographic, NOT detailed fur
+  - NOT smooth digital vector, NOT cel-shaded anime cartoon
+  - NOT cute-cute / kawaii / hyper-cute (this style is dry, witty, a little
+    moody — keep it that way)
+  - NO artist signature / watermark / dedication text written into the image
+  - NO background scene, NO furniture, NO props unless the [pose] explicitly
+    needs one
+
+defaults:
+  size: "1024x1024"
+  quality: "high"
+
+usage_notes: |
+  - The face anchors are load-bearing — without them the model averages every
+    cat to "orange tabby with green eyes". Spell out coat pattern, eye color,
+    nose color, ear shape every time.
+  - For a series of the same cat, keep [subject_with_face_anchors] identical
+    and only vary [pose] + [expression]. 4-6 variants per session produces a
+    clean cohesive set.
+  - Backend tends to flake (502 / 524) at concurrency ≥ 3; serialize requests.
